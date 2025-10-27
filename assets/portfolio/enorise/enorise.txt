@@ -1,0 +1,9 @@
+Company: Enorise
+Industry: Automotive
+Acquisition year: 2024.0
+Revenue: 105.0 Million EUR
+FTE: 360.0
+Countries: 5.0
+Website: https://www.enorise.com
+Headquarter: USA
+Seller: FEV

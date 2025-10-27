@@ -1,0 +1,9 @@
+Company: Meta System
+Industry: Automotive
+Acquisition year: 2025.0
+Revenue: 140.0 Million EUR
+FTE: 400.0
+Countries: 2.0
+Website: https://www.metasystem.it
+Headquarter: Reggio Emilia, Italien
+Seller: Insolvency

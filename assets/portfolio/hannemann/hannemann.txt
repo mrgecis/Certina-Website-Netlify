@@ -1,0 +1,9 @@
+Company: Hannemann
+Industry: Industrials
+Acquisition year: 1999.0
+Revenue: 10.0 Million EUR
+FTE: 20.0
+Countries: 1.0
+Website: https://www.hannemann.de
+Headquarter: Germany
+Seller: Pruss family

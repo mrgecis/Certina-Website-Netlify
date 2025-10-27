@@ -1,0 +1,9 @@
+Company: AFT
+Industry: Industrials
+Acquisition year: 2007.0
+Revenue: 150.0 Million EUR
+FTE: 300.0
+Countries: 8.0
+Website: https://www.aft-group.de
+Headquarter: Germany
+Seller: Kardex AG

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Imprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-text-size-adjust: 100%;
+        }
+        body { 
+            background-color: transparent;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            font-weight: 300;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(106, 123, 162, 0.04) 0%, 
+                rgba(61, 74, 93, 0.06) 50%, 
+                rgba(46, 58, 74, 0.08) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .imprint-hero {
+            position: relative;
+            background: var(--gradient-1);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .imprint-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .imprint-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .imprint-hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .imprint-content {
+            padding: 80px 0;
+            background: var(--card-bg-light);
+            margin: -40px 20px 80px 20px;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .imprint-section {
+            margin-bottom: 50px;
+        }
+
+        .imprint-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .imprint-section h2 {
+            color: var(--secondary);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            letter-spacing: -0.01em;
+        }
+
+        .imprint-section h3 {
+            color: var(--dark-shade);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .imprint-section p {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .imprint-section strong {
+            color: var(--dark-shade);
+            font-weight: 500;
+        }
+
+        .company-info {
+            background: var(--ultra-light-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 40px;
+        }
+
+        .company-info h3 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--separator-color);
+        }
+
+        .contact-item h4 {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .imprint-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .imprint-hero p {
+                font-size: 1rem;
+            }
+
+            .imprint-content {
+                margin: -20px 10px 40px 10px;
+                padding: 40px 20px;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+
+            .imprint-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-bottom: 50px;
+            position: relative;
+            align-items: start;
+        }
+
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--footer-text-secondary);
+            position: relative;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: var(--footer-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--footer-text);
+        }
+
+        .footer-logo {
+            display: block;
+            max-height: 45px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-container p,
+        .footer-contact p {
+            color: var(--footer-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo-container {
+                align-items: center;
+            }
+
+            .footer-logo {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-contact {
+                margin-top: 40px;
+            }
+
+            .footer-title {
+                display: block;
+            }
+        }
+</style>
+</head>
+
+<body>
+
+<!-- Header Placeholder -->
+<div id="header-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="imprint-hero">
+    <div class="imprint-hero-content">
+        <h1>Imprint</h1>
+        <p>Legal information and contact details</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="imprint-content">
+    <div class="container">
+        
+        <!-- Company Information -->
+        <div class="company-info">
+            <h3>Information according to § 5 TMG:</h3>
+            <p><strong>CERTINA Holding AG</strong></p>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <h4>Main Office</h4>
+                    <p>
+                        Robert-Koch-Str. 5a<br>
+                        D-82031 Grünwald
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Munich Office</h4>
+                    <p>
+                        Tumblingerstraße 23<br>
+                        D-80337 Munich
+                    </p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px;"><strong>Represented by:</strong> CEO Dr. Hans Wehrmann</p>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <h4>Contact Information</h4>
+                    <p>
+                        <strong>Phone:</strong> +49 89 210896-0<br>
+                        <strong>Fax:</strong> +49 89 210896-50<br>
+                        <strong>Email:</strong> info(at)certina-group.com
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Register Entry</h4>
+                    <p>
+                        Entry in the Munich commercial register<br>
+                        <strong>Registration number:</strong> HRB 132997
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="imprint-section">
+            <h2>Disclaimer</h2>
+            
+            <h3>Liability for contents</h3>
+            <p>As a service provider, we are responsible for our own content on these pages according to § 7 para. 1 TMG (German Telemedia Act) and general laws. According to §§ 8 to 10 TMG we are not obliged to monitor transmitted or stored information from third parties or to investigate circumstances that indicate illegal activity.</p>
+            
+            <p>Obligations to remove or block the use of information according to general laws remain unaffected. However, liability in this respect is only possible from the time of knowledge of a concrete infringement. If we become aware of any such violations, we will remove the content in question immediately.</p>
+
+            <h3>Liability for links</h3>
+            <p>Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore we cannot assume any liability for these external contents. The respective provider or operator of the sites is always responsible for the contents of the linked sites.</p>
+            
+            <p>The linked pages were checked for possible legal violations at the time of linking. Illegal contents were not identified at the time of linking. However, a permanent control of the contents of the linked pages is not reasonable without concrete evidence of a violation of the law. If we become aware of any infringements, we will remove such links immediately.</p>
+
+            <h3>Copyright</h3>
+            <p>The contents and works on these pages created by the site operators are subject to German copyright law. The duplication, editing, distribution and any kind of utilization outside the limits of copyright law require the written consent of the respective author or creator.</p>
+            
+            <p>Downloads and copies of these pages are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are observed. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such contents immediately.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Placeholder -->
+<div id="footer-placeholder"></div>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load Header and Footer
+    async function loadHeaderFooter() {
+        try {
+            // Load Header
+            const headerRes = await fetch('Header.html');
+            if (!headerRes.ok) throw new Error('Failed to fetch Header.html: ' + headerRes.statusText);
+            const headerHtml = await headerRes.text();
+            document.getElementById('header-placeholder').innerHTML = headerHtml;
+
+            // Load Footer
+            const footerRes = await fetch('Footer.html');
+            if (!footerRes.ok) throw new Error('Failed to fetch Footer.html: ' + footerRes.statusText);
+            const footerHtml = await footerRes.text();
+            document.getElementById('footer-placeholder').innerHTML = footerHtml;
+            
+            // Wait a moment for DOM to be ready
+            setTimeout(() => {
+                // Initialize all header functionality
+                initializeHeaderFunctionality();
+                initializeLanguageFunctionality();
+            }, 100);
+            
+        } catch (error) {
+            console.error('Error loading header/footer:', error);
+            
+            // Fallback for header
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder && !headerPlaceholder.innerHTML) {
+                headerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Error loading header.</p>";
+            }
+            
+            // Fallback for footer
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder && !footerPlaceholder.innerHTML) {
+                footerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Error loading footer.</p>";
+            }
+        }
+    }
+
+    loadHeaderFooter();
+    
+    // Complete header functionality implementation
+    function initializeHeaderFunctionality() {
+        console.log('[ModernHeader.js] Initializing modern header functionality...');
+        
+        const modernHamburger = document.getElementById('modern-hamburger');
+        const modernNavOverlay = document.getElementById('modern-nav-overlay');
+        const header = document.querySelector('header');
+        
+        if (!modernHamburger) {
+            console.error('[ModernHeader.js] Modern hamburger menu (#modern-hamburger) NOT FOUND.');
+            return;
+        }
+        
+        if (!modernNavOverlay) {
+            console.error('[ModernHeader.js] Modern nav overlay (#modern-nav-overlay) NOT FOUND.');
+            return;
+        }
+        
+        console.log('[ModernHeader.js] Found all required elements. Setting up modern menu...');
+        
+        // State management
+        let isMenuOpen = false;
+        
+        // Toggle menu function
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            console.log('[ModernHeader.js] Toggling menu. New state:', isMenuOpen ? 'OPEN' : 'CLOSED');
+            
+            if (isMenuOpen) {
+                // Open menu
+                modernHamburger.classList.add('active');
+                modernNavOverlay.classList.add('active');
+                document.body.classList.add('no-scroll');
+            } else {
+                // Close menu
+                modernHamburger.classList.remove('active');
+                modernNavOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        }
+        
+        // Close menu function
+        function closeMenu() {
+            if (isMenuOpen) {
+                toggleMenu();
+            }
+        }
+        
+        // Hamburger click handler
+        modernHamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('[ModernHeader.js] Hamburger clicked');
+            toggleMenu();
+        });
+        
+        // Close button click handler
+        const closeBtn = document.getElementById('nav-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[ModernHeader.js] Close button clicked');
+                closeMenu();
+            });
+        }
+        
+        // Navigation link click handlers
+        const navLinks = modernNavOverlay.querySelectorAll('.modern-nav-links a');
+        console.log(`[ModernHeader.js] Found ${navLinks.length} navigation links`);
+        
+        navLinks.forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                console.log(`[ModernHeader.js] Navigation link ${index + 1} clicked: ${this.href}`);
+                closeMenu();
+                // Let the default navigation happen
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen && !modernHamburger.contains(e.target) && !modernNavOverlay.contains(e.target)) {
+                console.log('[ModernHeader.js] Clicked outside menu, closing...');
+                closeMenu();
+            }
+        });
+        
+        // Close menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                console.log('[ModernHeader.js] Escape key pressed, closing menu...');
+                closeMenu();
+            }
+        });
+        
+        // Header scroll effect
+        if (header) {
+            function handleScroll() {
+                const scrolled = window.scrollY > 50;
+                header.classList.toggle('scrolled', scrolled);
+            }
+            
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        }
+        
+        console.log('[ModernHeader.js] Modern header functionality initialized successfully!');
+    }
+    
+    // Language functionality
+    function initializeLanguageFunctionality() {
+        console.log('Initializing language functionality...');
+        
+        // Global language dropdown function
+        window.toggleLanguageMenu = function() {
+            console.log('Language button clicked!');
+            const switcher = document.querySelector('.language-switcher');
+            if (!switcher) {
+                console.error('Language switcher not found!');
+                return;
+            }
+            
+            const isOpen = switcher.classList.contains('open');
+            
+            if (isOpen) {
+                switcher.classList.remove('open');
+                console.log('Menu closed');
+            } else {
+                switcher.classList.add('open');
+                console.log('Menu opened');
+            }
+        };
+        
+        window.selectLanguage = function(lang) {
+            const currentLang = document.getElementById('current-lang');
+            const languageMenu = document.getElementById('language-menu');
+            const options = document.querySelectorAll('.language-option');
+            
+            console.log('Language selected:', lang);
+            
+            // Update display
+            if (currentLang) {
+                currentLang.textContent = lang.toUpperCase();
+            }
+            
+            // Update active state
+            options.forEach(option => {
+                option.classList.remove('active');
+                if (option.onclick.toString().includes(`'${lang}'`)) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Close menu
+            const switcher = document.querySelector('.language-switcher');
+            if (switcher) {
+                switcher.classList.remove('open');
+            }
+            if (languageMenu) {
+                languageMenu.classList.remove('active');
+            }
+        };
+        
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            
+            if (languageSwitcher && !languageSwitcher.contains(e.target)) {
+                languageSwitcher.classList.remove('open');
+                const languageMenu = document.getElementById('language-menu');
+                if (languageMenu) {
+                    languageMenu.classList.remove('active');
+                }
+            }
+        });
+        
+        // Close menu with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const switcher = document.querySelector('.language-switcher');
+                if (switcher) {
+                    switcher.classList.remove('open');
+                }
+            }
+        });
+        
+        console.log('Language functionality initialized!');
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CERTINA GROUP - Datenschutzerklärung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Alle bestehenden Styles hier behalten -->
+    <style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-text-size-adjust: 100%;
+        }
+        body { 
+            background-color: transparent;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            font-weight: 300;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(106, 123, 162, 0.04) 0%, 
+                rgba(61, 74, 93, 0.06) 50%, 
+                rgba(46, 58, 74, 0.08) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .privacy-hero {
+            position: relative;
+            background: var(--gradient-1);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .privacy-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .privacy-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .privacy-content {
+            padding: 80px 0;
+            background: var(--card-bg-light);
+            margin: -40px 20px 80px 20px;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .privacy-section {
+            margin-bottom: 50px;
+        }
+
+        .privacy-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .privacy-section h2 {
+            color: var(--secondary);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            letter-spacing: -0.01em;
+        }
+
+        .privacy-section h3 {
+            color: var(--dark-shade);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .privacy-section h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .privacy-section p {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .privacy-section ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .privacy-section li {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+
+        .privacy-section strong {
+            color: var(--dark-shade);
+            font-weight: 500;
+        }
+
+        .company-info {
+            background: var(--ultra-light-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 40px;
+        }
+
+        .company-info h3 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--separator-color);
+        }
+
+        .contact-item h4 {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: var(--ultra-light-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--highlight-blue);
+            margin: 25px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+
+        /* External Links Styling */
+        .privacy-section a {
+            color: var(--highlight-blue);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .privacy-section a:hover {
+            border-bottom-color: var(--highlight-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .privacy-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .privacy-hero p {
+                font-size: 1rem;
+            }
+
+            .privacy-content {
+                margin: -20px 10px 40px 10px;
+                padding: 40px 20px;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-bottom: 50px;
+            position: relative;
+            align-items: start;
+        }
+
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--footer-text-secondary);
+            position: relative;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: var(--footer-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--footer-text);
+        }
+
+        .footer-logo {
+            display: block;
+            max-height: 45px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-container p,
+        .footer-contact p {
+            color: var(--footer-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo-container {
+                align-items: center;
+            }
+
+            .footer-logo {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-contact {
+                margin-top: 40px;
+            }
+
+            .footer-title {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Placeholder - GENAU WIE IM IMPRINT -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="privacy-hero">
+        <div class="privacy-hero-content">
+            <h1 data-translate="privacy_title">Datenschutzerklärung</h1>
+            <p data-translate="privacy_subtitle">Datenschutz und Ihre Privatsphäre sind uns wichtig</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="privacy-content">
+        <div class="container">
+            
+            <!-- Introduction -->
+            <div class="privacy-section">
+                <p data-translate="privacy_intro">Vielen Dank für Ihr Interesse an unserer Webseite. Der Schutz Ihrer personenbezogenen Daten liegt uns sehr am Herzen. Nachstehend informieren wir Sie ausführlich über den Umgang mit Ihren Daten, die durch Ihre Nutzung unserer Webseite erhoben werden. Das Internetangebot ist nach den gesetzlichen Datenschutzbestimmungen in Deutschland und der Europäischen Union (insbesondere Bundesdatenschutzgesetz ("BDSG") und EU-Datenschutz-Grundverordnung ("EU-DSGVO") ausgerichtet.</p>
+            </div>
+
+            <!-- Responsible Party -->
+            <div class="company-info">
+                <h2 data-translate="privacy_responsible_title">Verantwortliche Stelle und Datenschutzbeauftragter</h2>
+                <p data-translate="privacy_responsible_intro">Verantwortliche Stelle im Sinne der EU-DSGVO und anderer nationaler Datenschutzgesetze der Mitgliedsstaaten sowie sonstiger datenschutzrechtlicher Bestimmungen ist:</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4 data-translate="privacy_responsible_company">CERTINA GROUP</h4>
+                        <p data-translate="privacy_responsible_address">Robert-Koch-Straße 5a<br>82031 Grünwald<br>Handelsregister München, HRB 132997<br><br><strong>Tel:</strong> +49 89 210896-0<br><strong>Fax:</strong> +49 89 210896-50<br><strong>E-Mail:</strong> info@certina-group.com<br><br><strong>Geschäftsführer:</strong> Dr. Hans Wehrmann</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;" data-translate="privacy_responsible_note">Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten können Sie sich an unseren Datenschutzbeauftragten wenden, der Ihnen auch bei Auskunftsersuchen, Anregungen oder Beschwerden gerne weiterhilft.</p>
+            </div>
+
+            <!-- Personal Data -->
+            <div class="privacy-section">
+                <h2 data-translate="privacy_personal_data_title">Personenbezogene Daten</h2>
+                <p data-translate="privacy_personal_data_text">Personenbezogene Daten sind Einzelangaben über persönliche oder sachliche Verhältnisse einer bestimmten oder bestimmbaren natürlichen Person. Hierunter fallen z.B. Ihr Name, Ihre Anschrift, Ihr Geburtsdatum, Ihre E-Mail-Adresse und Zahlungsdaten, aber auch Ihre IP-Adresse. Nachfolgend beschreiben wir, wie wir Ihre personenbezogenen Daten verarbeiten.</p>
+            </div>
+
+            <!-- Website Visit and Log Files -->
+            <div class="privacy-section">
+                <h2 data-translate="privacy_website_visit_title">Besuch unserer Webseite und Erstellung sogenannter Logfiles</h2>
+                
+                <h3 data-translate="privacy_website_description">Beschreibung und Umfang der Datenverarbeitung:</h3>
+                <p data-translate="privacy_website_intro">Bei jedem Aufruf unserer Internetseite erfasst unser System automatisiert Daten und Informationen, die Ihr Internetbrowser an uns übermittelt. Folgende Daten werden hierbei erhoben und verarbeitet:</p>
+                
+                <ul id="website-data-list">
+                    <!-- Wird von JavaScript gefüllt -->
+                </ul>
+                
+                <p data-translate="privacy_website_necessity">Die Erhebung der Daten zur Bereitstellung der Webseite und die Speicherung der Daten in sogenannten Logfiles ist für den Betrieb der Internetseite zwingend erforderlich.</p>
+                
+                <h4 data-translate="privacy_legal_basis">Rechtsgrundlage für die Datenverarbeitung:</h4>
+                <p data-translate="privacy_legal_basis_text">Rechtsgrundlage für die vorübergehende Speicherung der Daten und der Logfiles ist Art. 6 Abs. 1 lit. f EU-DSGVO.</p>
+                
+                <h4 data-translate="privacy_purpose">Zweck der Datenverarbeitung:</h4>
+                <p data-translate="privacy_purpose_text">Die vorübergehende Speicherung der IP-Adresse durch das System ist notwendig, um eine Auslieferung der Webseite an den Rechner des Nutzers zu ermöglichen. Hierfür muss die IP-Adresse des Nutzers für die Dauer der Sitzung gespeichert bleiben. Der Zweck der Speicherung in Logfiles liegt darin, die Funktionsfähigkeit und Stabilität der Webseite zu gewährleisten. Zudem nutzen wir die Daten zu statistischen Zwecken, zur Optimierung der Webseite und zur Gewährleistung der Sicherheit unserer informationstechnischen Systeme. In diesen Zwecken liegt auch unser berechtigtes Interesse an der Datenverarbeitung nach Art. 6 Abs. 1 lit. f EU-DSGVO.</p>
+                
+                <h4 data-translate="privacy_duration">Dauer der Speicherung:</h4>
+                <p data-translate="privacy_duration_text">Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind, es sei denn, vertragliche oder gesetzliche Verpflichtungen stehen einer Löschung entgegen.</p>
+            </div>
+
+            <!-- Contact Forms -->
+            <div class="privacy-section">
+                <h2 data-translate="privacy_contact_title">Kontaktformular und E-Mail-Kontakt</h2>
+                
+                <h4 data-translate="privacy_contact_description">Beschreibung und Umfang der Datenverarbeitung:</h4>
+                <p data-translate="privacy_contact_text1">Wenn Sie uns über unser Kontaktformular eine Kontaktanfrage zusenden, werden die in der Eingabemaske eingegebenen Daten an uns übermittelt und gespeichert. Für die Verarbeitung der Daten wird im Rahmen des Absendevorgangs Ihre Einwilligung eingeholt und auf diese Datenschutzerklärung verwiesen.</p>
+                
+                <p data-translate="privacy_contact_text2">Die Bereitstellung personenbezogener Daten durch Sie ist weder gesetzlich noch vertraglich vorgeschrieben, noch für einen Vertragsabschluss erforderlich. Sie sind nicht verpflichtet, uns personenbezogene Daten zur Verfügung zu stellen. Das Nichtbereitstellen personenbezogener Daten, soweit diese verpflichtend sind, führt dazu, dass eine Kontaktaufnahme über das Kontaktformular oder ein Rückruf nicht möglich ist.</p>
+                
+                <p data-translate="privacy_contact_text3">Alternativ ist eine Kontaktaufnahme über die bereitgestellten E-Mail-Adressen möglich. In diesem Fall werden Ihre mit der E-Mail übermittelten personenbezogenen Daten gespeichert.</p>
+                
+                <p data-translate="privacy_contact_text4">Ihre Daten werden nicht an Dritte weitergegeben.</p>
+                
+                <h4 data-translate="privacy_legal_basis">Rechtsgrundlage für die Datenverarbeitung:</h4>
+                <p data-translate="privacy_contact_legal">Rechtsgrundlage für die Verarbeitung der über das Kontaktformular übermittelten Daten und Rechtsgrundlage für die Verarbeitung der im Zuge einer E-Mail-Übersendung übermittelten Daten ist Art. 6 Abs. 1 lit. f EU-DSGVO. Unser berechtigtes Interesse liegt darin, auf die Kontaktanfrage des Absenders zu antworten. Zielt der Kontakt auf den Abschluss eines Vertrages ab, so ist zusätzliche Rechtsgrundlage für die Verarbeitung Art. 6 Abs. 1 lit. b EU-DSGVO.</p>
+                
+                <h4 data-translate="privacy_purpose">Zweck der Datenverarbeitung:</h4>
+                <p data-translate="privacy_contact_purpose">Die Verarbeitung der personenbezogenen Daten aus der Eingabemaske dient uns allein zur Bearbeitung der Kontaktaufnahme. Die sonstigen während des Absendevorgangs verarbeiteten personenbezogenen Daten dienen dazu, einen Missbrauch des Kontaktformulars zu verhindern und die Sicherheit unserer informationstechnischen Systeme sicherzustellen.</p>
+                
+                <h4 data-translate="privacy_duration">Dauer der Speicherung:</h4>
+                <p data-translate="privacy_contact_duration">Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind, es sei denn, vertragliche oder gesetzliche Verpflichtungen stehen einer Löschung entgegen. Für die personenbezogenen Daten aus der Eingabemaske des Kontaktformulars und diejenigen, die per E-Mail übersandt wurden, ist dies dann der Fall, wenn die jeweilige Unterhaltung mit Ihnen beendet ist, es sei denn, vertragliche oder gesetzliche Verpflichtungen stehen einer Löschung entgegen. Beendet ist die Unterhaltung dann, wenn sich aus den Umständen entnehmen lässt, dass der betroffene Sachverhalt abschließend geklärt ist.</p>
+            </div>
+
+            <!-- Data Provision -->
+            <div class="privacy-section">
+                <h2 data-translate="privacy_no_obligation_title">Keine Pflicht zur Bereitstellung personenbezogener Daten</h2>
+                <p data-translate="privacy_no_obligation_text">Der Abschluss von Verträgen mit uns ist nicht davon abhängig, dass Sie uns zuvor personenbezogene Daten zur Verfügung stellen. Als Kunde sind Sie uns gegenüber nicht verpflichtet, uns personenbezogene Daten bereitzustellen; allerdings können wir bestimmte Leistungen nur eingeschränkt oder gar nicht erbringen, wenn Sie uns nicht die erforderlichen Daten zur Verfügung stellen. Sollte dies im Einzelfall im Rahmen der von uns angebotenen Produkte der Fall sein, werden Sie hierüber gesondert informiert.</p>
+            </div>
+
+            <!-- Automated Decision Making -->
+            <div class="privacy-section">
+                <h2>Automatisierte Entscheidungsfindung einschließlich Profiling</h2>
+                <p>Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling statt.</p>
+            </div>
+
+            <!-- Data Transmission -->
+            <div class="privacy-section">
+                <h2>Übermittlung personenbezogener Daten</h2>
+                <p>Mit Ausnahme der in dieser Datenschutzerklärung beschriebenen Fälle werden wir Ihre Daten nicht an Dritte weitergeben, es sei denn, Sie haben zuvor ausdrücklich in eine Übermittlung eingewilligt oder die Übermittlung ist gesetzlich vorgeschrieben oder erlaubt. Ausgenommen sind Dienstleistungspartner, die zur Abwicklung des Vertragsverhältnisses erforderlich sind und die von uns im Rahmen eines Auftragsverarbeitungsvertrages mit der Verarbeitung personenbezogener Daten gemäß unseren Vorgaben beauftragt wurden. Wir werden Ihre Daten weder verkaufen noch anderweitig an Dritte zu Werbezwecken weitergeben.</p>
+            </div>
+
+            <!-- Cookies -->
+            <div class="privacy-section">
+                <h2>Verwendung von Cookies</h2>
+                
+                <h4>Beschreibung und Umfang der Datenverarbeitung:</h4>
+                <p>Unsere Webseite verwendet Cookies. Cookies sind kleine Textdateien, die lokal im Cache Ihres Internetbrowsers gespeichert werden. Die Cookies ermöglichen die Wiedererkennung des Internetbrowsers. Cookies helfen uns, den Komfort und die Qualität unserer Dienstleistungen zu verbessern, indem sie z.B. Benutzerpräferenzen speichern.</p>
+                
+                <p>Darüber hinaus werden Cookies verwendet, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anzubieten und den Datenverkehr zu unserer Webseite zu analysieren. Wir teilen auch Informationen über Ihre Nutzung unserer Webseite mit unseren Partnern für soziale Medien, Werbung und Analysen. Unsere Partner können diese Informationen mit anderen Daten kombinieren, die Sie ihnen bereitgestellt haben oder die sie im Rahmen Ihrer Nutzung der Dienste gesammelt haben.</p>
+                
+                <p>Cookies richten keinen Schaden an Ihrem Computer an und enthalten keine Viren.</p>
+                
+                <div class="highlight-box">
+                    <h4>Cookie-Einstellungen in Browsern</h4>
+                    <p>Es ist auch möglich, unsere Webseite ohne Cookies zu nutzen. Sie können die Speicherung von Cookies in Ihrem Internetbrowser deaktivieren, auf bestimmte Webseiten beschränken oder Ihren Internetbrowser so einstellen, dass Sie vor der Speicherung eines Cookies informiert werden. Sie können die Cookies von der Festplatte Ihres Computers jederzeit über die Datenschutzfunktionen Ihres Internetbrowsers löschen.</p>
+                    
+                    <p>Die folgenden Links zeigen Ihnen, wie Sie die Einstellungen in gängigen Browsern anpassen:</p>
+                    <ul>
+                        <li><a href="https://support.google.com/chrome/answer/95647?hl=de" target="_blank">Chrome</a></li>
+                        <li><a href="https://support.mozilla.org/de/kb/cookies-erlauben-und-ablehnen" target="_blank">Firefox</a></li>
+                        <li><a href="https://support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank">Internet Explorer</a></li>
+                        <li><a href="https://support.apple.com/de-de/guide/safari/sfri11471/mac" target="_blank">Safari</a></li>
+                    </ul>
+                    
+                    <p><strong>Hinweis:</strong> Das Blockieren von Cookies kann die Funktionalität dieser Webseite beeinträchtigen.</p>
+                </div>
+                
+                <h4>Rechtsgrundlage für die Datenverarbeitung:</h4>
+                <p>Wenn personenbezogene Daten mithilfe von technisch notwendigen Cookies verarbeitet werden, ist die Rechtsgrundlage Art. 6 Abs. 1 lit. f EU-DSGVO.</p>
+                
+                <p>Jede Verwendung von Cookies, die nicht strikt technisch notwendig ist, stellt eine Datenverarbeitung dar, die nur mit Ihrer ausdrücklichen und aktiven Zustimmung zulässig ist. Die Rechtsgrundlage ist dann Art. 6 Abs. 1 S. 1 lit. a DS-GVO. Dies gilt insbesondere für die Verwendung von Werbe-, Targeting- oder Sharing-Cookies. Darüber hinaus geben wir Ihre personenbezogenen Daten, die durch Cookies verarbeitet werden, nur dann an Dritte weiter, wenn Sie hierzu gemäß Art. 6 Abs. 1 S. 1 lit. a DS-GVO ausdrücklich eingewilligt haben.</p>
+                
+                <h4>Zweck der Datenverarbeitung:</h4>
+                <p>Der Zweck der Verwendung von technisch notwendigen Cookies besteht darin, die Nutzung von Webseiten für die Nutzer zu vereinfachen. Einige Funktionen unserer Webseite können ohne den Einsatz von Cookies nicht angeboten werden. Für diese ist es erforderlich, dass der Browser auch nach einem Seitenwechsel wiedererkannt wird. In diesen Zwecken liegt auch unser berechtigtes Interesse an der Verarbeitung personenbezogener Daten gemäß Art. 6 Abs. 1 lit. f EU-DSGVO.</p>
+                
+                <p>Wir benötigen Cookies für folgende Anwendungen: Sitzungsverwaltung (Gewährleistung, dass die Eingaben auf den einzelnen Formularseiten bis zum Abschlussprozess verfügbar sind).</p>
+                
+                <p>Die durch technisch notwendige Cookies erfassten Nutzerdaten werden nicht zur Erstellung von Nutzerprofilen verwendet.</p>
+                
+                <h4>Dauer der Speicherung:</h4>
+                <p>Cookies werden auf dem Computer des Nutzers gespeichert und von diesem an unsere Webseite übermittelt. Die beschriebenen technisch notwendigen Cookies werden in der Regel gelöscht, wenn Ihre Browsersitzung beendet wird. Darüber hinaus können Sie die Übermittlung von Cookies durch Änderung der Einstellungen in Ihrem Internetbrowsers deaktivieren oder einschränken. Bereits gespeicherte Cookies können jederzeit gelöscht werden. Dies kann auch automatisch erfolgen.</p>
+            </div>
+
+            <!-- Google Analytics -->
+            <div class="privacy-section">
+                <h2>Google Analytics</h2>
+                <p>Wir verwenden Google Analytics, einen Webanalysedienst der Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043 USA ("Google")) auf unserer Webseite. Google Analytics verwendet Cookies, die auf Ihrem Computer gespeichert werden und dadurch eine Analyse Ihrer Nutzung der Webseite ermöglichen.</p>
+                
+                <p>Die durch diese Cookies erzeugten Informationen, z.B. Zeitpunkt, Ort und Häufigkeit Ihres Webseitenbesuchs einschließlich Ihrer IP-Adresse, werden an Google in den USA übertragen und dort gespeichert. Wir verwenden Google Analytics mit dem Zusatz "_gat._anonymizeIp" auf unserer Webseite. In diesem Fall wird Ihre IP-Adresse von Google innerhalb der Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt und dadurch anonymisiert.</p>
+                
+                <p>Google wird diese Informationen im Auftrag von uns verwenden, um Ihre Nutzung unserer Webseite auszuwerten, Reports über die Webseitenaktivitäten für uns zu erstellen und um weitere mit der Webseitenaktivität und der Internetnutzung verbundene Dienstleistungen zu erbringen. Google kann diese Informationen auch an Dritte übertragen, wenn dies gesetzlich vorgeschrieben ist oder wenn solche Dritte die Informationen im Auftrag von Google verarbeiten.</p>
+                
+                <div class="highlight-box">
+                    <h4>Google Analytics Opt-out</h4>
+                    <p>Google bietet ein Deaktivierungs-Add-on für die gängigsten Browser an, das Ihnen mehr Kontrolle darüber gibt, welche Daten von Google über die von Ihnen besuchte Webseite erfasst werden. Das Add-on teilt dem JavaScript (ga.js) von Google Analytics mit, dass keine Informationen über den Webseitenbesuch an Google Analytics übermittelt werden sollen.</p>
+                    <p><a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank">Google Analytics Browser-Add-on installieren</a></p>
+                </div>
+                
+                <p>Die von uns gesendeten Daten, die mit Cookies, Benutzer-IDs (z.B. Benutzer-ID) oder Werbe-IDs verknüpft sind, werden nach 38 Monaten automatisch gelöscht. Daten, deren Aufbewahrungsfrist abgelaufen ist, werden einmal im Monat automatisch gelöscht. Weitere Informationen zu den Nutzungsbedingungen und zur Datenverarbeitung finden Sie in der <a href="https://policies.google.com/?hl=de" target="_blank">Datenschutzerklärung von Google</a>.</p>
+            </div>
+
+            <!-- WordPress -->
+            <div class="privacy-section">
+                <h2>WordPress</h2>
+                <p>Wir verwenden das WordPress-Tool Stats auf dieser Webseite, um den Besucherzugriff statistisch auszuwerten. Anbieter ist Automattic Inc, 60 29th Street #343, San Francisco, CA 94110-4929, USA ("WordPress").</p>
+                
+                <p>WordPress verwendet Cookies, die auf Ihrem Computer gespeichert werden und eine Analyse der Nutzung der Webseite ermöglichen. Die durch die Cookies erzeugten Informationen über die Nutzung unserer Webseite werden auf Servern in den USA gespeichert. Ihre IP-Adresse wird nach der Verarbeitung und vor der Speicherung anonymisiert.</p>
+                
+                <p>Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur in Einzelfällen erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen und die automatische Löschung von Cookies beim Schließen des Browsers aktivieren. Bei Deaktivierung von Cookies kann die Funktionalität unserer Webseite eingeschränkt sein.</p>
+                
+                <p>Sie können der Erhebung und Nutzung Ihrer Daten für die Zukunft widersprechen, indem Sie in Ihrem Browser ein Opt-out-Cookie setzen, indem Sie auf diesen Link klicken: <a href="https://www.quantcast.com/opt-out/" target="_blank">Quantcast Opt-out</a>.</p>
+                
+                <p>Wenn Sie die Cookies auf Ihrem Computer löschen, müssen Sie das Opt-out-Cookie erneut setzen.</p>
+            </div>
+
+            <!-- Data Security -->
+            <div class="privacy-section">
+                <h2>Datensicherheit</h2>
+                <p>Innerhalb des Webseitenbesuchs verwenden wir das verbreitete TLS-Verfahren (Transport Layer Security) in Verbindung mit der höchsten von Ihrem Browser unterstützten Verschlüsselungsstufe. In der Regel handelt es sich dabei um eine 256-Bit-Verschlüsselung. Unterstützt Ihr Browser keine 256-Bit-Verschlüsselung, so kommt stattdessen die 128-Bit v3-Technologie zum Einsatz. Ob eine einzelne Seite unserer Webseite verschlüsselt ist, erkennen Sie am geschlossenen Schlüssel- oder Schloss-Symbol in der unteren Statusleiste oder Adressleiste Ihres Browsers.</p>
+                
+                <p>Wir setzen außerdem geeignete technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten vor zufälliger oder vorsätzlicher Manipulation, teilweisem oder vollständigem Verlust, Zerstörung oder unbefugtem Zugriff durch Dritte zu schützen. Unsere Sicherheitsmaßnahmen werden kontinuierlich entsprechend der technologischen Entwicklungen verbessert.</p>
+            </div>
+
+            <!-- Rights of Data Subject -->
+            <div class="privacy-section">
+                <h2>Rechte der betroffenen Person</h2>
+                <p>Sofern Sie von uns personenbezogene Daten verarbeitet werden, sind Sie betroffene Person im Sinne der EU-DSGVO und haben gegenüber der Certina Holding AG folgende Rechte:</p>
+                
+                <h4>Recht auf Auskunft:</h4>
+                <p>Gemäß Artikel 15 der EU-Datenschutzverordnung haben Sie das Recht, Auskunft über die von uns verarbeiteten personenbezogenen Daten zu verlangen; insbesondere können Sie Auskunft über die Verarbeitungszwecke, die Kategorie der personenbezogenen Daten, die Kategorien von Empfängern, an die Ihre Daten übermittelt wurden oder werden, die geplante Speicherdauer, das Vorliegen eines Rechts auf Berichtigung, Löschung, Einschränkung der Verarbeitung oder Widerspruch, das Vorliegen eines Beschwerderechts, die Herkunft Ihrer Daten, wenn diese nicht bei uns erhoben wurden, und das Vorliegen einer automatisierten Entscheidungsfindung einschließlich Profiling und ggf. aussagekräftige Informationen zu deren Einzelheiten verlangen.</p>
+                
+                <h4>Recht auf Berichtigung:</h4>
+                <p>Gemäß Art. 16 EU-DSGVO haben Sie das Recht, die Berichtigung unrichtiger oder unvollständiger personenbezogener Daten, die bei uns gespeichert sind, unverzüglich zu verlangen.</p>
+                
+                <h4>Recht auf Löschung:</h4>
+                <p>Gemäß Art. 17 EU-DSGVO haben Sie das Recht, die Löschung Ihrer personenbezogenen Daten, die bei uns gespeichert sind, zu verlangen, es sei denn, die Verarbeitung ist zur Ausübung des Rechts auf freie Meinungsäußerung und Information, zur Erfüllung einer rechtlichen Verpflichtung, aus Gründen des öffentlichen Interesses oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich.</p>
+                
+                <h4>Recht auf Einschränkung:</h4>
+                <p>Gemäß Art. 18 EU-DSGVO haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, soweit die Richtigkeit der Daten von Ihnen bestritten wird, die Verarbeitung rechtswidrig ist, Sie aber deren Löschung widersprechen und wir die Daten nicht mehr benötigen, Sie jedoch zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen benötigen oder Sie gemäß Art. 21 EU-DSGVO Widerspruch gegen die Verarbeitung eingelegt haben.</p>
+                
+                <h4>Recht auf Datenübertragbarkeit:</h4>
+                <p>Gemäß Art. 20 EU-DSGVO haben Sie das Recht, Ihre personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten oder zu verlangen, dass sie an einen anderen Verantwortlichen übertragen werden.</p>
+                
+                <h4>Recht auf Beschwerde:</h4>
+                <div class="highlight-box">
+                    <p>Gemäß Art. 77 EU-DSGVO haben Sie das Recht, sich bei einer Aufsichtsbehörde zu beschweren. In der Regel können Sie sich hierfür an die Aufsichtsbehörde Ihres üblichen Aufenthaltsortes oder Arbeitsplatzes oder an unser eingetragenes Büro wenden. In diesem Fall ist die zuständige Aufsichtsbehörde:</p>
+                    
+                    <p><strong>Der Bayerische Landesbeauftragte für den Datenschutz (BayLfD)</strong><br>
+                    Wagmüllerstraße 18, 80538 München<br>
+                    Postfach 22 12 19, 80502 München<br>
+                    Tel.: 089 212672-0<br>
+                    Fax: 089 212672-50<br>
+                    Email: poststelle@datenschutz-bayern.de</p>
+                </div>
+                
+                <h4>Recht auf Widerruf:</h4>
+                <p>Sie haben das Recht, Ihre datenschutzrechtliche Einwilligungserklärung jederzeit zu widerrufen. Der Widerruf der Einwilligung hat keinen Einfluss auf die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung.</p>
+                
+                <h4>Recht auf Widerspruch:</h4>
+                <p>Sie haben das Recht, jederzeit aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Sie betreffender personenbezogener Daten, die auf Grundlage von Artikel 6 Absatz 1 lit. e oder f EU-DSGVO erfolgt, Widerspruch einzulegen.</p>
+                
+                <p>Werden die Sie betreffenden personenbezogenen Daten zu Zwecken der Direktwerbung verarbeitet, haben Sie das Recht, jederzeit Widerspruch gegen die Verarbeitung Sie betreffender personenbezogener Daten zu Zwecken derartiger Werbung einzulegen.</p>
+            </div>
+
+            <!-- Changes to Privacy Policy -->
+            <div class="privacy-section">
+                <h2>Änderung unserer Datenschutzbestimmungen</h2>
+                <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Dienstleistungen in der Datenschutzerklärung umzusetzen. Bei Ihrem erneuten Besuch unserer Webseite gilt in jedem Fall die aktuelle Datenschutzerklärung.</p>
+                
+                <p><strong>Stand:</strong> Mai 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder - GENAU WIE IM IMPRINT -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header and Footer - GENAU WIE IM IMPRINT
+            const loadComponents = async () => {
+                try {
+                    const [headerRes, footerRes] = await Promise.all([
+                        fetch('Header.html?v=' + new Date().getTime()),
+                        fetch('Footer.html?v=' + new Date().getTime())
+                    ]);
+
+                    if (headerRes.ok) {
+                        const headerHtml = await headerRes.text();
+                        const headerPlaceholder = document.getElementById('header-placeholder');
+                        if (headerPlaceholder) {
+                            headerPlaceholder.innerHTML = headerHtml;
+                            
+                            // Execute scripts from header
+                            const scriptTags = headerPlaceholder.querySelectorAll('script');
+                            scriptTags.forEach(scriptTag => {
+                                if (scriptTag.innerHTML.trim()) {
+                                    const newScript = document.createElement('script');
+                                    newScript.innerHTML = scriptTag.innerHTML;
+                                    document.head.appendChild(newScript);
+                                }
+                            });
+                            
+                            // WICHTIG: Header-Funktionalität nach dem Laden initialisieren - GENAU WIE IM IMPRINT
+                            setTimeout(() => {
+                                // Burger menu functionality
+                                const burgerMenu = document.querySelector('.burger-menu');
+                                const navMenu = document.querySelector('.nav-menu');
+                                
+                                if (burgerMenu && navMenu) {
+                                    burgerMenu.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        console.log('🍔 Burger menu clicked');
+                                        
+                                        burgerMenu.classList.toggle('active');
+                                        navMenu.classList.toggle('active');
+                                        document.body.classList.toggle('menu-open');
+                                    });
+                                    
+                                    console.log('✅ Burger menu initialized');
+                                }
+                                
+                                // Close menu when clicking on nav links
+                                const navLinks = document.querySelectorAll('.nav-menu a');
+                                navLinks.forEach(link => {
+                                    link.addEventListener('click', () => {
+                                        burgerMenu?.classList.remove('active');
+                                        navMenu?.classList.remove('active');
+                                        document.body.classList.remove('menu-open');
+                                    });
+                                });
+                                
+                                // Initialize language switcher if available
+                                if (typeof window.initLanguageSwitcher === 'function') {
+                                    window.initLanguageSwitcher();
+                                }
+                                
+                                // Initialize header functionality if available
+                                if (typeof window.initializeHeaderFunctionality === 'function') {
+                                    window.initializeHeaderFunctionality();
+                                }
+                                
+                                // Privacy-spezifische Übersetzungen initialisieren
+                                initializePrivacyTranslations();
+                                
+                            }, 100);
+                        }
+                    }
+
+                    if (footerRes.ok) {
+                        const footerHtml = await footerRes.text();
+                        const footerPlaceholder = document.getElementById('footer-placeholder');
+                        if (footerPlaceholder) {
+                            footerPlaceholder.innerHTML = footerHtml;
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('❌ Error loading components:', error);
+                }
+            };
+
+            loadComponents();
+        });
+
+        // Privacy-spezifische Übersetzungsfunktionen
+        function initializePrivacyTranslations() {
+            console.log('🌐 Initializing Privacy page translations...');
+            
+            // Warten bis translations geladen sind
+            if (!window.translations) {
+                console.log('⏳ Waiting for translations to load...');
+                setTimeout(initializePrivacyTranslations, 200);
+                return;
+            }
+            
+            // Gespeicherte Sprache laden
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'de';
+            console.log('Saved language:', savedLanguage);
+            
+            // Übersetzungen anwenden
+            applyPrivacyTranslations(savedLanguage);
+            updateWebsiteDataList(savedLanguage);
+            updateLanguageButtons(savedLanguage);
+        }
+
+        function applyPrivacyTranslations(language) {
+            console.log('Applying Privacy translations for language:', language);
+            
+            if (!window.translations || !window.translations[language]) {
+                console.warn('Translations not available for language:', language);
+                return;
+            }
+            
+            const t = window.translations[language];
+            
+            // Alle Elemente mit data-translate Attribut übersetzen
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = t[key];
+                
+                if (translation) {
+                    // Für HTML-Inhalte (wie Adressen mit <br> und <strong>)
+                    if (key === 'privacy_responsible_address') {
+                        element.innerHTML = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                } else {
+                    console.warn('❌ Translation missing for key:', key);
+                }
+            });
+        }
+
+        function updateWebsiteDataList(language) {
+            const listElement = document.getElementById('website-data-list');
+            if (!listElement || !window.translations || !window.translations[language]) {
+                return;
+            }
+            
+            const t = window.translations[language];
+            const listItems = t.privacy_website_list ? t.privacy_website_list.split('|') : [];
+            
+            listElement.innerHTML = '';
+            listItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                listElement.appendChild(li);
+            });
+        }
+
+        function updateLanguageButtons(currentLang) {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                const btnLang = btn.getAttribute('data-lang');
+                if (btnLang === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Listen for language changes from header - GENAU WIE IM IMPRINT
+        document.addEventListener('languageChanged', function(e) {
+            const newLang = e.detail.language;
+            console.log('🔄 Privacy page: Language changed to', newLang);
+            
+            // Apply translations when language changes
+            applyPrivacyTranslations(newLang);
+            updateWebsiteDataList(newLang);
+            updateLanguageButtons(newLang);
+        });
+    </script>
+
+    <!-- Language Switcher JavaScript -->
+    <script src="../Assets/js/language-switcher.js"></script>
+</body>
+</html>

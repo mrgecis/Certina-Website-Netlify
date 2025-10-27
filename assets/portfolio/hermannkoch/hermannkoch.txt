@@ -1,0 +1,9 @@
+Company: HermannKoch
+Industry: Packaging
+Acquisition year: 2015.0
+Revenue: 22.0 Million EUR
+FTE: 150.0
+Countries: 1.0
+Website: https://www.hkoch.de
+Headquarter: Germany
+Seller: Family

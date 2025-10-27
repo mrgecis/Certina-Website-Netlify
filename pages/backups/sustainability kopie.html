@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Sustainability</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: transparent; /* Transparent to allow gradient overlay */
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative; /* For pseudo-element positioning */
+            font-weight: 300;
+            min-height: 100vh;
+        }
+        /* Global Background Gradient Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Subtle gradient with new palette */
+            background-image: radial-gradient(circle at 10% 20%, rgba(102, 112, 133, 0.06) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(71, 84, 106, 0.06) 0%, transparent 40%);
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; }
+
+        /* --- START: Added Header Styles --- */
+        header {
+             background: transparent;
+             padding: 15px 0; /* More padding for spacing */
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 150; /* Higher z-index to ensure it's above all content */
+             transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+             border-bottom: 1px solid transparent; /* Add transition for border */
+         }
+        header.scrolled {
+             background: rgba(255, 255, 255, 0.9); /* Slightly opaque when scrolling */
+             padding: 10px 0;
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             box-shadow: 0 2px 10px rgba(52, 64, 84, 0.05); /* Subtle shadow */
+             border-bottom: 1px solid rgba(52, 64, 84, 0.08); /* Subtle border */
+         }
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 5px 0; /* Add padding inside the header content */
+        }
+        .logo { height: 40px; transition: all 0.3s ease; }
+        .logo:hover { opacity: 0.8; }
+        .hamburger-menu { width: 30px; height: 25px; position: relative; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; z-index: 101; }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+        .nav-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(249, 250, 251, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.5s ease; z-index: 99; }
+        .nav-menu.active { visibility: visible; opacity: 1; }
+        .nav-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+        .nav-links li { margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; text-transform: uppercase; font-size: 24px; position: relative; transition: all 0.3s ease; letter-spacing: 2px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--gradient-1); bottom: -8px; left: 0; transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+        body.no-scroll { overflow: hidden; }
+        /* --- END: Added Header Styles --- */
+
+
+        /* Hero Section - Sustainability */
+        .sustainability-hero {
+            padding-top: 80px;
+            height: 60vh;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            position: relative; /* Needed for absolute positioning of video */
+            overflow: hidden;
+            background-color: #f0f4f8; /* Fallback background color */
+        }
+        /* --- REMOVED: ::before rule for background image --- */
+        /* .sustainability-hero::before { ... } */
+
+        /* --- ADDED: Style for the background video --- */
+        .sustainability-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area, cropping as needed */
+            z-index: 0; /* Place behind the content */
+            opacity: 0.3; /* Match previous image opacity */
+        }
+
+        .sustainability-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative; /* Keep content above video */
+            z-index: 1; /* Keep content above video */
+        }
+        .sustainability-hero h1 {
+            font-size: 54px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--dark-shade);
+            line-height: 1.2;
+        }
+        .quote-container {
+            max-width: 750px;
+            margin: 30px auto;
+            text-align: left;
+            position: relative;
+        }
+        .quote {
+            font-size: 24px;
+            line-height: 1.5;
+            color: var(--text);
+            font-weight: 300;
+            font-style: italic;
+            position: relative;
+            padding-left: 40px;
+        }
+        .quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 70px;
+            color: var(--secondary);
+            opacity: 0.3;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .quote-author {
+            margin-top: 15px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .author-image-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #eee;
+        }
+        .author-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transform: scale(1.2);
+        }
+
+
+        /* General Section Styles */
+        .section { padding: 100px 0; position: relative; overflow: hidden; }
+        .section-header { text-align: center; margin-bottom: 70px; position: relative; }
+        .section-title { font-size: 42px; margin-bottom: 20px; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; display: inline-block; font-weight: 300; letter-spacing: 1px; }
+        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
+
+        /* About Sustainability Section */
+        .about-sustainability {
+            background-color: #fff;
+            padding: 100px 0;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+        .about-text h3 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+        .about-text p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ESG Section */
+        .esg-section {
+            background-color: #f9fafb;
+            padding: 100px 0;
+        }
+        .esg-tabs {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .tab-headers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(107, 114, 128, 0.2);
+        }
+        .tab-header {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-header.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 17px;
+            font-weight: 300;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-content h4 {
+            color: var(--text);
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .tab-content p {
+            margin-bottom: 20px;
+        }
+        .tab-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .tab-content ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Portfolio Examples Section */
+        .portfolio-examples {
+            background-color: #fff;
+            padding: 100px 0;
+        }
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .example-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .example-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        .example-header {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .example-header img {
+            max-width: 85%;
+            max-height: 100px;
+            object-fit: contain;
+        }
+        .example-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+        .example-company {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .example-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+         /* Download Section Styles */
+        .download-section {
+             background-color: var(--primary);
+             padding: 100px 0;
+        }
+        .download-list {
+            max-width: 800px;
+            margin: 50px auto 0;
+            display: grid;
+            gap: 20px;
+        }
+        .download-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+        .download-icon {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-right: 20px;
+            flex-shrink: 0;
+            width: 30px;
+            text-align: center;
+        }
+        .download-text {
+            flex-grow: 1;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .download-arrow {
+             font-size: 18px;
+             margin-left: 15px;
+             color: var(--text-secondary);
+             transition: color 0.3s ease;
+        }
+        .download-item:hover .download-arrow {
+             color: var(--secondary);
+        }
+
+        /* Background elements */
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(96, 165, 250, 0.03) 0%, transparent 40%); background-attachment: fixed; z-index: -2; pointer-events: none; }
+
+        /* --- START: Added Footer Styles --- */
+        footer { background: var(--footer-bg); color: var(--footer-text); padding: 80px 0 30px; position: relative; }
+        .footer-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; margin-bottom: 50px; position: relative; align-items: start; }
+        .footer-title { font-size: 20px; margin-bottom: 25px; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; font-weight: 300; letter-spacing: 0.5px; }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--footer-text-secondary); position: relative; font-weight: 300; }
+        .footer-links { margin-top: 0; display: flex; justify-content: center; gap: 30px; list-style: none; padding: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; position: relative; font-weight: 300; }
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo { display: block; max-height: 45px; margin-bottom: 20px; }
+        .footer-logo-container p { color: var(--footer-text-secondary); font-size: 14px; line-height: 1.6; font-weight: 300; }
+        .footer-contact p { color: var(--footer-text-secondary); font-size: 16px; line-height: 1.8; font-weight: 300; }
+        /* --- END: Added Footer Styles --- */
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            .about-content { flex-direction: column; }
+            .about-image { max-width: 100%; margin-top: 40px; order: 2; }
+            .about-text { order: 1; }
+            .examples-grid { grid-template-columns: repeat(2, 1fr); }
+             .footer-content { grid-template-columns: 1fr; text-align: center; }
+             .footer-logo-container { align-items: center; }
+             .footer-logo { margin-left: auto; margin-right: auto; }
+             .footer-contact { margin-top: 40px; }
+             .footer-title { display: block; }
+        }
+        @media (max-width: 768px) {
+            .sustainability-hero { padding-top: 70px; }
+            .sustainability-hero h1 { font-size: 40px; }
+            .quote { font-size: 20px; }
+            .section { padding: 70px 0; }
+             .download-section { padding: 70px 0; }
+            .section-title { font-size: 36px; }
+            .about-text h3 { font-size: 28px; }
+            .tab-headers { flex-direction: column; border-bottom: none; }
+            .tab-header { border-bottom: 1px solid rgba(107, 114, 128, 0.2); margin-bottom: 10px; }
+            .tab-header.active { border-bottom-color: var(--secondary); }
+            .examples-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+             .sustainability-hero { padding-top: 60px; min-height: 400px; }
+            .sustainability-hero h1 { font-size: 32px; }
+            .quote { font-size: 18px; padding-left: 30px; }
+            .quote::before { font-size: 50px; }
+            .section-title { font-size: 28px; }
+             .download-text { font-size: 15px; }
+             .download-item { padding: 15px 20px; }
+             .download-icon { margin-right: 15px; font-size: 22px; }
+        }
+</style>
+</head>
+<body>
+<!-- Header Placeholder -->
+<div id="header-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="sustainability-hero">
+    <!-- Added Video Element -->
+    <video muted loop playsinline class="sustainability-bg-video" id="sustainability-bg-video">
+        <source src="../Assets/Sustainability/Sustainability_Hero.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <div class="sustainability-hero-content">
+            <h1>Sustainability</h1>
+            <div class="quote-container">
+                <p class="quote">The ESG principles are the guiding principles of our daily actions.</p>
+                <div class="quote-author">
+                    <div class="author-image-container">
+                        <img src="../Assets/Team/vonKontz/vonKontz_Passbild.png" alt="András v. Kontz" class="author-image">
+                    </div>
+                    <span>András v. Kontz, Managing Partner Goods &amp; Services</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Sustainability Section -->
+<section class="about-sustainability section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">We Generate Values for Generations</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>We believe that economic success and sustainability are not contradictory but complement each other positively. We are convinced that sustainable business models outperform in the long term.</p>
+                <p>Since foundation, we mind our responsibility for employees, society, and the environment, and create sustainable value for generations to come.</p>
+            </div>
+            <div class="about-image">
+                <img src="../Assets/Sustainability/Sustainability_Cover.png" alt="Sustainable Business">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ESG Section -->
+<section class="esg-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our ESG Principles</h2>
+            <p class="section-subtitle">Environmental, Social, and Governance considerations drive our approach to business</p>
+        </div>
+        <div class="esg-tabs">
+            <div class="tab-headers">
+                <div class="tab-header active" data-tab="environmental">Environmental</div>
+                <div class="tab-header" data-tab="social">Social</div>
+                <div class="tab-header" data-tab="governance">Governance</div>
+            </div>
+            <div class="tab-content active" id="environmental">
+                <h4>Environmental Responsibility</h4>
+                <p>We are committed to minimizing our environmental footprint across all operations. Our environmental initiatives focus on:</p>
+                <ul>
+                    <li>Reducing CO₂ emissions throughout our operations</li>
+                    <li>Developing energy-efficient products and solutions</li>
+                    <li>Implementing sustainable manufacturing processes</li>
+                    <li>Advancing circular economy principles</li>
+                    <li>Investing in renewable energy sources</li>
+                </ul>
+                <p>All Certina Group companies are encouraged to set environmental goals and regularly measure their progress against concrete targets.</p>
+            </div>
+            <div class="tab-content" id="social">
+                <h4>Social Responsibility</h4>
+                <p>Our commitment to social responsibility extends to our employees, communities, and society at large:</p>
+                <ul>
+                    <li>Fostering a diverse and inclusive workplace</li>
+                    <li>Providing comprehensive training and development opportunities</li>
+                    <li>Ensuring fair and equitable compensation</li>
+                    <li>Supporting the communities where we operate</li>
+                    <li>Upholding human rights throughout our value chain</li>
+                </ul>
+                <p>We believe that investing in people creates long-term value for our business and society.</p>
+            </div>
+            <div class="tab-content" id="governance">
+                <h4>Governance</h4>
+                <p>Strong governance principles guide our decision-making and operations:</p>
+                <ul>
+                    <li>Maintaining ethical business practices and transparency</li>
+                    <li>Implementing robust compliance programs</li>
+                    <li>Conducting regular risk assessments</li>
+                    <li>Ensuring responsible supply chain management</li>
+                    <li>Integrating ESG considerations into strategic planning</li>
+                </ul>
+                <p>Our governance framework ensures accountability and drives sustainable growth across all our operations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Examples Section -->
+<section class="portfolio-examples">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Sustainability in Action</h2>
+            <p class="section-subtitle">Selected ESG achievements from our portfolio companies</p>
+        </div>
+        <div class="examples-grid">
+            <!-- Example 1 - REBHAN -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/Rebhan/Rebhan_Logo.png" alt="REBHAN Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">REBHAN</h3>
+                    <p class="example-description">A leading manufacturer of innovative, high-quality plastic packaging with a focus on environmentally friendly products. REBHAN's Green Line is a sustainable approach to packaging based on the 5R principles: Reduce, Recycle, Reuse, Renew and Refill. The Colonna PET bottle saves 60% weight compared to a conventional bottle.</p>
+                </div>
+            </div>
+
+            <!-- Example 2 - HORN -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/Horn/Horn_Logo.png" alt="HORN Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">HORN</h3>
+                    <p class="example-description">Specializes in design, manufacture and assembly of melting furnaces and special machinery for glass production. HORN is the world's leading manufacturer of hybrid furnaces, which incorporate electrical energy in addition to fossil fuels and thus contribute significantly to reducing carbon dioxide emissions.</p>
+                </div>
+            </div>
+
+            <!-- Example 3 - UST -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/UST/UST_Logo.png" alt="UST Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">UST</h3>
+                    <p class="example-description">Europe's leading manufacturer of high-quality hairdressing scissors. By switching production from traditional hot forging to the cold forging process used in the automotive industry, UST was able to significantly reduce energy requirements in production and save raw materials.</p>
+                </div>
+            </div>
+
+            <!-- Example 4 - Pruss -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/Pruss/Pruss_Logo.png" alt="Pruss Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">Pruss</h3>
+                    <p class="example-description">Since 1889, Pruss has been developing valves for various industries. Together with international research institutes, Pruss develops highly efficient turbine bypass valves for high-temperature CO₂ applications, enabling previously unused waste heat from industrial applications to be converted into electricity.</p>
+                </div>
+            </div>
+
+            <!-- Example 5 - COI -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/COI/COI_Logo.png" alt="COI Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">COI</h3>
+                    <p class="example-description">A leading German provider in document and workflow management as well as document archiving. With its products, COI actively promotes the "paperless office" and enables remote work, significantly reducing paper consumption and commute-related emissions.</p>
+                </div>
+            </div>
+
+            <!-- Example 6 - AFT -->
+            <div class="example-card">
+                <div class="example-header">
+                    <img src="../Assets/Portfolio/AFT/AFT_Logo.png" alt="AFT Logo">
+                </div>
+                <div class="example-content">
+                    <h3 class="example-company">AFT</h3>
+                    <p class="example-description">Specializes in conveyor and automation technologies for the automotive and logistics industries. AFT is certified with ISO 50001:2018 (energy management system), continuously optimizing energy efficiency – including procurement and energy consumption throughout its operations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- START: New Download Section -->
+<section class="download-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Downloads</h2>
+            <p class="section-subtitle">Access our key documents and policies.</p>
+        </div>
+        <div class="download-list">
+            <a href="../Assets/Downloads/Declaration_Principles_Human_Rights.pdf" class="download-item" download>
+                <i class="fas fa-file-pdf download-icon"></i>
+                <span class="download-text">Declaration of Principles Human Rights</span>
+                <i class="fas fa-download download-arrow"></i>
+            </a>
+             <a href="../Assets/Downloads/Business_Partner_Code.pdf" class="download-item" download>
+                <i class="fas fa-file-alt download-icon"></i>
+                <span class="download-text">Business Partner Code</span>
+                 <i class="fas fa-download download-arrow"></i>
+            </a>
+             <a href="https://certina-group.integrityline.com/" target="_blank" rel="noopener noreferrer" class="download-item">
+                <i class="fas fa-balance-scale download-icon"></i>
+                <span class="download-text">Whistleblower System</span>
+                <i class="fas fa-external-link-alt download-arrow"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- END: New Download Section -->
+
+
+<!-- Footer Placeholder -->
+<div id="footer-placeholder"></div>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab functionality
+        const tabHeaders = document.querySelectorAll('.tab-header');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        if (tabHeaders.length > 0 && tabContents.length > 0) {
+            tabHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    tabHeaders.forEach(h => h.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    const activeContent = document.getElementById(tabId);
+                    if(activeContent) {
+                        activeContent.classList.add('active');
+                    } else {
+                        console.error(`Tab content with id "${tabId}" not found.`);
+                    }
+                });
+            });
+        } else {
+             console.warn("ESG Tab elements not found.");
+        }
+
+        // Load Components Functionality (Header/Footer)
+        const loadComponents = async () => {
+            try {
+                const headerRes = await fetch('Header.html?v=' + new Date().getTime()); // Added cache-busting parameter
+                if (!headerRes.ok) throw new Error(`Failed to fetch Header.html: ${headerRes.statusText}`);
+                const headerHtml = await headerRes.text();
+                document.getElementById('header-placeholder').innerHTML = headerHtml;
+                initializeHeaderScripts();
+
+                const footerRes = await fetch('Footer.html');
+                if (!footerRes.ok) throw new Error(`Failed to fetch Footer.html: ${footerRes.statusText}`);
+                const footerHtml = await footerRes.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+                 document.querySelectorAll('#header-placeholder img, #footer-placeholder img').forEach(addImgErrorHandler);
+
+            } catch (error) {
+                console.error("Error loading components:", error);
+                document.getElementById('header-placeholder').innerHTML = "<p style='color:red; text-align:center;'>Error loading header.</p>";
+                document.getElementById('footer-placeholder').innerHTML = "<p style='color:red; text-align:center;'>Error loading footer.</p>";
+            }
+        };
+
+        function initializeHeaderScripts() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            if (hamburgerMenu && navMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    hamburgerMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navMenu.classList.contains('active')) {
+                            hamburgerMenu.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            document.body.classList.remove('no-scroll');
+                        }
+                    });
+                });
+            } else {
+                 console.warn("Hamburger menu or nav menu element not found after loading header.");
+            }
+
+            const header = document.querySelector('#header-placeholder header'); // Look inside placeholder
+             if(header) {
+                 window.addEventListener('scroll', function() {
+                     if (window.scrollY > 50) {
+                         header.classList.add('scrolled');
+                     } else {
+                         header.classList.remove('scrolled');
+                     }
+                 });
+             } else {
+                 console.warn("Header element not found for scroll effect.");
+             }
+        }
+
+        function addImgErrorHandler(img) {
+             if (!img.hasAttribute('onerror')) {
+                img.onerror = function() {
+                    console.error(`Failed to load image: ${this.src}`);
+                    this.src = '../Assets/General/placeholder_logo.png';
+                    this.alt = `Error loading ${this.alt || 'image'}`;
+                };
+            }
+        }
+
+        document.querySelectorAll('img').forEach(addImgErrorHandler);
+        loadComponents();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var vid = document.getElementById('sustainability-bg-video');
+        if (vid && vid.paused) {
+            vid.play().catch(()=>{});
+        }
+    });
+</script>
+</body>
+</html>

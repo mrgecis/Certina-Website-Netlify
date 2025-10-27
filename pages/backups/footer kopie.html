@@ -1,0 +1,133 @@
+/* === Footer (Redesigned) === */
+/* Behalten Sie Ihre bestehende 'footer {' Regel bei für Hintergrund, Farbe, Padding etc. */
+/* z.B. footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 90px 0 35px; position: relative; } */
+
+/* Entfernen oder auskommentieren Sie die alte .footer-content und .copyright Regel */
+/* .footer-content { ... } */
+/* .copyright { ... } */
+/* .footer-links { ... } */ /* Die allgemeine .footer-links Regel wird durch .footer-links-list spezifischer */
+
+
+/* NEUE Regeln für die überarbeitete Footer-Struktur */
+.footer-main {
+    display: grid;
+    /* Erzeugt 3 Spalten auf Desktops, 1 Spalte auf kleineren Bildschirmen */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; /* Abstand zwischen den Spalten */
+    margin-bottom: 50px; /* Abstand zum .footer-bottom Bereich */
+    align-items: start;
+}
+
+.footer-column {
+    /* Stellt sicher, dass der Inhalt bei Bedarf zentriert wird, wenn auf Mobilgeräten gestapelt */
+}
+
+.footer-brand-info .footer-logo { /* Bestehende .footer-logo Regeln gelten weiterhin */
+    display: block; /* Stellt sicher, dass margin auto funktioniert, falls benötigt */
+}
+
+.footer-brand-info .footer-address,
+.footer-contact-info p {
+    color: var(--footer-text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300; /* Beibehalten vom Original */
+}
+.footer-brand-info .footer-address {
+    margin-top: 15px; /* Kleiner Abstand nach dem Logo */
+}
+
+
+/* .footer-title bleibt wie in Ihrem globalen Footer-Styling definiert */
+/* .footer-title { font-size: 22px; margin-bottom: 28px; color: var(--accent); font-weight: 500; ... } */
+
+.footer-site-links .footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-site-links .footer-links-list li {
+    margin-bottom: 12px; /* Abstand zwischen den Listenelementen */
+}
+
+.footer-site-links .footer-links-list li:last-child {
+    margin-bottom: 0;
+}
+
+.footer-site-links .footer-links-list a {
+    color: var(--footer-text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px; /* Beibehalten vom Original */
+    font-weight: 300; /* Beibehalten vom Original */
+}
+
+.footer-site-links .footer-links-list a:hover {
+    color: var(--footer-text);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap; /* Erlaubt Umbruch auf kleinen Bildschirmen */
+    justify-content: space-between; /* Verteilt Copyright und Sprachumschalter */
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(236, 239, 241, 0.1); /* Wie im Original .copyright */
+    margin-top: 30px; /* Zusätzlicher Abstand, falls .footer-main keinen margin-bottom hat */
+}
+
+.copyright-text {
+    font-size: 14px;
+    color: var(--footer-text-secondary);
+    font-weight: 300; /* Beibehalten vom Original */
+    margin-right: 20px; /* Etwas Abstand zum Sprachumschalter */
+    flex-grow: 1; /* Nimmt verfügbaren Platz ein, wenn nötig */
+}
+
+/* Anpassung für den Sprachumschalter im Footer-Bottom */
+.footer-bottom .language-switcher {
+    position: relative; /* Überschreibt das globale absolute Positioning */
+    top: auto;
+    right: auto;
+    transform: none; /* Setzt die Transformation zurück */
+    gap: 8px; /* Etwas kleinerer Abstand für den Footer */
+    /* margin-left: auto; Schiebt ihn ganz nach rechts, falls gewünscht und copyright-text nicht flex-grow hat */
+}
+
+.footer-bottom .lang-btn { /* Kleinere Buttons für den Footer-Bottom */
+    padding: 7px 12px;
+    font-size: 11.5px;
+    font-weight: 500;
+    min-width: 30px;
+}
+
+/* Responsive Anpassungen für den Footer */
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr; /* Eine Spalte auf Tablets und kleiner */
+        text-align: center; /* Zentriert den Inhalt der Spalten */
+    }
+    .footer-column {
+        margin-bottom: 30px; /* Abstand zwischen gestapelten Spalten */
+    }
+    .footer-column:last-child {
+        margin-bottom: 0;
+    }
+    .footer-brand-info .footer-logo {
+        margin-left: auto;
+        margin-right: auto; /* Zentriert das Logo in der Spalte */
+    }
+
+    .footer-bottom {
+        flex-direction: column; /* Stapelt Copyright und Sprachumschalter */
+        text-align: center;
+    }
+    .copyright-text {
+        margin-right: 0;
+        margin-bottom: 15px; /* Abstand zum Sprachumschalter, wenn gestapelt */
+    }
+    .footer-bottom .language-switcher {
+        margin-top: 0; /* Kein zusätzlicher oberer Rand, da schon durch margin-bottom von copyright-text */
+    }
+}

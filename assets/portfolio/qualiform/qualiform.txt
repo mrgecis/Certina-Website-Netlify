@@ -1,0 +1,9 @@
+Company: Qualiform
+Industry: Packaging
+Acquisition year: 2015.0
+Revenue: 16.0 Million EUR
+FTE: 80.0
+Countries: 1.0
+Website: https://www.qualiform.fr
+Headquarter: France
+Seller: Pochet

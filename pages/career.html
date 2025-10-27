@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Career</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-text-size-adjust: 100%;
+        }
+        body { 
+            background-color: transparent;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            font-weight: 300;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(106, 123, 162, 0.04) 0%, 
+                rgba(61, 74, 93, 0.06) 50%, 
+                rgba(46, 58, 74, 0.08) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .career-hero {
+            padding-top: 80px;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(253, 254, 255, 0.9) 0%, 
+                rgba(244, 246, 248, 0.95) 100%);
+        }
+
+        .career-hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .career-hero h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .career-hero h2 {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .career-hero p {
+            font-size: clamp(14px, 1.8vw, 18px);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Floating Career Icons Animation */
+        .career-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .career-hero { 
+                padding-top: 70px;
+                min-height: 70vh;
+            }
+            .career-hero-content {
+                padding: 0 10px;
+            }
+            .floating-element {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .career-hero {
+                min-height: 60vh;
+                padding-top: 60px;
+            }
+            .career-hero-content {
+                padding: 0 5px;
+            }
+        }
+
+        body { 
+            background-color: transparent;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            font-weight: 300;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(106, 123, 162, 0.04) 0%, 
+                rgba(61, 74, 93, 0.06) 50%, 
+                rgba(46, 58, 74, 0.08) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .career-hero {
+            padding-top: 80px;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(253, 254, 255, 0.9) 0%, 
+                rgba(244, 246, 248, 0.95) 100%);
+        }
+
+        .career-hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .career-hero h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .career-hero h2 {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .career-hero p {
+            font-size: clamp(14px, 1.8vw, 18px);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Floating Career Icons Animation */
+        .career-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .career-hero { 
+                padding-top: 70px;
+                min-height: 70vh;
+            }
+            .career-hero-content {
+                padding: 0 10px;
+            }
+            .floating-element {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .career-hero {
+                min-height: 60vh;
+                padding-top: 60px;
+            }
+            .career-hero-content {
+                padding: 0 5px;
+            }
+        }
+
+        body { 
+            background-color: transparent;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            font-weight: 300;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(106, 123, 162, 0.04) 0%, 
+                rgba(61, 74, 93, 0.06) 50%, 
+                rgba(46, 58, 74, 0.08) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .career-hero {
+            padding-top: 80px;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(253, 254, 255, 0.9) 0%, 
+                rgba(244, 246, 248, 0.95) 100%);
+        }
+
+        .career-hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .career-hero h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .career-hero h2 {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .career-hero p {
+            font-size: clamp(14px, 1.8vw, 18px);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Floating Career Icons Animation */
+        .career-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .career-hero { 
+                padding-top: 70px;
+                min-height: 70vh;
+            }
+            .career-hero-content {
+                padding: 0 10px;
+            }
+            .floating-element {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .career-hero {
+                min-height: 60vh;
+                padding-top: 60px;
+            }
+            .career-hero-content {
+                padding: 0 5px;
+            }
+        }
+
+        .career-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .job-listings {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .jobs-container {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .job-card {
+            background: var(--card-bg-light);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(46, 58, 74, 0.12);
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .job-company {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .job-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .job-location, .job-type {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .apply-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .apply-btn:hover {
+            opacity: 0.9;
+        }
+
+        .no-jobs {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--ultra-light-bg);
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .no-jobs i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .no-jobs h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .no-jobs p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .career-contact {
+            background: var(--ultra-light-bg);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .career-contact h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .career-contact p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .contact-email {
+            font-size: 1.2rem;
+            color: var(--highlight-blue);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Job Detail Modal */
+        .job-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .job-modal-content {
+            background-color: var(--primary-bg);
+            margin: 0;
+            padding: 0;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .job-modal-header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .job-modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .job-modal-header .company {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .job-modal-header .meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .job-modal-body {
+            padding: 30px;
+        }
+
+        .job-section {
+            margin-bottom: 30px;
+        }
+
+        .job-section h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--ultra-light-bg);
+        }
+
+        .job-section p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .job-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-section li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .job-section li:before {
+            content: "▸";
+            color: var(--highlight-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .job-modal-footer {
+            padding: 30px;
+            background: var(--ultra-light-bg);
+            border-radius: 0 0 15px 15px;
+            text-align: center;
+        }
+
+        .job-modal-footer .apply-btn {
+            font-size: 1rem;
+            padding: 12px 30px;
+            margin-right: 15px;
+        }
+
+        .close-modal {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+        }
+
+        /* Tablet and mobile responsive design */
+        @media (max-width: 1024px) {
+            .career-content {
+                padding: 60px 30px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .career-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .career-hero-content {
+                padding: 0 25px;
+            }
+
+            .career-hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+                letter-spacing: 1px;
+            }
+
+            .career-hero .subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+            .career-hero .intro {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 35px;
+            }
+
+            .career-content {
+                padding: 50px 20px;
+            }
+
+            .jobs-container {
+                gap: 20px;
+            }
+
+            .job-card {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+
+            .job-title {
+                font-size: 1.15rem;
+                margin-bottom: 8px;
+            }
+
+            .job-company {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
+
+            .job-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 18px;
+            }
+
+            .job-meta {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .job-meta > div {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 5px;
+            }
+
+            .job-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .job-location, .job-type {
+                font-size: 0.8rem;
+                display: inline-block;
+                background: var(--ultra-light-bg);
+                padding: 4px 8px;
+                border-radius: 6px;
+                margin-right: 0;
+            }
+
+            .job-type {
+                margin-left: 0 !important;
+            }
+
+            .apply-btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                border-radius: 8px;
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            .no-jobs {
+                padding: 40px 20px;
+                margin: 30px 0;
+            }
+
+            .no-jobs h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .no-jobs p {
+                font-size: 0.85rem;
+            }
+
+            .career-contact {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+
+            .career-contact h3 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .career-contact p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .contact-email {
+                font-size: 1rem;
+                word-break: break-all;
+            }
+
+            /* Modal responsive improvements */
+            .job-modal {
+                padding: 15px;
+            }
+            
+            .job-modal-content {
+                max-width: none;
+                max-height: 90vh;
+                border-radius: 12px;
+            }
+
+            .job-modal-header {
+                padding: 20px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .job-modal-header h2 {
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+                line-height: 1.3;
+            }
+
+            .job-modal-header .company {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
+
+            .job-modal-header .meta {
+                flex-direction: column;
+                gap: 8px;
+                font-size: 0.8rem;
+            }
+
+            .job-modal-body {
+                padding: 20px;
+            }
+
+            .job-section {
+                margin-bottom: 25px;
+            }
+
+            .job-section h3 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+            }
+
+            .job-section p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .job-section li {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 8px;
+                padding-left: 15px;
+            }
+
+            .job-modal-footer {
+                padding: 20px;
+            }
+
+            .job-modal-footer .apply-btn {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 14px 20px;
+                margin-right: 0;
+            }
+
+            .close-modal {
+                font-size: 24px;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .career-hero {
+                padding: 80px 0 50px;
+            }
+            
+            .career-hero-content {
+                padding: 0 20px;
+            }
+
+            .career-hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: 0.5px;
+            }
+
+            .career-hero .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+
+            .career-hero .intro {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+
+            .career-content {
+                padding: 40px 15px;
+            }
+
+            .job-card {
+                padding: 20px 15px;
+                border-radius: 10px;
+            }
+
+            .job-title {
+                font-size: 1rem;
+                line-height: 1.3;
+            }
+
+            .job-company {
+                font-size: 0.8rem;
+            }
+
+            .job-description {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .job-location, .job-type {
+                font-size: 0.75rem;
+                padding: 3px 6px;
+            }
+
+            .apply-btn {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+
+            .no-jobs {
+                padding: 30px 15px;
+            }
+
+            .no-jobs i {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .no-jobs h3 {
+                font-size: 1.1rem;
+            }
+
+            .no-jobs p {
+                font-size: 0.8rem;
+            }
+
+            .career-contact {
+                padding: 25px 15px;
+            }
+
+            .career-contact h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .career-contact p {
+                font-size: 0.8rem;
+            }
+
+            .contact-email {
+                font-size: 0.9rem;
+            }
+
+            /* Modal adjustments for very small screens */
+            .job-modal {
+                padding: 10px;
+            }
+            
+            .job-modal-content {
+                max-height: 95vh;
+            }
+
+            .job-modal-header {
+                padding: 15px;
+            }
+
+            .job-modal-header h2 {
+                font-size: 1.1rem;
+                line-height: 1.2;
+            }
+
+            .job-modal-header .company {
+                font-size: 0.8rem;
+            }
+
+            .job-modal-header .meta {
+                font-size: 0.75rem;
+            }
+
+            .job-modal-body {
+                padding: 15px;
+            }
+
+            .job-section {
+                margin-bottom: 20px;
+            }
+
+            .job-section h3 {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
+            .job-section p, .job-section li {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .job-section li {
+                padding-left: 12px;
+                margin-bottom: 6px;
+            }
+
+            .job-modal-footer {
+                padding: 15px;
+            }
+
+            .job-modal-footer .apply-btn {
+                padding: 12px 15px;
+                font-size: 0.8rem;
+            }
+
+            .close-modal {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .career-hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .career-hero .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .career-hero .intro {
+                font-size: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .job-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        .career-hero .career-hero-icon {
+            position: absolute;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            box-shadow: 0 4px 18px 0 rgba(61,74,93,0.08);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--highlight-blue);
+            z-index: 1;
+            animation: floatIcon 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .career-hero .icon1 { left: 8%;  top: 22%; animation-delay: 0s;}
+        .career-hero .icon2 { right: 10%; top: 18%; animation-delay: 1.5s;}
+        .career-hero .icon3 { left: 14%; bottom: 18%; animation-delay: 3s;}
+        .career-hero .icon4 { right: 12%; bottom: 16%; animation-delay: 4.5s;}
+        .career-hero .icon5 { left: 50%; top: 8%; transform: translateX(-50%); animation-delay: 2.2s;}
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0);}
+            50% { transform: translateY(-18px);}
+        }
+        @media (max-width: 768px) {
+            .career-hero .career-hero-icon { width: 40px; height: 40px; font-size: 1.2rem;}
+            .career-hero .icon1 { left: 2%;  top: 10%;}
+            .career-hero .icon2 { right: 2%; top: 10%;}
+            .career-hero .icon3 { left: 6%; bottom: 8%;}
+            .career-hero .icon4 { right: 4%; bottom: 8%;}
+            .career-hero .icon5 { left: 50%; top: 2%;}
+        }
+
+        /* Floating Career Icons Animation */
+        .career-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+        .floating-element:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 60%; right: 20%; animation-delay: 5s; }
+        .floating-element:nth-child(3) { top: 40%; left: 70%; animation-delay: 10s; }
+        .floating-element:nth-child(4) { bottom: 30%; left: 25%; animation-delay: 2s; }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+</style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="career-hero">
+        <!-- Career Animation -->
+        <div class="career-animation">
+            <div class="floating-element"><i class="fas fa-briefcase"></i></div>
+            <div class="floating-element"><i class="fas fa-user-tie"></i></div>
+            <div class="floating-element"><i class="fas fa-bullseye"></i></div>
+            <div class="floating-element"><i class="fas fa-handshake"></i></div>
+        </div>
+        <div class="container">
+            <div class="career-hero-content">
+                <h1 data-translate="career_hero_title">Karriere</h1>
+                <h2 data-translate="career_hero_subtitle">GESTALTEN SIE DIE ZUKUNFT MIT UNS</h2>
+                <p data-translate="career_hero_intro">Werden Sie Teil unseres dynamischen Teams und arbeiten Sie in einem Unternehmen, das Innovation, Nachhaltigkeit und berufliche Entwicklung schätzt. Entdecken Sie spannende Karrieremöglichkeiten in unseren Portfoliounternehmen.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="career-content">
+        <section class="job-listings">
+            <h2 class="section-title" data-translate="career_section_title">Aktuelle Stellenausschreibungen</h2>
+
+            <div class="jobs-container" id="jobs-container">
+            </div>
+
+            <div class="no-jobs" id="no-jobs-message">
+                <i class="fas fa-briefcase"></i>
+                <h3 data-translate="career_no_jobs_heading">Keine aktuellen Stellenausschreibungen</h3>
+                <p data-translate="career_no_jobs_text">Derzeit sind keine offenen Stellen verfügbar. Schauen Sie regelmäßig für Updates vorbei.</p>
+            </div>
+        </section>
+
+        <section class="career-contact">
+            <h3 data-translate="career_contact_heading">Interesse an einer Karriere bei uns?</h3>
+            <p data-translate="career_contact_text">Für allgemeine Anfragen zu Karrieremöglichkeiten kontaktieren Sie uns unter:</p>
+            <a href="mailto:tobias.eiblmeier@certina-group.com" class="contact-email">tobias.eiblmeier@certina-group.com</a>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Job Detail Modal -->
+    <div id="job-modal" class="job-modal">
+        <div class="job-modal-content">
+            <div class="job-modal-header">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-job-title">Job Title</h2>
+                <p class="company" id="modal-job-company">Company</p>
+                <div class="meta">
+                    <span id="modal-job-location">Location</span>
+                    <span id="modal-job-type">Type</span>
+                </div>
+            </div>
+            <div class="job-modal-body">
+                <div class="job-section">
+                    <h3 data-translate="career_job_description">Stellenbeschreibung</h3>
+                    <p id="modal-job-full-description">Description</p>
+                </div>
+                <div class="job-section">
+                    <h3 data-translate="career_job_responsibilities">Das erwartet Dich</h3>
+                    <ul id="modal-job-responsibilities"></ul>
+                </div>
+                <div class="job-section">
+                    <h3 data-translate="career_job_requirements">Das zeichnet Dich aus</h3>
+                    <ul id="modal-job-requirements"></ul>
+                </div>
+                <div class="job-section">
+                    <h3 data-translate="career_job_benefits">Das bieten wir</h3>
+                    <ul id="modal-job-benefits"></ul>
+                </div>
+            </div>
+            <div class="job-modal-footer">
+                <a id="modal-apply-btn" href="#" class="apply-btn" data-translate="career_apply_now">Jetzt bewerben</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../Assets/js/translation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use the same header loading pattern as Homepage
+            const loadComponents = async () => {
+                try {
+                    const [headerRes, footerRes] = await Promise.all([
+                        fetch('Header.html?v=' + new Date().getTime()).catch(e => { console.error('Error fetching Header.html', e); return null; }),
+                        fetch('Footer.html?v=' + new Date().getTime()).catch(e => { console.error('Error fetching Footer.html', e); return null; })
+                    ]);
+
+                    if (headerRes && headerRes.ok) {
+                        const headerHtml = await headerRes.text();
+                        const headerPlaceholder = document.getElementById('header-placeholder');
+                        if (headerPlaceholder) {
+                            headerPlaceholder.innerHTML = headerHtml;
+                            
+                            // Extract and execute scripts from the injected HTML
+                            const scriptTags = headerPlaceholder.querySelectorAll('script');
+                            scriptTags.forEach(scriptTag => {
+                                if (scriptTag.innerHTML.trim()) {
+                                    console.log('[Career.js] Executing script from Header.html...');
+                                    try {
+                                        const newScript = document.createElement('script');
+                                        newScript.innerHTML = scriptTag.innerHTML;
+                                        document.head.appendChild(newScript);
+                                    } catch (error) {
+                                        console.error('[Career.js] Error executing script:', error);
+                                    }
+                                }
+                            });
+                            
+                            // Initialize header functionality after scripts are executed
+                            setTimeout(() => {
+                                if (typeof window.initializeHeaderFunctionality === 'function') {
+                                    window.initializeHeaderFunctionality();
+                                } else {
+                                    console.error('[Career.js] initializeHeaderFunctionality not found after script execution');
+                                }
+                            }, 100);
+                        }
+                    }
+
+                    if (footerRes && footerRes.ok) {
+                        const footerHtml = await footerRes.text();
+                        const footerPlaceholder = document.getElementById('footer-placeholder');
+                        if (footerPlaceholder) {
+                            footerPlaceholder.innerHTML = footerHtml;
+                        }
+                    }
+
+                    // Initialize translations after components are loaded
+                    if (window.initTranslation) {
+                        window.initTranslation();
+                    }
+
+                } catch (error) {
+                    console.error('Error loading components:', error);
+                }
+            };
+
+            loadComponents();
+            loadJobPostings();
+            setupModalEventListeners();
+        });
+
+        let currentLanguage = getSavedLanguage(); // Initialize with saved language
+        let allJobs = []; // Store all fetched jobs globally
+        let currentOpenJobId = null; // Track the currently open job ID for modal refresh on lang change
+
+        async function loadJobPostings() {
+            try {
+                const jobsContainer = document.getElementById('jobs-container');
+                const noJobsMessage = document.getElementById('no-jobs-message');
+                
+                const jobs = await fetchJobPostings();
+                allJobs = jobs; // Store globally for modal access
+                
+                if (jobs && jobs.length > 0) {
+                    noJobsMessage.style.display = 'none';
+                    jobsContainer.innerHTML = ''; // Clear previous job cards
+                    
+                    jobs.forEach(job => {
+                        const jobCard = createJobCard(job);
+                        jobsContainer.appendChild(jobCard);
+                    });
+                } else {
+                    noJobsMessage.style.display = 'block';
+                    jobsContainer.innerHTML = '';
+                    // Text content of h3 and p within noJobsMessage is handled by translatePage
+                    // due to data-translate attributes. This block just ensures visibility.
+                }
+            } catch (error) {
+                console.error('Error loading job postings:', error);
+                const jobsContainer = document.getElementById('jobs-container');
+                const noJobsMessage = document.getElementById('no-jobs-message');
+
+                if (jobsContainer) jobsContainer.innerHTML = ''; // Clear any partial job listings
+
+                if (noJobsMessage) {
+                    noJobsMessage.style.display = 'block';
+                    const h3 = noJobsMessage.querySelector('h3');
+                    const p = noJobsMessage.querySelector('p');
+                    if (h3) h3.textContent = getLocalizedText({ de: 'Fehler', en: 'Error' });
+                    if (p) p.textContent = getLocalizedText({ 
+                        de: 'Stellenausschreibungen konnten nicht geladen werden.', 
+                        en: 'Could not load job postings.' 
+                    });
+                }
+            }
+        }
+
+        // Language management
+        // currentLanguage is already defined above
+
+        function getSavedLanguage() {
+            try {
+                return localStorage.getItem('selectedLanguage') || 'de';
+            } catch (e) {
+                return 'de';
+            }
+        }
+
+        function getLocalizedText(textObj) {
+            if (typeof textObj === 'string') return textObj;
+            return textObj[currentLanguage] || textObj['de'] || textObj['en'] || 'N/A';
+        }
+
+        async function fetchJobPostings() {
+            try {
+                const response = await fetch('../Assets/Career/jobs.json?v=' + new Date().getTime());
+                if (!response.ok) {
+                    throw new Error('Failed to fetch jobs');
+                }
+                const data = await response.json();
+                return data.jobs.filter(job => job.active === true);
+            } catch (error) {
+                console.error('Error fetching job postings:', error);
+                return [];
+            }
+        }
+
+        function createJobCard(job) {
+            const card = document.createElement('div');
+            card.className = 'job-card';
+            // card.style.cursor = 'pointer'; // Already in CSS
+
+            const description = getLocalizedText(job.description);
+            const shortDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
+            
+            const viewDetailsText = window.translations?.[currentLanguage]?.career_view_details || (currentLanguage === 'de' ? 'Details ansehen' : 'View Details');
+
+            card.innerHTML = `
+                <h3 class="job-title">${getLocalizedText(job.title)}</h3>
+                <p class="job-company">${getLocalizedText(job.company)}</p>
+                <p class="job-description">${shortDescription}</p>
+                <div class="job-meta">
+                    <div class="job-details">
+                        <span class="job-location"><i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location)}</span>
+                        <span class="job-type"><i class="fas fa-clock"></i> ${getLocalizedText(job.type)}</span>
+                    </div>
+                    <button class="apply-btn view-details-btn">
+                        ${viewDetailsText}
+                    </button>
+                </div>
+            `;
+            
+            // Add click handler to open modal for the card itself
+            card.addEventListener('click', () => openJobModal(job.id));
+            
+            // Add click handler for the button, ensuring it doesn't propagate to the card's listener if needed
+            const viewDetailsButton = card.querySelector('.view-details-btn');
+            viewDetailsButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent card click handler from firing again
+                openJobModal(job.id);
+            });
+            
+            return card;
+        }
+
+        // Removed addJobPosting function as loadJobPostings re-renders the list.
+
+        // Modal functionality
+        // let allJobs = []; // Already defined above
+
+        // Helper function to populate a UL element with list items
+        function populateList(ulElement, localizedDataItems) {
+            ulElement.innerHTML = ''; // Clear previous items
+            
+            if (Array.isArray(localizedDataItems)) {
+                localizedDataItems.forEach(itemText => {
+                    const li = document.createElement('li');
+                    li.textContent = itemText;
+                    ulElement.appendChild(li);
+                });
+            } else if (typeof localizedDataItems === 'string' && localizedDataItems.trim() !== '') {
+                // If it's a single string, display it as a paragraph. 
+                // This matches behavior if the data for a language is a string instead of a list.
+                const p = document.createElement('p');
+                p.textContent = localizedDataItems;
+                ulElement.appendChild(p); // Appending p to ul is not ideal, but consistent with some data structures
+            }
+            // If localizedDataItems is null, undefined, or empty string, the list remains empty.
+        }
+
+
+        async function openJobModal(jobId) {
+            try {
+                const job = allJobs.find(j => j.id === jobId);
+                if (!job) {
+                    console.error('Job not found:', jobId);
+                    return;
+                }
+                currentOpenJobId = job.id; // Track open job
+
+                const modal = document.getElementById('job-modal');
+                const modalTitle = document.getElementById('modal-job-title');
+                const modalCompany = document.getElementById('modal-job-company');
+                const modalLocation = document.getElementById('modal-job-location');
+                const modalType = document.getElementById('modal-job-type');
+                const modalDescription = document.getElementById('modal-job-full-description');
+                const modalResponsibilities = document.getElementById('modal-job-responsibilities');
+                const modalRequirements = document.getElementById('modal-job-requirements');
+                const modalBenefits = document.getElementById('modal-job-benefits');
+                const modalApplyLink = document.getElementById('modal-apply-btn');
+
+                // Populate modal content
+                modalTitle.textContent = getLocalizedText(job.title);
+                modalCompany.textContent = getLocalizedText(job.company);
+                modalLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location)}`;
+                modalType.innerHTML = `<i class="fas fa-clock"></i> ${getLocalizedText(job.type)}`;
+                
+                // Full description
+                const fullDescription = getLocalizedText(job.fullDescription) || getLocalizedText(job.description);
+                modalDescription.textContent = fullDescription;
+
+                // Populate lists using the helper function
+                populateList(modalResponsibilities, getLocalizedText(job.responsibilities));
+                populateList(modalRequirements, getLocalizedText(job.requirements));
+                populateList(modalBenefits, getLocalizedText(job.benefits));
+
+                // Apply link
+                modalApplyLink.href = job.applicationLink || 'mailto:tobias.eiblmeier@certina-group.com';
+                // Text for apply_now button is handled by data-translate attribute and main translation function
+
+                // Show modal
+                modal.style.display = 'flex'; // Changed from 'block' to 'flex' to center content by default
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10); // Short delay for transition
+                
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
+
+            } catch (error) {
+                console.error('Error opening job modal:', error);
+            }
+        }
+
+        function closeJobModal() {
+            const modal = document.getElementById('job-modal');
+            modal.classList.remove('active');
+            currentOpenJobId = null; // Clear tracked job ID
+            
+            setTimeout(() => {
+                modal.style.display = 'none'; // Hide modal after transition
+                document.body.style.overflow = ''; // Restore body scroll
+            }, 300); // Adjust timeout to match CSS transition duration if any
+        }
+
+        // Setup modal event listeners
+        function setupModalEventListeners() {
+            const modal = document.getElementById('job-modal');
+            const closeBtn = modal.querySelector('.close-modal');
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeJobModal);
+            }
+            
+            // Close modal when clicking outside content
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) { // Check if the click is on the modal backdrop itself
+                    closeJobModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') { // Check if modal is visible
+                    closeJobModal();
+                }
+            });
+        }
+
+        // Language switching functionality
+        function updateLanguage(lang) {
+            if (currentLanguage !== lang) {
+                currentLanguage = lang;
+                localStorage.setItem('selectedLanguage', lang);
+
+                // Force translation update
+                if (window.translatePage) {
+                    window.translatePage(lang); 
+                }
+
+                // Reload job postings with new language
+                loadJobPostings(); 
+
+                // Update modal if open
+                if (document.getElementById('job-modal').style.display === 'flex' && currentOpenJobId) {
+                    openJobModal(currentOpenJobId); 
+                }
+            }
+        }
+
+        // ADD THESE EVENT LISTENERS
+        // Register this page for language updates
+        window.addEventListener('languageChanged', function(e) {
+            console.log('[Career.js] Language change event received:', e.detail.language);
+            updateLanguage(e.detail.language);
+        });
+
+        // Globally expose a function to update career page language
+        window.updatePageLanguage = function(newLang) {
+            console.log(`[Career.js] Global language update requested to: ${newLang}`);
+            updateLanguage(newLang);
+        };
+
+    </script>
+
+<!-- Language Switcher JavaScript -->
+<script src="../Assets/js/language-switcher.js"></script>
+<script src="../Assets/js/scroll-to-top.js"></script>
+</body>
+</html>

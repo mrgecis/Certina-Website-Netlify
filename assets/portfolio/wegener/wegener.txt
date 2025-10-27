@@ -1,0 +1,9 @@
+Company: Wegener+Stapel
+Industry: Industrials
+Acquisition year: 2019.0
+Revenue: 15.0 Million EUR
+FTE: 50.0
+Countries: 1.0
+Website: https://www.wegenerwelding.de
+Headquarter: Germany
+Seller: Owner family

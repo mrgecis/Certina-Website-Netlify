@@ -1,0 +1,9 @@
+Company: Shieldtec
+Industry: Automotive
+Acquisition year: 2024.0
+Revenue: 175.0 Million EUR
+FTE: 650.0
+Countries: 2.0
+Website: https://www.shieldtecgroup.com
+Headquarter: Switzerland
+Seller: ElringKlinger

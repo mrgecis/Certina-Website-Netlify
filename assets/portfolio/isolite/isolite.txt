@@ -1,0 +1,9 @@
+Company: ISOLITE
+Industry: Automotive
+Acquisition year: 2023.0
+Revenue: 100.0 Million EUR
+FTE: 500.0
+Countries: 7.0
+Website: https://www.isolite.de
+Headquarter: Germany
+Seller: Showa Denko

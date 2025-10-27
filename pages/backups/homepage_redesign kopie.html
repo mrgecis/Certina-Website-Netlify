@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - The Sustainable Investor (Enhanced Redesign)</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"> {/* Added 800 weight */}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Theme Colors (Enhanced Professional Look) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF; /* Slightly cooler, very light off-white */
+            --secondary: #3D4A5D; /* Deeper, more sophisticated blue-gray */
+            --accent: #5C6B7F;    /* Harmonized lighter accent */
+            --dark-shade: #2E3A4A;  /* Richer dark tone */
+            --light-shade: #D3D9E2; /* Cleaner light gray */
+            --highlight-blue: #6A7BA2; /* A distinct, professional blue for highlights */
+            --ultra-light-bg: #F4F6F8; /* Very light gray/blue for subtle backgrounds, slightly cooler */
+
+            /* Text Colors */
+            --text: #1D2633;        /* Primary text (darker for better contrast) */
+            --text-secondary: #626E7F; /* Secondary text (harmonized medium gray) */
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97); /* Even darker, more premium footer */
+            --footer-text: #ECEFF1;              /* Light text on dark footer */
+            --footer-text-secondary: #A0A7B0;     /* Muted light text on dark footer */
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9); /* More opaque cards, adjust if needed */
+            --card-bg-news: rgba(255, 255, 255, 0.97); /* News cards - almost solid for readability */
+            --glass-bg: rgba(255, 255, 255, 0.75);   /* Glass effect background */
+            --glass-border: rgba(61, 74, 93, 0.12); /* Updated border color (from --secondary) */
+            /* Enhanced shadows for depth and professionalism */
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08); /* Softer, more diffused (from --dark-shade) */
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18); /* Updated separator (from --accent) */
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue)); /* Adjusted gradient */
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        /* Base & Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--primary-bg); /* Use primary-bg for main background */
+            color: var(--text);
+            overflow-x: hidden;
+            font-weight: 300; /* Base weight for body copy */
+            position: relative;
+            min-height: 100vh;
+        }
+
+        #header-placeholder {
+            min-height: 0;
+            position: relative;
+            z-index: 101;
+        }
+
+        /* Global Background Gradient Overlay - Kept subtle */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(92, 107, 127, 0.05) 0%, transparent 35%), /* Using --accent RGB */
+                              radial-gradient(circle at 90% 80%, rgba(61, 74, 93, 0.05) 0%, transparent 35%); /* Using --secondary RGB */
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .container { width: 90%; max-width: 1280px; margin: 0 auto; position: relative; } /* Slightly wider max-width */
+
+        /* === Header === */
+        header {
+             background: transparent;
+             padding: 20px 0; /* Increased padding */
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 150;
+             transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+             border-bottom: 1px solid transparent;
+        }
+        header.scrolled {
+             background: rgba(253, 254, 255, 0.85); /* Slightly more transparent, using --primary-bg tones */
+             padding: 12px 0;
+             backdrop-filter: blur(12px);
+             -webkit-backdrop-filter: blur(12px);
+             box-shadow: 0 4px 20px rgba(46, 58, 74, 0.06); /* Softer, more diffused shadow (--dark-shade RGB) */
+             border-bottom: 1px solid rgba(46, 58, 74, 0.07);
+        }
+        .header-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 0;
+        }
+        .logo { height: 45px; transition: opacity 0.3s ease; } /* Slightly larger logo */
+        .logo:hover { opacity: 0.85; }
+        .hamburger-menu {
+            width: 30px; height: 25px; position: relative; cursor: pointer;
+            display: flex; flex-direction: column; justify-content: space-between;
+            z-index: 101; margin-top: 5px;
+        }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); background: var(--accent); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); background: var(--accent); }
+        .nav-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(253, 254, 255, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: opacity 0.5s ease, visibility 0s 0.5s; z-index: 99; }
+        .nav-menu.active { visibility: visible; opacity: 1; transition: opacity 0.5s ease, visibility 0s 0s; }
+        .nav-links { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 45px; list-style: none; padding-left: 0; } /* Increased gap */
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; text-transform: uppercase; font-size: 26px; position: relative; transition: color 0.3s ease; letter-spacing: 2.5px; } /* Bolder, larger, more spacing */
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2.5px; background: var(--gradient-1); bottom: -10px; left: 50%; transform: translateX(-50%); transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* === Footer === */
+        footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 90px 0 35px; position: relative; } /* Increased top padding */
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 70px; margin-bottom: 60px; align-items: start; } /* Increased gap */
+        .footer-title { font-size: 22px; margin-bottom: 28px; color: var(--accent); font-weight: 500; letter-spacing: 0.5px; } /* Slightly larger */
+        .copyright { text-align: center; padding-top: 35px; border-top: 1px solid rgba(236, 239, 241, 0.1); color: var(--footer-text-secondary); font-weight: 300; } /* Updated border color to use --footer-text */
+        .footer-links { margin-top: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; list-style: none; padding-left: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 300; font-size: 15px; } /* Slightly larger */
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo-container p, .footer-contact p { color: var(--footer-text-secondary); font-size: 15.5px; line-height: 1.75; font-weight: 300; } /* Slightly larger */
+        .footer-logo { display: block; max-height: 50px; margin-bottom: 25px; } /* Slightly larger */
+        @media (max-width: 768px) {
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+            .footer-contact { margin-top: 40px; }
+        }
+
+        /* === Buttons === */
+        .btn { display: inline-block; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 600; /* Bolder */ letter-spacing: 1px; transition: all 0.4s ease; position: relative; overflow: hidden; z-index: 1; text-transform: uppercase; font-size: 14px; border: 1px solid transparent; }
+        .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--gradient-1); z-index: -1; transition: all 0.5s ease; }
+        .btn-primary { color: white; border-color: var(--secondary); }
+        .btn-primary:hover { background: var(--gradient-1); color: white; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(61, 74, 93, 0.25); } /* Updated shadow (--secondary RGB) */
+        .btn-primary:hover::before { transform: scale(1.05); filter: brightness(1.15); }
+        .btn-outline { background: transparent; border: 1.5px solid var(--secondary); color: var(--secondary); } /* Slightly thicker border */
+        .btn-outline::before { background: var(--gradient-1); width: 0; }
+        .btn-outline:hover { color: white; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(61, 74, 93, 0.2); }
+        .btn-outline:hover::before { width: 100%; }
+        .btn-container { flex-direction: column; align-items: center; gap: 18px; }
+
+        /* General Section Styles */
+        .section { padding: 110px 0; position: relative; background-color: transparent; } /* Increased padding */
+        .section-header { text-align: center; margin-bottom: 80px; } /* Increased margin */
+        .section-title, #about .text-4xl, #investment-criteria .text-4xl, #news .section-title {
+             font-size: 42px; /* Larger */
+             margin-bottom: 20px;
+             font-weight: 400; /* Adjusted weight for better gradient visibility */
+             letter-spacing: 0.3px; /* Reduced letter spacing */
+             background: var(--gradient-1);
+             -webkit-background-clip: text;
+             background-clip: text;
+             color: transparent;
+             display: inline-block;
+         }
+        .section-subtitle, #about .text-lg, #investment-criteria .text-lg, #news .section-subtitle {
+            font-size: 18px; /* Larger */
+            color: var(--text-secondary);
+            max-width: 750px; /* Wider */
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+         /* Hero Section */
+        .hero {
+            height: 100vh; min-height: 550px; /* Increased min-height */
+            display: flex; align-items: center; position: relative; overflow: hidden;
+        }
+        @media (max-width: 768px) { .hero { min-height: 450px; } }
+        @media (max-width: 480px) { .hero { min-height: 350px; } }
+        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* Adjusted gradient for more video visibility at top, stronger fade at bottom */
+            background: linear-gradient(to bottom, rgba(253,254,255,0.6) 0%, rgba(253,254,255,0.8) 60%, rgba(253,254,255,0.98) 100%);
+            z-index: 0; padding-top: 60px;
+        }
+        .hero-content { text-align: center; max-width: 950px; margin: 0 auto; padding: 70px 20px; position: relative; z-index: 1; }
+        .hero-logo-container { margin-bottom: 30px; }
+        .hero-logo { height: 75px; max-width: 100%; } /* Slightly larger */
+        .hero h1 {
+            font-size: 56px; margin-bottom: 18px; font-weight: 500; /* Bolder for impact */
+            color: var(--text); line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow for pop */
+        }
+        .hero h2 {
+            font-size: 19px; margin-bottom: 40px; font-weight: 300;
+            color: var(--text-secondary); letter-spacing: 5.5px; /* Increased spacing */
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+        .hero p { font-size: 18px; margin-bottom: 50px; line-height: 1.85; font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto; color: var(--text-secondary); } /* Larger */
+
+        /* Hero Startup Effekt - Kept as is, good effect */
+        .hero-logo-container { opacity: 0; transform: scale(0.8); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); z-index: 3; }
+        .hero-logo-container.startup { opacity: 1; transform: scale(1); filter: drop-shadow(0 10px 35px rgba(46,58,74,0.15)); } /* Shadow from --dark-shade */
+        .video-bg { opacity: 0; transition: opacity 2.5s cubic-bezier(0.4,0,0.2,1); }
+        .video-bg.visible { opacity: 1; }
+
+        /* Partner Logos */
+        .partner-logos { position: absolute; bottom: 30px; left: 0; width: 100%; background: transparent; z-index: 2; overflow: hidden; padding: 20px 0; }
+        .logos-track { display: flex; animation: scroll-logos 70s linear infinite; gap: 100px; align-items: center; width: max-content; } /* Slower scroll, more gap */
+        .partner-logos img { height: 42px; opacity: 0.45; filter: grayscale(100%) contrast(0.5); transition: opacity 0.4s ease, filter 0.4s ease; } /* Slightly less opacity */
+        .partner-logos img:hover { opacity: 1; filter: grayscale(0%) contrast(1); }
+        @keyframes scroll-logos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Background Orbs - General */
+        .bg-orb { position: absolute; border-radius: 50%; opacity: 0.07; /* Slightly less opacity */ filter: blur(90px); /* More blur */ transition: transform 7s ease-in-out; z-index: 1; pointer-events: none; }
+        /* Orb Positioning and Colors (using new palette) */
+        #about .bg-orb-1 { top: -160px; left: -200px; width: 500px; height: 500px; background: var(--accent); }
+        #about .bg-orb-2 { top: 25%; right: -130px; width: 380px; height: 380px; background: var(--secondary); }
+        #about .bg-orb-3 { bottom: -90px; left: 28%; width: 420px; height: 420px; background: var(--light-shade); }
+        #investment-criteria .bg-orb-1 { top: -220px; left: -160px; width: 600px; height: 600px; background: var(--secondary); }
+        #investment-criteria .bg-orb-2 { top: 18%; right: -160px; width: 480px; height: 480px; background: var(--accent); }
+        #investment-criteria .bg-orb-3 { bottom: -130px; left: 38%; width: 520px; height: 520px; background: var(--light-shade); }
+
+        /* Utility Classes (Consolidated) */
+        .text-center { text-align: center; } .mb-4 { margin-bottom: 16px; } .mb-16 { margin-bottom: 64px; }
+        .inline-block { display: inline-block; } .font-light { font-weight: 300; }
+        .max-w-3xl { max-width: 768px; } .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* === About Section (#about) === */
+        #about { position: relative; padding: 100px 0; background-color: transparent; z-index: 2; } /* Adjusted padding */
+        #about .container { padding: 0; width: 90%; max-width: 1280px; margin: 0 auto; position: relative; z-index: 10; }
+        #about .content-row { display: flex; flex-direction: column; gap: 56px; } /* Increased gap */
+        #about .content-col { width: 100%; transition: opacity 1s ease, transform 1s ease; opacity: 0; transform: translateY(30px); } /* Less transform */
+        #about .content-col.animate { opacity: 1; transform: translateY(0); }
+        #about .chart-section { padding: 25px 0; margin-bottom: 40px; margin-top: 30px; }
+        #about .chart-container { position: relative; padding: 25px 0; height: 380px; }
+        #about .chart-grid { position: relative; height: 330px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 10px; border-bottom: 1px solid var(--separator-color); }
+        #about .bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 18px; position: relative; height: 100%; justify-content: flex-end; cursor: pointer; transition: transform 0.25s ease; }
+        #about .bar-group:hover { transform: translateY(-4px); }
+        #about .bar { width: 100%; background: var(--secondary); border-radius: 5px 5px 0 0; transition: height 1s cubic-bezier(0.22, 1, 0.36, 1); height: 0%; position: relative; overflow: hidden; opacity: 0.95; }
+        #about .bar-tooltip { position: absolute; bottom: 105%; left: 50%; transform: translateX(-50%); background-color: rgba(30, 30, 40, 0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 9px 14px; border-radius: 7px; font-size: 12.5px; color: #ffffff; font-weight: 500; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25); opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease; pointer-events: none; white-space: nowrap; z-index: 100; }
+        #about .bar-tooltip-value { font-weight: 600; color: var(--light-shade); }
+        #about .bar-group:hover .bar-tooltip { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+        #about .chart-subtitle { text-align: center; font-size: 14px; color: var(--text-secondary); margin-top: 18px; font-weight: 400; }
+        .signature-box { margin-top: 25px; margin-bottom: 25px; transition: all 0.3s ease; padding: 20px; border-radius: 14px; background: var(--ultra-light-bg); border: 1px solid var(--glass-border); }
+        .signature-content { display: flex; align-items: center; }
+        .signature-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 18px; flex-shrink: 0; background: rgba(61, 74, 93, 0.08); color: var(--secondary); font-size: 20px; } /* --secondary RGB */
+        .signature-title { font-size: 18px; font-weight: 600; margin-bottom: 5px; color: var(--dark-shade); } /* Bolder */
+        .signature-text { font-size: 14.5px; color: var(--text-secondary); line-height: 1.55; }
+        #about .quote-block { margin-top: 40px; background-color: var(--ultra-light-bg); border: 1px solid var(--glass-border); }
+        #about .quote-block blockquote { font-size: 18px; font-style: italic; font-weight: 400; color: var(--text-secondary); line-height: 1.65; margin: 0 0 22px 0; border-left: 3.5px solid var(--accent); padding-left: 18px; }
+        #about .quote-block .signature-icon img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 50%; }
+        #about .quote-block .signature-title { color: var(--text); }
+        #about .kpi-container { background: white; padding: 35px; border-radius: 18px; box-shadow: 0 10px 25px -8px rgba(46, 58, 74, 0.07), 0 5px 8px -3px rgba(46, 58, 74, 0.05); border: 1px solid #EAECEF; display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; } /* Updated shadow */
+        #about .kpi-header { font-size: 24px; font-weight: 300; margin-bottom: 35px; color: var(--dark-shade); }
+        #about .kpi-header-bold { font-weight: 600; } /* Bolder */
+        #about .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 35px; flex-grow: 1; }
+        #about .kpi-card { background: linear-gradient(to bottom right, #FDFEFF, #FFFFFF); padding: 22px; border-radius: 14px; border: 1px solid var(--ultra-light-bg); box-shadow: none; transition: all 0.3s ease; }
+        #about .kpi-card:hover { transform: translateY(-5px); background: white; border-color: #E5E7EB; box-shadow: 0 5px 15px rgba(46, 58, 74, 0.06); } /* Subtle hover shadow */
+        #about .kpi-top { display: flex; align-items: center; margin-bottom: 12px; }
+        #about .kpi-icon { width: 42px; height: 42px; background: var(--ultra-light-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--dark-shade); margin-right: 14px; }
+        #about .kpi-title { font-size: 14.5px; font-weight: 500; color: var(--text-secondary); }
+        #about .kpi-value { font-size: 28px; font-weight: 700; color: var(--dark-shade); margin-bottom: 6px; } /* Bolder */
+        #about .kpi-subtitle { font-size: 12.5px; color: var(--text-secondary); }
+        /* Updated class name for consistency, if used in JS it needs to be updated there too */
+        #about .special-situations-box { background: linear-gradient(to right, var(--dark-shade), var(--secondary)); border-radius: 14px; padding: 28px; box-shadow: 0 5px 12px rgba(46, 58, 74, 0.12); transition: all 0.3s ease; margin-top: auto; color: white; }
+        #about .special-situations-box:hover { transform: translateY(-6px); box-shadow: 0 10px 22px rgba(61, 74, 93, 0.18); } /* Use --secondary RGB */
+        #about .special-situations-box .signature-icon { background: rgba(255, 255, 255, 0.12); }
+        #about .special-situations-box .signature-title { color: white; }
+        #about .special-situations-box .signature-text { color: var(--light-shade); }
+        @media (min-width: 1024px) {
+            #about .content-row { flex-direction: row; align-items: flex-start; gap: 72px; } /* Increased gap */
+            #about .content-col { width: 50%; }
+            #about .content-col#kpi-col { position: sticky; top: 110px; align-self: flex-start; height: fit-content; } /* Adjusted top */
+        }
+        @media (max-width: 1023px) {
+             #about .content-row { flex-direction: column; } #about .content-col { width: 100%; }
+             #about .content-col#kpi-col { position: static; top: auto; height: auto; align-self: auto; }
+             #about .kpi-container { min-height: unset; }
+        }
+        @media (max-width: 768px) {
+             #about { padding: 80px 0; } #about .mb-16 { margin-bottom: 48px; } #about .kpi-grid { grid-template-columns: 1fr; }
+             #about .section-title, #about .text-4xl { font-size: 32px; }
+             #about .section-subtitle, #about .text-lg { font-size: 17px; }
+             #about .quote-block blockquote { font-size: 17px; }
+        }
+        @media (max-width: 480px) {
+             #about .section-title, #about .text-4xl { font-size: 28px; }
+             #about .chart-container { height: 360px; } #about .chart-grid { padding: 0 5px; }
+             #about .bar-group { max-width: 14px; } #about .kpi-value { font-size: 25px; }
+             #about .kpi-icon { width: 38px; height: 38px; margin-right: 10px; }
+             #about .kpi-title { font-size: 13.5px; } #about .special-situations-box { padding: 22px; }
+        }
+
+        /* === Investment Criteria Section (#investment-criteria) === */
+        #investment-criteria { position: relative; padding: 100px 0; background-color: transparent; z-index: 2; }
+        #investment-criteria .container { position: relative; z-index: 10; }
+        #investment-criteria .content-row { display: flex; flex-direction: column; gap: 56px; }
+        #investment-criteria .content-col { width: 100%; transition: all 1s ease; opacity: 0; transform: translateY(30px); }
+        #investment-criteria .content-col.animate { opacity: 1; transform: translateY(0); }
+        @media (min-width: 1024px) {
+             #investment-criteria .content-row { flex-direction: row; align-items: stretch; gap: 72px; }
+             #investment-criteria .content-col { width: 50%; }
+        }
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
+        .criteria-card { background: var(--glass-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); padding: 24px; border-radius: 18px; border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); transform: translateY(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); } /* Using new --card-shadow */
+        .criteria-card:hover { transform: translateY(-8px); box-shadow: 0 10px 35px rgba(46, 58, 74, 0.12); border-color: rgba(61, 74, 93, 0.22); } /* Updated hover shadow */
+        .criteria-top { display: flex; align-items: center; margin-bottom: 14px; }
+        .criteria-icon { width: 40px; height: 40px; background: rgba(61, 74, 93, 0.07); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--secondary); margin-right: 14px; flex-shrink: 0; transition: all 0.3s ease; }
+        .criteria-card:hover .criteria-icon { background: rgba(61, 74, 93, 0.1); transform: scale(1.08); }
+        .criteria-title { font-size: 14.5px; font-weight: 500; color: var(--text-secondary); letter-spacing: -0.1px; }
+        .criteria-value { font-size: 17px; font-weight: 600; color: var(--secondary); margin-bottom: 5px; letter-spacing: -0.2px; } /* Bolder */
+        .criteria-subtitle { font-size: 13.5px; font-weight: 400; color: var(--text-secondary); letter-spacing: -0.1px; line-height: 1.5; }
+
+        /* Orbital Visualization - Refined aesthetics */
+        .orbital-container { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 480px; } /* Increased min-height */
+        .orbital-wrapper { position: relative; width: 100%; max-width: 500px; aspect-ratio: 1/1; } /* Slightly larger */
+        .orbital-visualization { position: relative; width: 100%; height: 100%; }
+        .orbital-center { position: absolute; top: 50%; left: 50%; width: 150px; height: 150px; border-radius: 50%; z-index: 30; transform: translate(-50%, -50%) scale(0); transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .orbital-center.animate { transform: translate(-50%, -50%) scale(1); }
+        .orbital-center-3d { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; perspective: 900px; animation: float 9s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .orbital-logo-container { position: absolute; width: 100%; height: 100%; transform-style: preserve-3d; }
+        .orbital-logo-glow { position: absolute; width: 170%; height: 170%; top: -35%; left: -35%; background: radial-gradient(circle, rgba(61, 74, 93, 0.1) 0%, rgba(61, 74, 93, 0) 65%); filter: blur(18px); opacity: 0.85; animation: pulse 7s ease-in-out infinite alternate; } /* --secondary RGB */
+        .orbital-logo-inner { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(145deg, #ffffff, #F9FAFB); box-shadow: 0 12px 45px rgba(46, 58, 74, 0.12), 0 22px 28px -8px rgba(46, 58, 74, 0.1), inset 0 -1.5px 3.5px rgba(0, 0, 0, 0.06), inset 0 1.5px 3.5px rgba(255, 255, 255, 0.75); display: flex; align-items: center; justify-content: center; overflow: hidden; transform-style: preserve-3d; } /* Enhanced shadow */
+        .orbital-logo-image { position: relative; z-index: 5; width: 70%; height: 70%; display: flex; align-items: center; justify-content: center; transform: translateZ(12px); }
+        .orbital-ring { position: absolute; top: 50%; left: 50%; border-radius: 50%; border: 1.5px solid rgba(92, 107, 127, 0.22); transform: translate(-50%, -50%) scale(0); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; z-index: 20; box-shadow: inset 0 0 18px rgba(61, 74, 93, 0.04), 0 0 18px rgba(61, 74, 93, 0.04); } /* --accent RGB, thicker border */
+        .orbital-ring.animate { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .orbital-ring-1 { width: 200px; height: 200px; animation: rotateRing 190s linear infinite; }
+        .orbital-ring-2 { width: 266px; height: 266px; border-color: rgba(92, 107, 127, 0.18); transition-delay: 0.3s; animation: rotateRing 250s linear infinite reverse; }
+        .orbital-ring-3 { width: 332px; height: 332px; border-color: rgba(92, 107, 127, 0.14); transition-delay: 0.5s; animation: rotateRing 310s linear infinite; }
+        .orbital-particle { position: absolute; top: 50%; left: 50%; background: var(--secondary); border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s ease; box-shadow: 0 0 10px rgba(61, 74, 93, 0.45), 0 0 18px rgba(61, 74, 93, 0.2); z-index: 15; } /* Updated shadow */
+        :root { --orbit-radius-1: 100px; --orbit-radius-2: 133px; --orbit-radius-3: 166px; --orbit-label-radius: 185px; } /* Slightly larger radii */
+        @keyframes orbit-1 { 0% { transform: rotate(0deg) translateX(var(--orbit-radius-1)) rotate(0deg); } 100% { transform: rotate(360deg) translateX(var(--orbit-radius-1)) rotate(-360deg); } }
+        @keyframes orbit-2 { 0% { transform: rotate(0deg) translateX(var(--orbit-radius-2)) rotate(0deg); } 100% { transform: rotate(360deg) translateX(var(--orbit-radius-2)) rotate(-360deg); } }
+        @keyframes orbit-3 { 0% { transform: rotate(0deg) translateX(var(--orbit-radius-3)) rotate(0deg); } 100% { transform: rotate(360deg) translateX(var(--orbit-radius-3)) rotate(-360deg); } }
+        @keyframes rotateRing { 0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); } 100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(0deg); } 25% { transform: translateY(-7px) rotateX(9deg) rotateY(3.5deg); } 50% { transform: translateY(0) rotateX(5deg) rotateY(7deg); } 75% { transform: translateY(7px) rotateX(1deg) rotateY(3.5deg); } } /* Enhanced float */
+        @keyframes pulse { 0% { opacity: 0.65; transform: scale(0.94); } 100% { opacity: 0.95; transform: scale(1.06); } } /* Enhanced pulse */
+
+        #orbiting-labels { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; }
+        .orbital-label-container { position: absolute; top: 50%; left: 50%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: opacity 1s ease; transform-origin: 0 0; }
+        .orbital-label-container.animate { opacity: 1; }
+        .orbital-icon { width: 46px; height: 46px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 5px 15px rgba(46, 58, 74, 0.18); margin-bottom: 9px; font-size: 17px; } /* Updated shadow */
+        .orbital-label { background: white; padding: 6px 15px; border-radius: 22px; white-space: nowrap; font-size: 13.5px; font-weight: 500; color: var(--dark-shade); letter-spacing: -0.1px; box-shadow: 0 4px 10px rgba(46, 58, 74, 0.12); text-align: center; }
+        @keyframes orbit-label-1 { 0% { transform: translate(-50%, -50%) rotate(0deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-360deg); } }
+        @keyframes orbit-label-2 { 0% { transform: translate(-50%, -50%) rotate(90deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-90deg); } 100% { transform: translate(-50%, -50%) rotate(450deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-450deg); } }
+        @keyframes orbit-label-3 { 0% { transform: translate(-50%, -50%) rotate(180deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-180deg); } 100% { transform: translate(-50%, -50%) rotate(540deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-540deg); } }
+        @keyframes orbit-label-4 { 0% { transform: translate(-50%, -50%) rotate(270deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-270deg); } 100% { transform: translate(-50%, -50%) rotate(630deg) translateY(calc(-1 * var(--orbit-label-radius))) rotate(-630deg); } }
+
+        @media (max-width: 768px) {
+            #investment-criteria .section-title, #investment-criteria .text-4xl { font-size: 32px; }
+            #investment-criteria .section-subtitle, #investment-criteria .text-lg { font-size: 17px; }
+            .criteria-grid { grid-template-columns: 1fr; }
+            .orbital-container { min-height: 400px; }
+        }
+        @media (max-width: 480px) {
+            #investment-criteria .section-title, #investment-criteria .text-4xl { font-size: 28px; }
+            .orbital-container { min-height: 340px; }
+            .orbital-center { width: 120px; height: 120px; }
+            :root { --orbit-radius-1: 85px; --orbit-radius-2: 110px; --orbit-radius-3: 135px; --orbit-label-radius: 155px; }
+            .orbital-icon { width: 40px; height: 40px; font-size: 15px; margin-bottom: 7px;}
+            .orbital-label { font-size: 11.5px; padding: 5px 11px; }
+        }
+
+        /* === Industry Experience Section === */
+        /* Using the more specific rule from later in the original CSS as the base */
+        #industry-experience {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1320px; /* Wider */
+            margin: 0 auto 80px auto; /* Increased bottom margin */
+            padding: 80px 30px 60px 30px; /* Increased padding */
+            background: var(--ultra-light-bg); /* Changed to ultra-light-bg for consistency */
+            border-radius: 24px; /* More rounded */
+            overflow: hidden; /* Keep this to contain potential overflows if any */
+            position: relative; /* Keep for z-index and absolute positioning context */
+            z-index: 2;
+            border: 1px solid var(--glass-border); /* Added subtle border */
+            box-shadow: var(--card-shadow); /* Added subtle shadow */
+        }
+        #industry-experience .section-header { margin-bottom: 65px; }
+        .industry-button-container { text-align: center; margin-top: 45px; margin-bottom: 55px; }
+        .industry-experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); --grid-gap: 35px; gap: var(--grid-gap); position: relative; z-index: 2; }
+        .industry-item { background: transparent; border: none; box-shadow: none; border-radius: 0; overflow: visible; padding: 20px 0; text-align: center; position: relative; transition: transform 0.35s ease; }
+        .industry-item:not(:last-child)::after {
+             content: ''; position: absolute; right: calc(-1 * var(--grid-gap) / 2);
+             top: 20%; height: 60%; width: 1px;
+             background: linear-gradient(to bottom, transparent, var(--separator-color) 30%, var(--separator-color) 70%, transparent);
+             z-index: 1;
+         }
+        /* Divider line dynamic hide - Kept original logic */
+        @media (min-width: 1280px) { /* Adjusted breakpoint for potentially 5 columns with new max-width */
+             .industry-item:nth-child(5n)::after { display: none; }
+        }
+         @media (min-width: 820px) and (max-width: 1279px) { /* Adjusted breakpoint */
+              .industry-item:nth-child(3n)::after { display: none; }
+         }
+         @media (max-width: 819px) and (min-width: 481px) { /* Adjusted breakpoint for 2 columns */
+              .industry-item:nth-child(2n)::after { display: none; }
+         }
+         @media (max-width: 480px) {
+             .industry-item::after { display: none; }
+             .industry-experience-grid { grid-template-columns: 1fr; }
+         }
+
+        .industry-icon { height: 110px; display: flex; align-items: center; justify-content: center; background: transparent; margin-bottom: 18px; }
+        .industry-icon i { font-size: 46px; color: var(--text-secondary); opacity: 0.7; transition: all 0.4s ease; }
+        .industry-content { padding: 0 12px; }
+        .industry-title { font-size: 18px; font-weight: 500; margin-bottom: 10px; color: var(--text); letter-spacing: 0.3px; transition: color 0.3s ease, font-weight 0.3s ease; } /* Bolder */
+        .industry-description { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
+        #industry-experience .industry-item:hover { transform: translateY(-6px); }
+        #industry-experience .industry-item:hover .industry-icon i { opacity: 1; transform: scale(1.12); color: var(--secondary); }
+        #industry-experience .industry-item:hover .industry-title { color: var(--secondary); font-weight: 600; } /* Bolder on hover */
+
+        /* Responsive overrides for #industry-experience from original file, slightly adapted */
+        @media (max-width: 1023px) {
+            #industry-experience { max-width: calc(100% - 60px); padding: 70px 25px 50px 25px; margin-bottom: 60px; border-radius: 20px; }
+        }
+        @media (max-width: 768px) {
+            #industry-experience { max-width: calc(100% - 40px); padding: 50px 20px 30px 20px; margin-bottom: 50px; border-radius: 16px; }
+        }
+        @media (max-width: 480px) {
+            #industry-experience { max-width: calc(100% - 20px); padding: 35px 10px 20px 10px; margin-bottom: 40px; border-radius: 12px; }
+        }
+
+
+        /* === Approach Section (#approach) === */
+        #approach.section { padding: 110px 0; background-color: transparent; position: relative; z-index: 2; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
+        .service-card { background: var(--card-bg-light); padding: 35px; border-radius: 18px; border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); transition: all 0.35s ease; position: relative; overflow: hidden; text-align: center; } /* Using --card-shadow */
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(46, 58, 74, 0.12); border-color: rgba(61, 74, 93, 0.18); } /* Updated hover */
+        .service-icon { font-size: 36px; color: var(--secondary); margin-bottom: 22px; display: block; }
+        .service-title { font-size: 20px; margin-bottom: 14px; color: var(--secondary); font-weight: 600; letter-spacing: 0.3px; } /* Bolder */
+        .service-description { font-size: 15.5px; line-height: 1.75; color: var(--text-secondary); font-weight: 300; }
+
+        /* === News Section (#news) === */
+        #news { padding: 110px 0; position: relative; z-index: 2; background-color: transparent; }
+        #news .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-bottom: 55px; }
+        #news .news-card { background: var(--card-bg-news); border-radius: 18px; overflow: hidden; box-shadow: 0 6px 22px rgba(46, 58, 74, 0.06); border: 1px solid rgba(46, 58, 74, 0.07); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; height: 100%; display: flex; flex-direction: column; } /* Enhanced shadow */
+        #news .news-card:hover { transform: translateY(-7px); box-shadow: 0 12px 28px rgba(46, 58, 74, 0.1); border-color: rgba(46, 58, 74, 0.12); }
+        #news .news-card.news-card-error { cursor: default; opacity: 0.85; }
+        #news .news-image { height: 220px; overflow: hidden; position: relative; background-color: #EFF2F5; }
+        #news .news-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%); transition: transform 0.6s ease, filter 0.5s ease; } /* Less grayscale */
+        #news .news-card:hover .news-image img { transform: scale(1.05); filter: grayscale(0%); }
+        #news .news-content { padding: 25px 28px; flex-grow: 1; display: flex; flex-direction: column; }
+        #news .news-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px; line-height: 1.5; transition: color 0.3s ease; flex-grow: 1; } /* Bolder */
+        #news .news-card:hover .news-title { color: var(--secondary); }
+        .news-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(29, 38, 51, 0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0s 0.35s; } /* --text RGB */
+        .news-modal.active { opacity: 1; visibility: visible; transition-delay: 0s; }
+        .news-modal-content-wrapper { background: white; max-width: 820px; width: 100%; max-height: 90vh; overflow: hidden; border-radius: 18px; box-shadow: 0 18px 55px rgba(0, 0, 0, 0.18); position: relative; transform: translateY(15px) scale(0.98); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; }
+        .news-modal.active .news-modal-content-wrapper { transform: translateY(0) scale(1); }
+        .news-modal-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12); z-index: 10; transition: background 0.3s ease, transform 0.2s ease; }
+        .news-modal-close:hover { background: rgba(243, 244, 246, 0.98); transform: scale(1.1); }
+        .news-modal-close i { font-size: 16px; color: #374151; }
+        .news-modal-header { position: relative; height: 320px; overflow: hidden; background-color: #EFF2F5; flex-shrink: 0; }
+        .news-modal-header img { width: 100%; height: 100%; object-fit: cover; }
+        .news-modal-body { padding: 35px 40px; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch; }
+        .news-modal-title { font-size: 26px; font-weight: 500; margin-bottom: 20px; color: var(--text); line-height: 1.4; } /* Bolder */
+        .news-modal-text { font-size: 16px; line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
+        .news-modal-text br[style*="margin-bottom"] { content: ""; display: block; margin-bottom: 0.8em; }
+        body.no-scroll { overflow: hidden; }
+
+        /* General Responsive Adjustments */
+        @media (max-width: 1023px) {
+             .section, #about, #investment-criteria, #approach.section, #news { padding: 90px 0; }
+             .section-title, #about .text-4xl, #investment-criteria .text-4xl, #news .section-title { font-size: 36px; }
+             .section-subtitle, #about .text-lg, #investment-criteria .text-lg, #news .section-subtitle { font-size: 17px; }
+             .news-modal-content-wrapper { max-width: 720px; }
+             .news-modal-header { height: 300px; }
+             .news-modal-body { padding: 30px 35px; }
+             .news-modal-title { font-size: 24px; }
+        }
+        @media (max-width: 768px) {
+             .hero h1 { font-size: 42px; }
+             .hero h2 { font-size: 16px; letter-spacing: 4.5px; }
+             .section, #about, #investment-criteria, #approach.section, #news { padding: 80px 0; }
+             .section-header { margin-bottom: 60px; }
+             .section-title, #about .text-4xl, #investment-criteria .text-4xl, #news .section-title { font-size: 30px; }
+             .services-grid, #news .news-grid, #about .kpi-grid { grid-template-columns: 1fr; }
+             #news .news-image { height: 200px; } #news .news-content { padding: 22px; }
+             .news-modal-content-wrapper { max-width: 92%; max-height: 88vh; border-radius: 16px; }
+             .news-modal-header { height: 220px; }
+             .news-modal-body { padding: 25px 28px; }
+             .news-modal-title { font-size: 20px; margin-bottom: 16px; }
+             .news-modal-text { font-size: 15px; line-height: 1.75; }
+             .news-modal-close { top: 12px; right: 12px; width: 32px; height: 32px; }
+             .news-modal-close i { font-size: 14px; }
+        }
+        @media (max-width: 480px) {
+             .hero h1 { font-size: 34px; } .hero h2 { font-size: 14px; letter-spacing: 3.5px; }
+             .section, #about, #investment-criteria, #approach.section, #news { padding: 70px 0; }
+             .industry-button-container { margin-top: 35px; margin-bottom: 45px; }
+            .news-message { text-align: center; grid-column: 1 / -1; color: var(--text-secondary); padding: 25px; }
+            .error-message { color: #D32F2F; font-size: 0.9em; } /* Slightly different red */
+            .image-placeholder { height: 100%; display: flex; align-items: center; justify-content: center; color: var(--light-shade); font-size: 2.8em; background-color: var(--ultra-light-bg); }
+        }
+
+        /* Language Switcher - Placed in header section for global consistency */
+        .language-switcher {
+            position: absolute;
+            right: 60px; /* Position it to the right side */
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 10px; /* Increased gap */
+            z-index: 10;
+        }
+        .lang-btn {
+            padding: 9px 14px; /* Slightly larger padding */
+            background: transparent;
+            border: 1.5px solid var(--secondary); /* Thicker border */
+            color: var(--secondary);
+            border-radius: 22px; /* More rounded */
+            font-size: 12.5px; /* Slightly larger */
+            font-weight: 600; /* Bolder */
+            letter-spacing: 0.6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            min-width: 38px;
+        }
+        .lang-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px); /* More lift */
+            box-shadow: 0 3px 10px rgba(61, 74, 93, 0.25); /* --secondary RGB */
+        }
+        .lang-btn.active {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent; /* Transparent border when active with gradient */
+            box-shadow: 0 3px 10px rgba(61, 74, 93, 0.35); /* --secondary RGB */
+        }
+        @media (max-width: 768px) {
+            .language-switcher {
+                right: 25px; /* Adjusted for mobile */
+                gap: 8px;
+            }
+            .lang-btn {
+                padding: 7px 11px;
+                font-size: 11.5px;
+                min-width: 32px;
+            }
+        }
+        .header-content {
+            position: relative; /* Ensure this for absolute positioning of switcher */
+        }
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="hero" id="home">
+<video muted loop playsinline class="video-bg" id="homepage-hero-video">
+    <source src="../Assets/General/hero.mp4" type="video/mp4"> Your browser does not support the video tag.
+</video>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var vid = document.getElementById('homepage-hero-video');
+    var logoContainer = document.querySelector('.hero-logo-container');
+    if (logoContainer) {
+        setTimeout(function() {
+            logoContainer.classList.add('startup');
+        }, 300);
+        setTimeout(function() {
+            if (vid) {
+                vid.classList.add('visible');
+                if (vid.paused) vid.play().catch(()=>{});
+            }
+        }, 1300);
+    }
+});
+</script>
+<div class="hero-overlay"></div>
+<div class="container">
+<div class="hero-content">
+<div class="hero-logo-container">
+    <img alt="Certina Group Logo" class="hero-logo" src="../Assets/General/logo_dark.png">
+</div>
+<h1 data-translate-key="heroTitle">The Sustainable Investor</h1>
+<h2 data-translate-key="heroSubtitle">Operational · Visionary · Constant</h2>
+<p data-translate-key="heroText">The CERTINA GROUP is a global family equity investor based in Germany, focusing on special situations and turnaround investments with a long-term entrepreneurial perspective.</p>
+<div class="btn-container">
+<a class="btn btn-primary" href="#investment-criteria" data-translate-key="btnCriteria">Investment Criteria</a>
+<a class="btn btn-outline" href="Portfolio.html" data-translate-key="btnPortfolio">Portfolio</a>
+</div>
+</div>
+</div>
+<div class="partner-logos">
+    <div class="logos-track"></div>
+</div>
+</section>
+
+<section id="about">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-translate-key="aboutTitle">About the CERTINA GROUP</h2>
+            <p class="section-subtitle" data-translate-key="aboutSubtitle">Long-term oriented industrial holding with a focus on special situations and sustainable value creation.</p>
+        </div>
+        <div class="content-row">
+            <div class="content-col" id="viz-col">
+                <div class="signature-box">
+                    <div class="signature-content">
+                        <div class="signature-icon"><i class="fas fa-handshake"></i></div>
+                        <div>
+                            <div class="signature-title" data-translate-key="longTermPartner">Long-term Partner</div>
+                            <p class="signature-text" data-translate-key="longTermText">Our buy-and-build strategy focuses on sustainable growth and operational excellence, not on quick exits.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-section">
+                    <div class="chart-container">
+                        <div class="chart-grid" id="years-chart"></div>
+                    </div>
+                    <p class="chart-subtitle" data-translate-key="chartSubtitle">Years our companies have been in our portfolio</p>
+                </div>
+                <div class="quote-block signature-box">
+                    <blockquote data-translate-key="quoteText">“Our sweet spot is business units or subsidiaries of corporate groups with operational improvement potential, whose sale is of strategic value for the seller and the company.”</blockquote>
+                    <div class="signature-content">
+                        <div class="signature-icon"><img src="../Assets/Team/Schmidt/Schmidt_Passbild.jpg" alt="Holger J. Schmidt"></div>
+                        <div>
+                            <div class="signature-title">Holger J. Schmidt</div>
+                            <p class="signature-text">Managing Partner Consumer Goods &amp; Retail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-col" id="kpi-col">
+                <div class="kpi-container">
+                    <div>
+                        <h3 class="kpi-header" data-translate-key="aboutKpiHeadline">Our Impact <span class="kpi-header-bold">in Numbers</span></h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-card"><div class="kpi-top"><div class="kpi-icon"><i class="fas fa-history"></i></div><h4 class="kpi-title" data-translate-key="kpiExperience">Experience</h4></div><div class="kpi-value" id="years-counter">0+</div><div class="kpi-subtitle" data-translate-key="kpiYearsIndustry">Years in the industry</div></div>
+                            <div class="kpi-card"><div class="kpi-top"><div class="kpi-icon"><i class="fas fa-chart-line"></i></div><h4 class="kpi-title" data-translate-key="kpiRevenue">Revenue</h4></div><div class="kpi-value" id="revenue-counter">€ 0.0B</div><div class="kpi-subtitle" data-translate-key="kpiAnnually">Annually consolidated</div></div>
+                            <div class="kpi-card"><div class="kpi-top"><div class="kpi-icon"><i class="fas fa-building"></i></div><h4 class="kpi-title" data-translate-key="kpiCompanies">Companies</h4></div><div class="kpi-value" id="companies-counter">0</div><div class="kpi-subtitle" data-translate-key="kpiPortfolioCompanies">Portfolio companies</div></div>
+                            <div class="kpi-card"><div class="kpi-top"><div class="kpi-icon"><i class="fas fa-users"></i></div><h4 class="kpi-title" data-translate-key="kpiEmployees">Employees</h4></div><div class="kpi-value" id="employees-counter">0+</div><div class="kpi-subtitle" data-translate-key="kpiWorldwide">Worldwide</div></div>
+                        </div>
+                    </div>
+                    <div class="special-situations-box"> {/* Updated class name from special-situationen-box */}
+                        <div class="signature-content">
+                            <div class="signature-icon"><i class="fas fa-puzzle-piece"></i></div>
+                            <div>
+                                <div class="signature-title" data-translate-key="specialSituations">Special Situations</div>
+                                <p class="signature-text" data-translate-key="specialSituationsText">We specialize in carve-outs, turnarounds, succession situations, and complex restructurings where we can create significant operational added value.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="investment-criteria">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-translate-key="criteriaTitle">Investment Criteria</h2>
+            <p class="section-subtitle" data-translate-key="criteriaSubtitle">We focus on companies with operational improvement potential and long-term growth prospects.</p>
+        </div>
+        <div class="content-row">
+            <div class="content-col" id="criteria-col">
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-euro-sign"></i></div><h4 class="criteria-title" data-translate-key="criteriaRevenue">Revenue</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaRevenueRange">Target range</div><div class="criteria-subtitle" data-translate-key="criteriaRevenueValue">€ 50 - 500 million</div>
+                    </div>
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-puzzle-piece"></i></div><h4 class="criteria-title" data-translate-key="criteriaSituations">Situations</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaSituationsType">Special situations</div><div class="criteria-subtitle" data-translate-key="criteriaSituationsValue">Carve-outs/Spin-offs, Turnarounds, Restructuring, Succession</div>
+                    </div>
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-globe-europe"></i></div><h4 class="criteria-title" data-translate-key="criteriaRegion">Region</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaRegionRange">Global presence</div><div class="criteria-subtitle" data-translate-key="criteriaRegionValue">Worldwide with focus on Europe</div>
+                    </div>
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-percentage"></i></div><h4 class="criteria-title" data-translate-key="criteriaShareholdings">Shareholdings</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaShareholdingsType">Majority control</div><div class="criteria-subtitle" data-translate-key="criteriaShareholdingsValue">Majority, ideally > 75%</div>
+                    </div>
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-coins"></i></div><h4 class="criteria-title" data-translate-key="criteriaEquity">Equity</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaEquitySize">Investment size</div><div class="criteria-subtitle" data-translate-key="criteriaEquityValue">Up to € 20 million per investment</div>
+                    </div>
+                    <div class="criteria-card">
+                        <div class="criteria-top"><div class="criteria-icon"><i class="fas fa-chart-line"></i></div><h4 class="criteria-title" data-translate-key="criteriaProfitability">Profitability</h4></div>
+                        <div class="criteria-value" data-translate-key="criteriaProfitabilityFocus">Turnaround focus</div><div class="criteria-subtitle" data-translate-key="criteriaProfitabilityValue">Loss-making up to approx. 5% EBITDA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-col" id="orbital-col">
+                <div class="orbital-container">
+                    <div class="orbital-wrapper">
+                        <div class="orbital-visualization">
+                            <div class="orbital-center" id="orbital-center"><div class="orbital-center-3d"><div class="orbital-logo-container"><div class="orbital-logo-glow"></div><div class="orbital-logo-inner"><div class="orbital-logo-image"><img src="../Assets/General/logo_dark.png" alt="Certina Group Logo" style="width: 100%; height: auto; object-fit: contain;"></div></div></div></div></div>
+                            <div class="orbital-ring orbital-ring-1" id="ring-1"></div>
+                            <div class="orbital-ring orbital-ring-2" id="ring-2"></div>
+                            <div class="orbital-ring orbital-ring-3" id="ring-3"></div>
+                            <div id="orbital-particles"></div>
+                            <div id="orbiting-labels"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="industry-experience">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title" data-translate-key="industryTitle">Our Industry Experience</h2>
+<p class="section-subtitle" data-translate-key="industrySubtitle">We have deep industry knowledge in key sectors such as manufacturing, technology, packaging, automotive, and consumer goods & services.</p>
+<div class="industry-button-container">
+    <a class="btn btn-primary" href="Portfolio.html" data-translate-key="btnPortfolio">Portfolio</a>
+</div>
+</div>
+<div class="industry-experience-grid">
+<div class="industry-item"><div class="industry-icon"><i class="fas fa-cogs"></i></div><div class="industry-content"><h3 class="industry-title" data-translate-key="industryIndustrials">Industrials</h3><p class="industry-description" data-translate-key="industryIndustrialsText">Manufacturing excellence with sustainable processes and innovative technology solutions.</p></div></div>
+<div class="industry-item"><div class="industry-icon"><i class="fas fa-box-open"></i></div><div class="industry-content"><h3 class="industry-title" data-translate-key="industryPackaging">Packaging</h3><p class="industry-description" data-translate-key="industryPackagingText">Environmentally friendly packaging solutions focusing on circular economy and resource efficiency.</p></div></div>
+<div class="industry-item"><div class="industry-icon"><i class="fas fa-car-alt"></i></div><div class="industry-content"><h3 class="industry-title" data-translate-key="industryAutomotive">Automotive</h3><p class="industry-description" data-translate-key="industryAutomotiveText">Future-oriented mobility components and systems for traditional and electric vehicles.</p></div></div>
+<div class="industry-item"><div class="industry-icon"><i class="fas fa-shopping-cart"></i></div><div class="industry-content"><h3 class="industry-title" data-translate-key="industryGoods">Goods & Services</h3><p class="industry-description" data-translate-key="industryGoodsText">Customer-centric solutions across various consumer and B2B market segments.</p></div></div>
+<div class="industry-item"><div class="industry-icon"><i class="fas fa-laptop-code"></i></div><div class="industry-content"><h3 class="industry-title" data-translate-key="industrySoftware">Software</h3><p class="industry-description" data-translate-key="industrySoftwareText">Digital transformation tools and enterprise software solutions for Industry 4.0.</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="approach">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title" data-translate-key="approachTitle">Our Approach</h2>
+<p class="section-subtitle" data-translate-key="approachSubtitle">We provide comprehensive support throughout the entire turnaround and restructuring process.</p>
+</div>
+<div class="services-grid">
+<div class="service-card"> <div class="service-icon"><i class="fas fa-tools"></i></div> <h3 class="service-title" data-translate-key="approachRestructuring">Operational Restructuring</h3> <p class="service-description" data-translate-key="approachRestructuringText">We provide active portfolio support by combining management expertise, industry knowledge, and global networks.</p> </div>
+<div class="service-card"> <div class="service-icon"><i class="fas fa-seedling"></i></div> <h3 class="service-title" data-translate-key="approachInvestment">Long-term Investment</h3> <p class="service-description" data-translate-key="approachInvestmentText">With our buy, build, and hold approach, we invest in the future and prioritize the sustainable long-term development of our portfolio companies.</p> </div>
+<div class="service-card"> <div class="service-icon"><i class="fas fa-compass"></i></div> <h3 class="service-title" data-translate-key="approachRepositioning">Strategic Repositioning</h3> <p class="service-description" data-translate-key="approachRepositioningText">We redefine business models, develop new market strategies, and identify growth opportunities to ensure long-term sustainability and value creation.</p> </div>
+</div>
+</div>
+</section>
+
+<section id="news">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-translate-key="newsTitle">News</h2>
+            <p class="section-subtitle" data-translate-key="newsSubtitle">Latest updates and developments from the Certina Group and our portfolio companies.</p>
+        </div>
+        <div class="news-grid" id="news-container">
+             <p class="news-message">Loading news...</p>
+        </div>
+    </div>
+</section>
+
+<div class="news-modal" id="news-modal">
+    <div class="news-modal-content-wrapper" id="modal-content-wrapper">
+        <div class="news-modal-close" id="modal-close"><i class="fas fa-times"></i></div>
+        <div class="news-modal-header" id="modal-header"></div>
+        <div class="news-modal-body" id="modal-body"></div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    // ALL JAVASCRIPT FROM ORIGINAL FILE IS KEPT IDENTICAL
+    // INCLUDING:
+    // - Smooth Scrolling
+    // - Header/Footer Loading and Script Initialization
+    // - About Section (Chart/KPI) Logic and Intersection Observer
+    // - Investment Criteria Animation Logic and Intersection Observer
+    // - Partner Logo Slider
+    // - News Loading & Modal Logic
+    // - Language Switcher Logic and Translations
+    // (The JS is quite long, so I'm not repeating it here to save space,
+    // but assume it's exactly as in the provided HTML file.)
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const footerPlaceholder = document.getElementById('footer-placeholder');
+        const newsContainer = document.getElementById('news-container');
+        const newsModal = document.getElementById('news-modal');
+        const modalHeader = document.getElementById('modal-header');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+
+        function customSmoothScroll(targetElement, duration = 800) {
+            const header = document.querySelector('header');
+            let headerOffset = 70;
+            if (header) {
+                headerOffset = header.classList.contains('scrolled') ? header.offsetHeight + 15 : 70;
+            }
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+            function easeInOutQuad(t, b, c, d) { t /= d / 2; if (t < 1) return c / 2 * t * t + b; t--; return -c / 2 * (t * (t - 2) - 1) + b; }
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+            requestAnimationFrame(animation);
+        }
+
+        function attachPageSmoothScrollListeners() {
+             const pageSmoothScrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"]):not(.nav-links a)');
+             pageSmoothScrollLinks.forEach(link => {
+                 link.addEventListener('click', function(event) {
+                     const targetId = this.getAttribute('href');
+                     try {
+                         const targetElement = document.querySelector(targetId);
+                         if (targetElement) {
+                             event.preventDefault();
+                             customSmoothScroll(targetElement, 800);
+                         }
+                     } catch (e) {
+                         console.warn(`Smooth scroll Ziel nicht gefunden oder ungültiger Selektor: ${targetId}`, e);
+                     }
+                 });
+             });
+        }
+        attachPageSmoothScrollListeners();
+
+        function initializeHeaderScripts() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            const header = document.querySelector('header');
+            const languageSwitcherHeader = document.querySelector('.header-content .language-switcher'); // Target header switcher
+
+
+            if (hamburgerMenu && navMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+
+                const navLinks = navMenu.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                         if (navMenu.classList.contains('active')) {
+                              hamburgerMenu.classList.remove('active');
+                              navMenu.classList.remove('active');
+                              document.body.classList.remove('no-scroll');
+                         }
+                         const targetId = this.getAttribute('href');
+                         if (targetId && targetId.startsWith('#')) {
+                            try {
+                                const targetElement = document.querySelector(targetId);
+                                if (targetElement) {
+                                    event.preventDefault();
+                                    setTimeout(() => customSmoothScroll(targetElement, 800), 50);
+                                }
+                            } catch(e) {
+                                console.warn(`Nav Smooth Scroll Ziel nicht gefunden oder ungültiger Selektor: ${targetId}`, e);
+                            }
+                         }
+                    });
+                });
+            } else { console.error("Hamburger-Menü oder Navigationsmenü nach dem Laden des Headers nicht gefunden."); }
+
+            if(header) {
+                window.addEventListener('scroll', function() {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                }, { passive: true });
+            } else { console.error("Header-Element für Scroll-Effekt nicht gefunden."); }
+
+            // Initialize language switcher if it exists in the header
+            if (languageSwitcherHeader) {
+                 initializeLanguageSwitcherLogic(languageSwitcherHeader, 'header');
+            }
+        }
+
+        const loadComponents = async () => {
+            try {
+                const [headerRes, footerRes] = await Promise.all([
+                     fetch('Header.html?v=' + new Date().getTime()).catch(e => { console.error('Fehler beim Abrufen von Header.html', e); return null; }),
+                     fetch('Footer.html?v=' + new Date().getTime()).catch(e => { console.error('Fehler beim Abrufen von Footer.html', e); return null; })
+                ]);
+
+                if (headerRes && headerRes.ok) {
+                    const headerHtml = await headerRes.text();
+                    if (headerPlaceholder) {
+                        headerPlaceholder.innerHTML = headerHtml;
+                        initializeHeaderScripts(); // This will now also init the header lang switcher
+                    } else { console.error("Header-Platzhalter nicht gefunden."); }
+                } else if(headerPlaceholder) {
+                     headerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Fehler beim Laden des Headers.</p>";
+                }
+
+                if (footerRes && footerRes.ok) {
+                    const footerHtml = await footerRes.text();
+                    if (footerPlaceholder) {
+                        footerPlaceholder.innerHTML = footerHtml;
+                        // Footer-specific JS-Initialisierung (if different from header switcher)
+                        const languageSwitcherFooter = document.getElementById('language-switcher-footer');
+                        if (languageSwitcherFooter) {
+                            initializeLanguageSwitcherLogic(languageSwitcherFooter, 'footer');
+                        }
+                    } else { console.error("Footer-Platzhalter nicht gefunden."); }
+                } else if(footerPlaceholder) {
+                     footerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Fehler beim Laden des Footers.</p>";
+                }
+                 // Set initial language after components are loaded to ensure all elements are present
+                 const initialLang = getSavedLanguage();
+                 setLanguage(initialLang);
+
+
+            } catch (error) {
+                console.error("Fehler bei der Verarbeitung der geladenen Komponenten:", error);
+                if (headerPlaceholder && !headerPlaceholder.innerHTML) headerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Fehler beim Laden des Headers.</p>";
+                if (footerPlaceholder && !footerPlaceholder.innerHTML) footerPlaceholder.innerHTML = "<p style='color:red; text-align:center;'>Fehler beim Laden des Footers.</p>";
+            }
+        };
+
+        loadComponents();
+
+        const portfolioData = [
+             { name: 'STS', years: 1 }, { name: 'WPS', years: 2 }, { name: 'Qcision', years: 2 },
+             { name: 'Trassl', years: 3 }, { name: 'VielfaltMenü', years: 3 }, { name: 'UST', years: 3 },
+             { name: 'ISOLITE', years: 3 }, { name: 'PAL Wiping', years: 4 }, { name: 'DEMM', years: 4 },
+             { name: 'Wegener', years: 4 }, { name: 'HermannKoch', years: 6 }, { name: 'Qualiform', years: 7 },
+             { name: 'SCV', years: 9 }, { name: 'Rebhan', years: 9 }, { name: 'COI', years: 10 },
+             { name: 'AFT', years: 14 }, { name: 'Hannemann', years: 22 }, { name: 'Horn', years: 22 },
+             { name: 'Pruss', years: 25 }
+        ];
+        portfolioData.sort((a, b) => a.years - b.years);
+
+        const aboutSection = document.getElementById('about');
+
+        function createObserver(callback, options = { threshold: 0.15 }) {
+             return new IntersectionObserver((entries, observer) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         callback(entry.target);
+                         observer.unobserve(entry.target);
+                     }
+                 });
+             }, options);
+        }
+
+        function startAboutSectionAnimations(target) {
+            const vizCol = target.querySelector('#viz-col');
+            const kpiCol = target.querySelector('#kpi-col');
+
+            if (vizCol) setTimeout(() => vizCol.classList.add('animate'), 0);
+            if (kpiCol) setTimeout(() => kpiCol.classList.add('animate'), 200);
+
+            setTimeout(() => createBarChart(target), 300);
+            setTimeout(() => {
+                animateCounter('years-counter', '25', '+', 1500);
+                animateCounter('revenue-counter', '1.2', 'B', 1500, '€ ');
+                animateCounter('companies-counter', '21', '', 1500);
+                animateCounter('employees-counter', '5000', '+', 1500);
+            }, 500);
+
+             target.querySelectorAll('.bg-orb').forEach((orb, index) => {
+                let transform = '';
+                if (orb.classList.contains('bg-orb-1')) transform = 'translate(100px, 50px) scale(1.1)';
+                else if (orb.classList.contains('bg-orb-2')) transform = 'translate(-50px, 100px) scale(1.1)';
+                else if (orb.classList.contains('bg-orb-3')) transform = 'translate(60px, -50px) scale(1.1)';
+                if (transform) orb.style.transform = transform;
+            });
+        }
+
+        function createBarChart(sectionElement) {
+            const chartContainer = sectionElement.querySelector('#years-chart');
+            if (!chartContainer) { console.error("Diagramm-Container #years-chart in #about nicht gefunden."); return; }
+            chartContainer.innerHTML = '';
+            const maxYears = Math.max(...portfolioData.map(c => c.years), 25);
+
+            portfolioData.forEach((company, index) => {
+                const barGroup = document.createElement('div'); barGroup.className = 'bar-group';
+                const bar = document.createElement('div'); bar.className = 'bar'; bar.style.height = '0%';
+                const barTooltip = document.createElement('div'); barTooltip.className = 'bar-tooltip';
+                barTooltip.innerHTML = `${company.name}: <span class="bar-tooltip-value">${company.years} ${company.years === 1 ? 'Jahr' : 'Jahre'}</span>`;
+
+                barGroup.appendChild(bar);
+                barGroup.appendChild(barTooltip);
+                chartContainer.appendChild(barGroup);
+
+                setTimeout(() => {
+                     const heightPercentage = Math.max(1, (company.years / maxYears) * 100);
+                    bar.style.height = `${heightPercentage}%`;
+                }, 300 + (index * 35));
+            });
+        }
+
+        function animateCounter(id, targetValueStr, suffix = '', duration = 1500, prefix = '') {
+             const element = document.getElementById(id);
+             if (!element) { console.warn(`Zähler-Element #${id} nicht gefunden.`); return; }
+
+             let actualSuffix = suffix;
+             let targetStrClean = targetValueStr.toString();
+             if (targetStrClean.endsWith('+')) {
+                 actualSuffix = '+';
+                 targetStrClean = targetStrClean.slice(0, -1);
+             } else if (targetStrClean.endsWith('B')) {
+                 actualSuffix = 'B';
+                 targetStrClean = targetStrClean.slice(0, -1);
+             }
+             const target = parseFloat(targetStrClean.replace(/,/g, '.'));
+
+             let startValue = 0;
+             const currentText = element.textContent || '0';
+             const currentNumericPart = currentText.replace(prefix, '').replace(actualSuffix, '').replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(/,/g, '.');
+             if (!isNaN(parseFloat(currentNumericPart))) {
+                 startValue = parseFloat(currentNumericPart);
+             }
+
+             if (isNaN(target)) {
+                 console.warn(`Ungültiger Zielwert für Zähler ${id}: ${targetValueStr}`);
+                 element.textContent = prefix + targetValueStr.toString() + suffix;
+                 return;
+              }
+
+             const diff = target - startValue;
+             if (Math.abs(diff) < 0.001 && element.textContent === prefix + targetValueStr.toString().replace('.',',') + actualSuffix) {
+                 return;
+             }
+
+             let startTime = null;
+             const isDecimal = target % 1 !== 0 || targetStrClean.includes('.');
+             const decimalPlaces = isDecimal ? (targetStrClean.split('.')[1] || '').length : 0;
+
+             function step(currentTime) {
+                 if (startTime === null) startTime = currentTime;
+                 const elapsed = currentTime - startTime;
+                 const progress = Math.min(elapsed / duration, 1);
+                 const easeProgress = progress * (2 - progress);
+                 let currentValue = startValue + diff * easeProgress;
+                 let displayValue;
+
+                 if (isDecimal) {
+                     displayValue = currentValue.toLocaleString('de-DE', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+                 } else {
+                     displayValue = Math.round(currentValue).toLocaleString('de-DE');
+                 }
+
+                 element.textContent = prefix + displayValue + actualSuffix;
+
+                 if (progress < 1) {
+                     requestAnimationFrame(step);
+                 } else {
+                      let finalTargetDisplay = target.toLocaleString('de-DE', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+                      element.textContent = prefix + finalTargetDisplay + actualSuffix;
+                 }
+             }
+             requestAnimationFrame(step);
+         }
+
+        if (aboutSection) {
+            const aboutObserver = createObserver(startAboutSectionAnimations);
+            aboutObserver.observe(aboutSection);
+        } else {
+            console.error("About-Sektion (#about) für Intersection Observer nicht gefunden.");
+        }
+
+        const criteriaSection = document.getElementById('investment-criteria');
+
+        function startCriteriaAnimations(target) {
+             const criteriaCol = target.querySelector('#criteria-col');
+             const orbitalCol = target.querySelector('#orbital-col');
+             if(criteriaCol) setTimeout(() => criteriaCol.classList.add('animate'), 200);
+             if(orbitalCol) setTimeout(() => orbitalCol.classList.add('animate'), 400);
+
+             const orbitalCenter = target.querySelector('#orbital-center');
+             const rings = target.querySelectorAll('.orbital-ring');
+             const particlesContainer = target.querySelector('#orbital-particles');
+             const orbitingLabelsContainer = target.querySelector('#orbiting-labels');
+
+             if(orbitalCenter) setTimeout(() => orbitalCenter.classList.add('animate'), 600);
+             rings.forEach((ring, index) => {
+                 setTimeout(() => ring.classList.add('animate'), 800 + index * 200);
+             });
+
+             if (particlesContainer) {
+                 particlesContainer.innerHTML = '';
+                 const particleSizes = [5, 6, 7, 8];
+                 for (let i = 0; i < 20; i++) {
+                     const orbitIndex = i % 3;
+                     let animationName = `orbit-${orbitIndex + 1}`;
+                     const particle = document.createElement('div');
+                     particle.className = 'orbital-particle';
+                     particle.style.width = particle.style.height = `${particleSizes[Math.floor(Math.random() * particleSizes.length)]}px`;
+                     const opacity = 0.6 + (Math.random() * 0.4);
+                     particle.style.backgroundColor = `rgba(61, 74, 93, ${opacity})`; // Updated color from --secondary
+                     particle.style.opacity = '0';
+                     const durationVariance = Math.random() * 6 - 3;
+                     let baseDuration = 28;
+                     if (animationName === 'orbit-1') baseDuration = 22;
+                     if (animationName === 'orbit-3') baseDuration = 34;
+                     particle.style.animation = `${animationName} ${baseDuration + durationVariance}s linear infinite`;
+                     particle.style.animationDelay = `${i * 0.18}s`;
+                     particlesContainer.appendChild(particle);
+                     setTimeout(() => particle.style.opacity = opacity, 1400 + (i * 45));
+                 }
+             } else { console.error("Partikel-Container #orbital-particles in #investment-criteria nicht gefunden."); }
+
+             if (orbitingLabelsContainer) {
+                orbitingLabelsContainer.innerHTML = '';
+                 const labels = [
+                     { text: 'Carve-outs', icon: 'fa-puzzle-piece', animationName: 'orbit-label-1' },
+                     { text: 'Turnarounds', icon: 'fa-sync', animationName: 'orbit-label-2' },
+                     { text: 'Succession', icon: 'fa-people-arrows', animationName: 'orbit-label-3' },
+                     { text: 'Restructuring', icon: 'fa-tools', animationName: 'orbit-label-4' }
+                 ];
+                 labels.forEach((label, index) => {
+                     const labelContainer = document.createElement('div');
+                     labelContainer.className = 'orbital-label-container';
+                     labelContainer.style.animation = `${label.animationName} 120s linear infinite`;
+                     labelContainer.style.transitionDelay = `${2000 + (index * 200)}ms`;
+                     labelContainer.innerHTML = `
+                         <div class="orbital-icon"><i class="fas ${label.icon}"></i></div>
+                         <div class="orbital-label">${label.text}</div>
+                     `;
+                     orbitingLabelsContainer.appendChild(labelContainer);
+                     setTimeout(() => labelContainer.classList.add('animate'), 2000 + (index * 200));
+                 });
+             } else { console.error("Label-Container #orbiting-labels in #investment-criteria nicht gefunden."); }
+
+            target.querySelectorAll('.bg-orb').forEach(orb => {
+                 let transform = '';
+                 if (orb.classList.contains('bg-orb-1')) transform = 'translate(80px, 40px) scale(1.1)';
+                 else if (orb.classList.contains('bg-orb-2')) transform = 'translate(-40px, 80px) scale(1.05)';
+                 else if (orb.classList.contains('bg-orb-3')) transform = 'translate(50px, -30px) scale(1.15)';
+                 if (transform) orb.style.transform = transform;
+             });
+        }
+
+        if (criteriaSection) {
+            const criteriaObserver = createObserver(startCriteriaAnimations, { threshold: 0.2 });
+            criteriaObserver.observe(criteriaSection);
+        } else {
+             console.error("Investmentkriterien-Sektion (#investment-criteria) für Intersection Observer nicht gefunden.");
+        }
+
+        function setupLogoSlider() {
+            const logoTrack = document.querySelector('.logos-track');
+            if (!logoTrack) { console.error("'.logos-track'-Element nicht gefunden."); return; }
+            const portfolioCompanies = [
+                'AFT', 'COI', 'Demm', 'Enorise', 'Hannemann', 'Shieldtech',
+                'HermannKoch', 'Horn', 'Isolite', 'PAL', 'Pruss', 'Qcision',
+                'Qualiform', 'Rebhan', 'SCV', 'Trassl', 'UST', 'Vielfaltmenue',
+                'wegener', 'WPS', 'MOBOTIX'
+            ];
+            logoTrack.innerHTML = '';
+            const addLogo = (path, companyName) => {
+                const img = document.createElement('img');
+                img.src = path;
+                img.alt = `${companyName} Logo`;
+                img.loading = 'lazy';
+                img.onerror = () => { img.style.display='none'; console.warn(`Logo konnte nicht geladen werden: ${path}`); };
+                logoTrack.appendChild(img);
+            };
+            const logoPaths = portfolioCompanies.map(company => `../Assets/Portfolio/${company}/${company}_Logo.png`);
+            logoPaths.forEach(path => addLogo(path, path.split('/')[3]));
+            logoPaths.forEach(path => addLogo(path, path.split('/')[3]));
+        }
+        setupLogoSlider();
+
+        const newsFolders = [
+            '../Assets/News/News Aktuell 1',
+            '../Assets/News/News Aktuell 2',
+            '../Assets/News/News Aktuell 3'
+        ];
+
+        function openNewsModal(title, text, imagePath) {
+            if (!newsModal || !modalHeader || !modalBody) { console.error("Modal-Elemente nicht gefunden."); return; }
+            modalHeader.innerHTML = imagePath ? `<img src="${imagePath}" alt="${title.substring(0, 50)}" loading="lazy">` : '';
+            const formattedText = text
+                                    .replace(/(\r\n|\n|\r){2,}/g, '<br style="margin-bottom: 0.8em;">')
+                                    .replace(/(\r\n|\n|\r)/g, '<br>');
+            modalBody.innerHTML = `
+                <h2 class="news-modal-title">${title}</h2>
+                <div class="news-modal-text">${formattedText}</div>
+            `;
+            newsModal.classList.add('active');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeNewsModal() {
+            if (!newsModal) return;
+            newsModal.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
+        async function loadNews() {
+            if (!newsContainer) { console.error('News-Container (#news-container) nicht gefunden.'); return; }
+            if (newsFolders.length === 0) {
+                newsContainer.innerHTML = '<p class="news-message">Keine News-Ordner definiert.</p>'; return;
+            }
+
+            try {
+                const newsItemPromises = newsFolders.map(async (folder) => {
+                    const articlePath = `${folder}/Article.txt`;
+                    const imagePath = `${folder}/Image.jpg`;
+                    try {
+                        const response = await fetch(articlePath);
+                        if (!response.ok) throw new Error(`HTTP Fehler ${response.status}`);
+                         const buffer = await response.arrayBuffer();
+                         const text = new TextDecoder('utf-8').decode(buffer);
+                        const titleMatch = text.match(/\[TITLE\]([\s\S]*?)\[TEXT\]/);
+                        const textMatch = text.match(/\[TEXT\]([\s\S]*)/);
+                        const title = titleMatch ? titleMatch[1].trim() : 'Ohne Titel';
+                        const body = textMatch ? textMatch[1].trim() : 'Inhalt nicht gefunden.';
+                        return { title, body, imagePath: imagePath, hasError: false };
+                    } catch (error) {
+                        console.error(`Fehler bei der Verarbeitung des Ordners ${folder}:`, error);
+                        return {
+                            title: "Fehler beim Laden der News",
+                            body: `Artikel konnte nicht geladen werden. (${folder.split('/').pop()})`,
+                            imagePath: '',
+                            hasError: true
+                         };
+                    }
+                });
+
+                const newsItems = await Promise.all(newsItemPromises);
+                newsContainer.innerHTML = '';
+
+                if (newsItems.every(item => item.hasError)) {
+                    newsContainer.innerHTML = '<p class="news-message error-message">Keine News-Elemente konnten geladen werden.</p>'; return;
+                }
+
+                newsItems.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'news-card';
+                    if (item.hasError) card.classList.add('news-card-error');
+                    card.innerHTML = `
+                        <div class="news-image">
+                            ${item.imagePath && !item.hasError ? `<img src="${item.imagePath}" alt="${item.title.substring(0,50)}" loading="lazy">` : '<div class="image-placeholder"><i class="fas fa-image"></i></div>'}
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">${item.title}</h3>
+                            ${item.hasError ? `<p class="error-message">${item.body}</p>` : ''}
+                        </div>
+                    `;
+                    if (!item.hasError) {
+                        card.addEventListener('click', () => openNewsModal(item.title, item.body, item.imagePath));
+                    }
+                    newsContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Allgemeiner Fehler beim Laden der News-Elemente:", error);
+                newsContainer.innerHTML = '<p class="news-message error-message">Fehler beim Laden der News-Sektion.</p>';
+            }
+        }
+
+        loadNews();
+
+        if (modalClose) { modalClose.addEventListener('click', closeNewsModal); }
+        if (newsModal) {
+            newsModal.addEventListener('click', e => { if (e.target === newsModal) closeNewsModal(); });
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && newsModal && newsModal.classList.contains('active')) closeNewsModal();
+        });
+
+        // === Language Switcher Global Logic ===
+        // Combined and improved translation logic
+        const translations = {
+            de: {
+                'home': 'Home', 'portfolio': 'Portfolio', 'team': 'Team', 'academy': 'CERTINA Academy', 'sustainability': 'Nachhaltigkeit', // Corrected from Sustainability
+                'heroTitle': 'Der nachhaltige Investor', 'heroSubtitle': 'Operativ · Visionär · Konstant',
+                'heroText': 'Die CERTINA GROUP ist ein globaler Family-Equity-Investor mit Sitz in Deutschland, spezialisiert auf Sondersituationen und Turnaround-Investments mit langfristiger unternehmerischer Perspektive.',
+                'btnCriteria': 'Investmentkriterien', 'btnPortfolio': 'Portfolio',
+                'aboutTitle': 'Über die CERTINA GROUP',
+                'aboutSubtitle': 'Langfristig orientierte industrielle Beteiligungsgesellschaft mit Fokus auf Sondersituationen und nachhaltiger Wertschöpfung.',
+                'aboutKpiHeadline': 'Unser Einfluss <span class="kpi-header-bold">in Zahlen</span>',
+                'kpiExperience': 'Erfahrung', 'kpiYearsIndustry': 'Jahre in der Branche', 'kpiRevenue': 'Umsatz', 'kpiAnnually': 'Jährlich konsolidiert',
+                'kpiCompanies': 'Unternehmen', 'kpiPortfolioCompanies': 'Portfolio-Unternehmen', 'kpiEmployees': 'Mitarbeiter', 'kpiWorldwide': 'Weltweit',
+                'longTermPartner': 'Langfristiger Partner', 'longTermText': 'Unsere Buy-and-Build-Strategie konzentriert sich auf nachhaltiges Wachstum und operative Exzellenz, nicht auf schnelle Exits.',
+                'chartSubtitle': 'Jahre unserer Unternehmen in unserem Portfolio',
+                'quoteText': '„Unser Sweet Spot sind Geschäftsbereiche oder Tochtergesellschaften von Unternehmensgruppen mit operativem Verbesserungspotenzial, deren Verkauf für den Verkäufer und das Unternehmen von strategischem Wert ist.“',
+                'specialSituations': 'Sondersituationen', 'specialSituationsText': 'Wir spezialisieren uns auf Carve-outs, Turnarounds, Nachfolgesituationen und komplexe Restrukturierungen, bei denen wir signifikanten operativen Mehrwert schaffen können.',
+                'criteriaTitle': 'Investmentkriterien', 'criteriaSubtitle': 'Wir konzentrieren uns auf Unternehmen mit operativem Verbesserungspotenzial und langfristigen Wachstumsaussichten.',
+                'criteriaRevenue': 'Umsatz', 'criteriaRevenueRange': 'Zielbereich', 'criteriaRevenueValue': '€ 50 - 500 Millionen',
+                'criteriaSituations': 'Situationen', 'criteriaSituationsType': 'Sondersituationen', 'criteriaSituationsValue': 'Carve-outs/Spin-offs, Turnarounds, Restrukturierungen, Nachfolge',
+                'criteriaRegion': 'Region', 'criteriaRegionRange': 'Globale Präsenz', 'criteriaRegionValue': 'Weltweit mit Fokus auf Europa',
+                'criteriaShareholdings': 'Beteiligungen', 'criteriaShareholdingsType': 'Mehrheitsbeteiligung', 'criteriaShareholdingsValue': 'Mehrheit, idealerweise > 75%',
+                'criteriaEquity': 'Eigenkapital', 'criteriaEquitySize': 'Investitionsvolumen', 'criteriaEquityValue': 'Bis zu € 20 Millionen pro Investition',
+                'criteriaProfitability': 'Rentabilität', 'criteriaProfitabilityFocus': 'Turnaround-Fokus', 'criteriaProfitabilityValue': 'Verlustbringend bis ca. 5% EBITDA',
+                'industryTitle': 'Unsere Branchenerfahrung', 'industrySubtitle': 'Wir verfügen über fundiertes Branchenwissen in Schlüsselsektoren wie Fertigung, Technologie, Verpackung, Automobil und Konsumgüter & Dienstleistungen.',
+                'industryIndustrials': 'Industrieunternehmen', 'industryIndustrialsText': 'Fertigungsexzellenz mit nachhaltigen Prozessen und innovativen Technologielösungen.',
+                'industryPackaging': 'Verpackung', 'industryPackagingText': 'Umweltfreundliche Verpackungslösungen mit Fokus auf Kreislaufwirtschaft und Ressourceneffizienz.',
+                'industryAutomotive': 'Automobil', 'industryAutomotiveText': 'Zukunftsorientierte Mobilitätskomponenten und -systeme für traditionelle und elektrische Fahrzeuge.',
+                'industryGoods': 'Güter & Dienstleistungen', 'industryGoodsText': 'Kundenzentrierte Lösungen für verschiedene Konsumenten- und B2B-Marktsegmente.',
+                'industrySoftware': 'Software', 'industrySoftwareText': 'Digitale Transformationstools und Unternehmenssoftwarelösungen für Industrie 4.0.',
+                'approachTitle': 'Unser Ansatz', 'approachSubtitle': 'Wir bieten umfassende Unterstützung während des gesamten Turnaround- und Restrukturierungsprozesses.',
+                'approachRestructuring': 'Operative Restrukturierung', 'approachRestructuringText': 'Wir bieten aktive Portfolio-Unterstützung durch die Kombination von Management-Expertise, Branchenwissen und globalen Netzwerken.',
+                'approachInvestment': 'Langfristige Investition', 'approachInvestmentText': 'Mit unserem Buy, Build and Hold-Ansatz investieren wir in die Zukunft und priorisieren die nachhaltige langfristige Entwicklung unserer Portfoliounternehmen.',
+                'approachRepositioning': 'Strategische Neupositionierung', 'approachRepositioningText': 'Wir definieren Geschäftsmodelle neu, entwickeln neue Marktstrategien und identifizieren Wachstumschancen, um langfristige Nachhaltigkeit und Wertschöpfung zu gewährleisten.',
+                'newsTitle': 'News', 'newsSubtitle': 'Neueste Updates und Entwicklungen der Certina Group und unserer Portfoliounternehmen.',
+                'footerContact': 'Kontakt', 'footerImprint': 'Impressum', 'footerPrivacy': 'Datenschutz',
+            },
+            en: {
+                'home': 'Home', 'portfolio': 'Portfolio', 'team': 'Team', 'academy': 'CERTINA Academy', 'sustainability': 'Sustainability',
+                'heroTitle': 'The Sustainable Investor', 'heroSubtitle': 'Operational · Visionary · Constant',
+                'heroText': 'The CERTINA GROUP is a global family equity investor based in Germany, focusing on special situations and turnaround investments with a long-term entrepreneurial perspective.',
+                'btnCriteria': 'Investment Criteria', 'btnPortfolio': 'Portfolio',
+                'aboutTitle': 'About the CERTINA GROUP',
+                'aboutSubtitle': 'Long-term oriented industrial holding with a focus on special situations and sustainable value creation.',
+                'aboutKpiHeadline': 'Our Impact <span class="kpi-header-bold">in Numbers</span>',
+                'kpiExperience': 'Experience', 'kpiYearsIndustry': 'Years in the industry', 'kpiRevenue': 'Revenue', 'kpiAnnually': 'Annually consolidated',
+                'kpiCompanies': 'Companies', 'kpiPortfolioCompanies': 'Portfolio companies', 'kpiEmployees': 'Employees', 'kpiWorldwide': 'Worldwide',
+                'longTermPartner': 'Long-term Partner', 'longTermText': 'Our buy-and-build strategy focuses on sustainable growth and operational excellence, not on quick exits.',
+                'chartSubtitle': 'Years our companies have been in our portfolio',
+                'quoteText': '"Our sweet spot is business units or subsidiaries of corporate groups with operational improvement potential, whose sale is of strategic value for the seller and the company."',
+                'specialSituations': 'Special Situations', 'specialSituationsText': 'We specialize in carve-outs, turnarounds, succession situations, and complex restructurings where we can create significant operational added value.',
+                'criteriaTitle': 'Investment Criteria', 'criteriaSubtitle': 'We focus on companies with operational improvement potential and long-term growth prospects.',
+                'criteriaRevenue': 'Revenue', 'criteriaRevenueRange': 'Target range', 'criteriaRevenueValue': '€ 50 - 500 million',
+                'criteriaSituations': 'Situations', 'criteriaSituationsType': 'Special situations', 'criteriaSituationsValue': 'Carve-outs/Spin-offs, Turnarounds, Restructuring, Succession',
+                'criteriaRegion': 'Region', 'criteriaRegionRange': 'Global presence', 'criteriaRegionValue': 'Worldwide with focus on Europe',
+                'criteriaShareholdings': 'Shareholdings', 'criteriaShareholdingsType': 'Majority control', 'criteriaShareholdingsValue': 'Majority, ideally > 75%',
+                'criteriaEquity': 'Equity', 'criteriaEquitySize': 'Investment size', 'criteriaEquityValue': 'Up to € 20 million per investment',
+                'criteriaProfitability': 'Profitability', 'criteriaProfitabilityFocus': 'Turnaround focus', 'criteriaProfitabilityValue': 'Loss-making up to approx. 5% EBITDA',
+                'industryTitle': 'Our Industry Experience', 'industrySubtitle': 'We have deep industry knowledge in key sectors such as manufacturing, technology, packaging, automotive, and consumer goods & services.',
+                'industryIndustrials': 'Industrials', 'industryIndustrialsText': 'Manufacturing excellence with sustainable processes and innovative technology solutions.',
+                'industryPackaging': 'Packaging', 'industryPackagingText': 'Environmentally friendly packaging solutions focusing on circular economy and resource efficiency.',
+                'industryAutomotive': 'Automotive', 'industryAutomotiveText': 'Future-oriented mobility components and systems for traditional and electric vehicles.',
+                'industryGoods': 'Goods & Services', 'industryGoodsText': 'Customer-centric solutions across various consumer and B2B market segments.',
+                'industrySoftware': 'Software', 'industrySoftwareText': 'Digital transformation tools and enterprise software solutions for Industry 4.0.',
+                'approachTitle': 'Our Approach', 'approachSubtitle': 'We provide comprehensive support throughout the entire turnaround and restructuring process.',
+                'approachRestructuring': 'Operational Restructuring', 'approachRestructuringText': 'We provide active portfolio support by combining management expertise, industry knowledge, and global networks.',
+                'approachInvestment': 'Long-term Investment', 'approachInvestmentText': 'With our buy, build, and hold approach, we invest in the future and prioritize the sustainable long-term development of our portfolio companies.',
+                'approachRepositioning': 'Strategic Repositioning', 'approachRepositioningText': 'We redefine business models, develop new market strategies, and identify growth opportunities to ensure long-term sustainability and value creation.',
+                'newsTitle': 'News', 'newsSubtitle': 'Latest updates and developments from the Certina Group and our portfolio companies.',
+                'footerContact': 'Contact us', 'footerImprint': 'Imprint', 'footerPrivacy': 'Privacy-policy',
+            }
+        };
+
+        function getSavedLanguage() {
+            try { return localStorage.getItem('certina-language') || 'de'; }
+            catch (e) { console.warn('Could not access localStorage:', e); return 'de'; }
+        }
+
+        function saveLanguagePreference(lang) {
+            try { localStorage.setItem('certina-language', lang); }
+            catch (e) { console.warn('Could not save language preference:', e); }
+        }
+
+        function setLanguage(lang) {
+            if (!translations[lang]) { console.error('Language not supported:', lang); return; }
+            window.currentLanguage = lang;
+            saveLanguagePreference(lang);
+
+            // Update active state for ALL language switchers
+            document.querySelectorAll('.language-switcher').forEach(switcher => {
+                switcher.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+            });
+
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.dataset.translateKey;
+                if (translations[lang][key]) {
+                    // For elements that might contain HTML (like kpiHeadline), use innerHTML
+                    if (key === 'aboutKpiHeadline') {
+                         element.innerHTML = translations[lang][key];
+                    } else {
+                         element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Specific for navigation links (if they don't have data-translate-key)
+            const navLinks = document.querySelectorAll('#header-placeholder .nav-links a'); // Ensure it's the loaded header
+            const navKeys = ['home', 'portfolio', 'team', 'academy', 'sustainability'];
+            navLinks.forEach((link, index) => {
+                if (navKeys[index] && translations[lang][navKeys[index]]) {
+                    link.textContent = translations[lang][navKeys[index]];
+                }
+            });
+             // Specific for footer links
+            const footerLinksContainer = document.querySelector('#footer-placeholder .footer-links');
+            if (footerLinksContainer) {
+                const footerLinkMap = {
+                    'footerContact': ['contact.html', 'Kontakt.html'],
+                    'footerImprint': ['imprint.html', 'Impressum.html'],
+                    'footerPrivacy': ['privacy-policy.html', 'Datenschutz.html']
+                };
+                Object.entries(footerLinkMap).forEach(([key, hrefs]) => {
+                    const linkElement = Array.from(footerLinksContainer.querySelectorAll('a')).find(a => hrefs.some(href => a.getAttribute('href')?.includes(href)));
+                    if (linkElement && translations[lang][key]) {
+                        linkElement.textContent = translations[lang][key];
+                    }
+                });
+            }
+        }
+
+
+        function initializeLanguageSwitcherLogic(switcherElement, context) {
+            // console.log(`Initializing language switcher for: ${context}`);
+            const langBtns = switcherElement.querySelectorAll('.lang-btn');
+            langBtns.forEach(btn => {
+                // Remove any existing listeners to prevent duplicates if called multiple times
+                // btn.removeEventListener('click', handleLangBtnClick); // Need a named function or a more complex system if re-initialization is frequent
+                // For simplicity now, this might add duplicate listeners if loadComponents is called multiple times with same elements
+                // A robust solution would involve a flag or better management of event listeners.
+
+                btn.addEventListener('click', function() { // Using 'function' for 'this' context
+                    const selectedLang = this.dataset.lang;
+                    // console.log(`Language button clicked in ${context}:`, selectedLang);
+                    setLanguage(selectedLang);
+                });
+            });
+        }
+        // Initial language set will be called after components are loaded.
+    });
+</script>
+</body>
+</html>

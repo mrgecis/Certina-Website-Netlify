@@ -1,0 +1,9 @@
+Company: SCV
+Industry: Automotive
+Acquisition year: 2012.0
+Revenue: 30.0 Million EUR
+FTE: 150.0
+Countries: 1.0
+Website: https://www.scvspecial.com
+Headquarter: Italy
+Seller: Amplifon

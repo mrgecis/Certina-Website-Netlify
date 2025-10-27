@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            --primary-bg: #f9fafb;
+            --secondary: #47546A;
+            --accent: #667085;
+            --dark-shade: #344054;
+            --light-shade: #D0D5DD;
+            --highlight-blue: #5A6A8A;
+            --ultra-light-bg: #F2F4F7;
+            --text: #1f2937;
+            --text-secondary: #6b7280;
+            --footer-bg: rgba(13, 13, 15, 0.95);
+            --footer-text: #e6e6e6;
+            --footer-text-secondary: #9ca3af;
+            --card-bg-light: rgba(255, 255, 255, 0.85);
+            --card-bg-news: rgba(255, 255, 255, 0.95);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(71, 84, 106, 0.15);
+            --glass-shadow: 0 6px 24px 0 rgba(52, 64, 84, 0.08);
+            --separator-color: rgba(102, 112, 133, 0.2);
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--accent));
+            --gradient-2: linear-gradient(135deg, var(--accent), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--primary-bg); color: var(--text); }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; }
+
+        /* Header */
+        header { /* ... styles ... */
+             background: transparent; padding: 4px 0; position: fixed; width: 100%; top: 0; z-index: 100; transition: background 0.4s ease, padding 0.4s ease;
+         }
+        header.scrolled { background: rgba(255, 255, 255, 0.85); padding: 8px 0; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 40px; transition: all 0.3s ease; }
+        .logo:hover { opacity: 0.8; }
+
+        /* Hamburger Menu */
+        .hamburger-menu { /* ... styles ... */
+             width: 30px; height: 25px; position: relative; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; z-index: 101;
+         }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+        /* Nav Menu */
+        .nav-menu { /* ... styles ... */
+             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(249, 250, 251, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.5s ease; z-index: 99;
+         }
+        .nav-menu.active { visibility: visible; opacity: 1; }
+        .nav-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+        .nav-links li { margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; text-transform: uppercase; font-size: 24px; position: relative; transition: all 0.3s ease; letter-spacing: 2px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--gradient-1); bottom: -8px; left: 0; transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+        body.no-scroll { overflow: hidden; }
+
+        /* Hero Section - Portfolio */
+        .portfolio-hero { /* ... styles ... */
+              padding-top: 70px; height: 40vh; min-height: 300px; display: flex; align-items: center; position: relative; overflow: hidden; background-color: var(--ultra-light-bg);
+         }
+        .portfolio-bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(100%); }
+        .portfolio-hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); z-index: 1; pointer-events: none; }
+        .portfolio-hero-content { text-align: center; max-width: 1000px; margin: 0 auto; padding-bottom: 30px; padding-left: 30px; padding-right: 30px; position: relative; z-index: 2; }
+        .portfolio-hero h1, .portfolio-hero p { color: var(--text); }
+        .portfolio-hero h1 { font-size: 48px; margin-bottom: 10px; font-weight: 400; letter-spacing: 1px; line-height: 1.2; }
+        .portfolio-hero h2 { font-size: 18px; margin-bottom: 20px; font-weight: 300; color: var(--text-secondary); letter-spacing: 4px; text-transform: uppercase; }
+        .portfolio-hero p { font-size: 18px; line-height: 1.8; font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* General Section Styles */
+        .section { padding: 80px 0; position: relative; overflow: hidden; }
+        .section-header { text-align: center; margin-bottom: 60px; position: relative; }
+
+        /* Partner Logo Slider */
+        .partner-slider-container { /* ... styles ... */
+             width: 100%; overflow: hidden; padding: 20px 0; margin-bottom: 40px; position: relative; background: rgba(255, 255, 255, 0.1); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+        .partner-slider-track { display: flex; align-items: center; width: max-content; will-change: transform; animation: scrollLogos 40s linear infinite; }
+        .partner-slider-container:hover .partner-slider-track { animation-play-state: paused; }
+        .partner-logo-item { margin: 0 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .partner-logo-item img { max-height: 45px; max-width: 150px; filter: grayscale(100%); opacity: 0.7; transition: opacity 0.3s ease; }
+        .partner-logo-item img:hover { opacity: 1; }
+        @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Portfolio Filter */
+        .portfolio-filter { /* ... styles ... */
+             display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px;
+         }
+        .filter-btn { /* ... styles ... */
+             padding: 10px 20px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 30px; cursor: pointer; transition: all 0.3s ease; font-size: 14px; font-weight: 500; color: var(--text-secondary); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+         }
+        .filter-btn:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); transform: translateY(-2px); }
+        .filter-btn.active { background: var(--gradient-1); color: white; border-color: transparent; }
+
+        /* Portfolio Stats */
+        .portfolio-stats { /* ... styles ... */
+             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-bottom: 80px;
+         }
+        .stat-card { background: var(--glass-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, opacity 0.5s ease; text-align: center; position: relative; overflow: hidden; opacity: 0; transform: translateY(30px); }
+        .stat-card.visible { opacity: 1; transform: translateY(0); }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border: 1px solid rgba(0, 0, 0, 0.1); }
+        .stat-icon, .stat-number {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-title { font-size: 16px; color: var(--text-secondary); font-weight: 300; }
+
+        /* --- REFINED Hidden/Visible CSS Block --- */
+        .hidden {
+             display: none !important; /* Collapse space */
+             opacity: 0 !important;
+             pointer-events: none !important;
+             transition: none !important; /* No transition needed when using display: none */
+         }
+         /* Reapply display properties and transitions ONLY when VISIBLE and NOT hidden */
+         .portfolio-item.visible:not(.hidden) {
+             display: flex; /* Keep the flex layout for item content */
+             opacity: 1;
+             transform: none; /* Reset transforms */
+             pointer-events: auto;
+             transition: transform 0.4s ease, opacity 0.5s ease; /* Reapply transition */
+         }
+         .industry-header.visible:not(.hidden) {
+             display: flex; /* Keep flex for header content */
+             opacity: 1;
+             transform: none; /* Reset transforms */
+             pointer-events: auto;
+             transition: opacity 0.5s ease, transform 0.5s ease; /* Reapply transition */
+         }
+         .industry-container.visible:not(.hidden) {
+              display: block; /* Explicitly use block display for the container */
+              opacity: 1;
+              transform: none; /* Reset transforms */
+              pointer-events: auto;
+              transition: opacity 0.5s ease; /* Simple fade */
+          }
+         /* --- END REFINED Block --- */
+
+         /* Ensure the portfolio grid definition remains untouched */
+         .portfolio-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+              gap: 30px;
+              margin-bottom: 60px;
+         }
+
+        /* Portfolio Items (General) */
+        .portfolio-item { background: var(--glass-bg); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); position: relative; height: 300px; display: flex; flex-direction: column; }
+        .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(52, 64, 84, 0.15); border: 1px solid rgba(71, 84, 106, 0.15); }
+        .portfolio-logo { height: 180px; display: flex; align-items: center; justify-content: center; padding: 30px; background: linear-gradient(135deg, var(--card-bg-light), var(--glass-bg)); position: relative; overflow: hidden; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .portfolio-logo img { max-width: 90%; max-height: 120px; object-fit: contain; transition: transform 0.4s ease; }
+        .portfolio-item:hover .portfolio-logo img { transform: scale(1.05); }
+        .portfolio-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .portfolio-name { font-size: 18px; font-weight: 500; margin-bottom: 8px; color: var(--text); letter-spacing: 0.5px; }
+        .portfolio-details { margin-top: auto; }
+        .portfolio-detail { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 400; }
+        .portfolio-detail strong { color: var(--text); }
+
+        /* Industry Section Headers */
+        .industry-header { margin-top: 60px; margin-bottom: 30px; text-align: left; border-left: 4px solid var(--secondary); padding-left: 15px; display: flex; align-items: center; }
+        .industry-header-icon { font-size: 28px; margin-right: 15px; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .industry-title { font-size: 24px; font-weight: 400; letter-spacing: 1px; margin: 0; color: var(--text); }
+
+        /* Delay classes */
+        .delay-1 { transition-delay: 0.1s !important; } .delay-2 { transition-delay: 0.2s !important; } .delay-3 { transition-delay: 0.3s !important; } .delay-4 { transition-delay: 0.4s !important; } .delay-5 { transition-delay: 0.5s !important; }
+
+        /* Background elements */
+        /* Removed empty body::before ruleset */
+
+        /* === START Footer Styles (Copied from Team.html) === */
+        footer { background: var(--footer-bg); color: var(--footer-text); padding: 80px 0 30px; position: relative; }
+        .footer-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; margin-bottom: 50px; position: relative; align-items: start; }
+        .footer-title { font-size: 20px; margin-bottom: 25px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; font-weight: 300; letter-spacing: 0.5px; }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--footer-text-secondary); position: relative; font-weight: 300; }
+        .footer-links { margin-top: 0; display: flex; justify-content: center; gap: 30px; list-style: none; padding-left: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; position: relative; font-weight: 300; }
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo { display: block; max-height: 45px; margin-bottom: 20px; }
+        .footer-logo-container p { color: var(--footer-text-secondary); font-size: 14px; line-height: 1.6; font-weight: 300; }
+        .footer-contact p { color: var(--footer-text-secondary); font-size: 16px; line-height: 1.8; font-weight: 300; }
+        /* === END Footer Styles === */
+
+        /* Responsive styles */
+        @media (max-width: 1100px) { /* ... styles ... */ }
+        @media (max-width: 768px) { /* ... styles ... */
+             /* Footer Responsive Adjustment */
+             .footer-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 480px) { /* ... styles ... */ }
+
+</style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="portfolio-hero" id="portfolio-hero">
+    <video muted loop playsinline class="portfolio-bg-video" id="portfolio-bg-video">
+        <source src="../Assets/Portfolio/Portfolio_Hero.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var vid = document.getElementById('portfolio-bg-video');
+        if (vid && vid.paused) {
+            vid.play().catch(()=>{});
+        }
+    });
+    </script>
+    <div class="container">
+        <div class="portfolio-hero-content">
+            <h1>Our Portfolio</h1>
+            <h2>Companies in Our Group</h2>
+            <p>We're proud to partner with innovative companies across various industries, driving operational excellence and sustainable growth.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="section">
+<div class="container">
+    <!-- Partner Logo Slider -->
+    <div class="partner-slider-container">
+        <div class="partner-slider-track" id="partner-slider-track"></div>
+    </div>
+    <!-- Portfolio Filter -->
+    <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all" type="button">All Companies</button>
+        <button class="filter-btn" data-filter="industrials" type="button">Industrials</button>
+        <button class="filter-btn" data-filter="packaging" type="button">Packaging</button>
+        <button class="filter-btn" data-filter="automotive" type="button">Automotive</button>
+        <button class="filter-btn" data-filter="goods-services" type="button">Goods &amp; Services</button>
+        <button class="filter-btn" data-filter="software" type="button">Software</button>
+    </div>
+    <!-- Portfolio Stats Section -->
+    <div class="portfolio-stats">
+        <div class="stat-card delay-1"><div class="stat-icon"><i class="fas fa-building"></i></div><div class="stat-number" id="stat-companies-number">0</div><div class="stat-title" id="stat-companies-title">Portfolio Companies</div></div>
+        <div class="stat-card delay-2"><div class="stat-icon"><i class="fas fa-globe-europe"></i></div><div class="stat-number" id="stat-countries-number">?</div><div class="stat-title">Countries</div></div>
+        <div class="stat-card delay-3"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number" id="stat-employees-number">?</div><div class="stat-title">Employees</div></div>
+        <div class="stat-card delay-4"><div class="stat-icon"><i class="fas fa-chart-line"></i></div><div class="stat-number" id="stat-revenue-number">€?</div><div class="stat-title" id="stat-revenue-title">Annual Revenue</div></div>
+    </div>
+    <!-- Portfolio Items Container -->
+    <div id="portfolio-items-container"></div>
+</div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="../Assets/js/translation.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Global Variables ---
+        const portfolioItemsContainer = document.getElementById('portfolio-items-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const statCompaniesNum = document.getElementById('stat-companies-number');
+        const statRevenueNum = document.getElementById('stat-revenue-number');
+        const statCompaniesTitle = document.getElementById('stat-companies-title');
+        const statRevenueTitle = document.getElementById('stat-revenue-title');
+        const statCountriesNum = document.getElementById('stat-countries-number');
+        const statEmployeesNum = document.getElementById('stat-employees-number');
+        const allStatCards = document.querySelectorAll('.stat-card');
+        const partnerSliderTrack = document.getElementById('partner-slider-track');
+
+        // --- Company Definitions & Partner Folders ---
+        const companyNames = [ /* ... list ... */
+             "Hannemann", "Horn", "Pruss", "HermannKoch", "Qualiform", "Rebhan", "Trassl", "AFT", "Demm", "Enorise", "Shieldtech", "PAL", "Qcision", "SCV", "wegener", "Isolite", "UST", "Vielfaltmenue", "COI", "WPS", "MOBOTIX"
+         ];
+        const partnerLogoFolders = [ /* ... list ... */
+             'Vielfaltmenue', 'WPS', 'Shieldtech', 'Isolite', 'MOBOTIX', 'Enorise'
+         ];
+        let allCompanyData = [];
+
+        // --- Industry Specific Stats Mapping ---
+        const industryStatsMapping = { /* ... mapping ... */
+             'automotive': { countries: 11, employees: 2100, employeesText: '2100' }, 'packaging': { countries: 3, employees: 360, employeesText: '360' }, 'industrials': { countries: 7, employees: 670, employeesText: '670' }, 'goods-services': { countries: 1, employees: 1200, employeesText: '1200' }, 'software': { countries: 5, employees: 600, employeesText: '600' }
+         };
+        const defaultStats = { countries: 7, employeesText: '5000+' };
+
+        // === Function to load external HTML components (Copied from Team.html) ===
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} for ${url}`);
+                }
+                const content = await response.text();
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = content;
+                    // No special script init needed for footer in this case
+                } else {
+                     console.error(`Element with ID ${elementId} not found.`);
+                }
+            } catch (error) {
+                console.error(`Could not load ${url}: ${error}`);
+                const element = document.getElementById(elementId);
+                if (element) {
+                     element.innerHTML = `<p style='color:red; text-align:center;'>Error loading component.</p>`;
+                }
+            }
+        }
+
+        // --- Helper Functions ---
+        function parseCompanyData(text) { /* ... same ... */
+             const data = {}; const lines = text.split('\n'); lines.forEach(line => { const parts = line.split(': '); if (parts.length === 2) { data[parts[0].trim().toLowerCase().replace(' ', '-')] = parts[1].trim(); } }); if (!data.company || !data.industry || !data['acquisition-year'] || !data.revenue) { console.warn("Incomplete data parsed:", data); return null; } data.category = data.industry.toLowerCase().replace('&', '').replace(/\s+/g, '-'); return data;
+         }
+         function parseRevenue(revenueString) { /* ... Corrected version ... */
+              if (!revenueString) return 0; const match = revenueString.match(/([\d.,]+)\s*(Mio|M|B)?/i); if (match && match[1]) { let numberString = match[1].replace(/,/g, ''); let value = parseFloat(numberString); if (isNaN(value)) { console.warn(`Could not parse number from: "${numberString}"`); return 0; } const unit = match[2] ? match[2].toLowerCase() : ''; if (unit === 'b') { value *= 1000; } return value; } console.warn(`Could not parse revenue format: "${revenueString}"`); return 0;
+         }
+         function formatRevenue(totalMillions) {
+             if (isNaN(totalMillions)) return '€?';
+             if (totalMillions < 1000) {
+                 return `€${Math.round(totalMillions)}M`;
+             } else {
+                 const totalBillions = totalMillions / 1000;
+                 return `€${totalBillions.toFixed(1)}B`;
+             }
+         }
+        function animateValue(element, start, end, duration, formatFn = null, suffix = '') { /* ... same ... */
+              if (element._animationRequest) { cancelAnimationFrame(element._animationRequest); } if (isNaN(end) || typeof end !== 'number') { element.textContent = end; if (element.dataset.currentValue) { delete element.dataset.currentValue; } return; } let currentStartVal = parseFloat(element.dataset.currentValue || start || 0); if (isNaN(currentStartVal)) currentStartVal = 0; if (currentStartVal === end) { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; return; } const range = end - currentStartVal; let startTime = null; function step(timestamp) { if (!startTime) startTime = timestamp; const progress = timestamp - startTime; const easedProgress = Math.min(progress / duration, 1); const easedValue = easedProgress * (2 - easedProgress); let currentValue = currentStartVal + (range * easedValue); element.textContent = formatFn ? formatFn(currentValue) : Math.round(currentValue) + suffix; if (progress < duration) { element._animationRequest = requestAnimationFrame(step); } else { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; delete element._animationRequest; } } element._animationRequest = requestAnimationFrame(step);
+         }
+         function createPortfolioItem(data) { /* ... same ... */
+              if (!data || !data.company) return null; const item = document.createElement('div'); item.classList.add('portfolio-item'); item.dataset.company = data.company; item.dataset.category = data.category; item.dataset.revenue = parseRevenue(data.revenue); const folderName = data.folderName || data.company; const logoPath = `../Assets/Portfolio/${folderName}/${folderName}_Logo.png`; const fallbackLogo = '../Assets/General/placeholder_logo.png'; item.innerHTML = `<div class="portfolio-logo"><img src="${logoPath}" alt="${data.company} Logo" onerror="this.onerror=null; this.src='${fallbackLogo}';"></div><div class="portfolio-info"><h3 class="portfolio-name">${data.company}</h3><div class="portfolio-details"><p class="portfolio-detail">Acquired: <strong>${data['acquisition-year']}</strong></p><p class="portfolio-detail">Revenue: <strong>${data.revenue}</strong></p></div></div>`; return item;
+         }
+         async function fetchCompanyData(companyName) { /* ... same ... */
+              const filePath = `../Assets/Portfolio/${companyName}/${companyName}.txt`; try { const response = await fetch(filePath); if (!response.ok) { if (response.status === 404) { console.error(`FNF: ${filePath}`); } else { console.error(`HTTP Err: ${response.status} for ${filePath}`); } return null; } const text = await response.text(); const parsedData = parseCompanyData(text); if (!parsedData) { console.error(`Parse Err for ${companyName}`); return null; } parsedData.folderName = companyName; return parsedData; } catch (error) { console.error(`Fetch Err for ${companyName}:`, error); return null; }
+         }
+        function updateStats(visibleItems) { /* ... same ... */
+              if (!statCompaniesNum || !statRevenueNum || !statCompaniesTitle || !statRevenueTitle || !statCountriesNum || !statEmployeesNum) { console.error("Stat DOM elements missing!"); return; } const targetCount = visibleItems.length; const targetRevenueMillions = visibleItems.reduce((sum, item) => { const revenue = parseFloat(item.dataset.revenue) || 0; return sum + revenue; }, 0); const activeFilter = document.querySelector('.filter-btn.active'); const filterValue = activeFilter ? activeFilter.dataset.filter : 'all'; let targetCountries = defaultStats.countries; let targetEmployees = defaultStats.employeesText; if (filterValue !== 'all' && industryStatsMapping[filterValue]) { targetCountries = industryStatsMapping[filterValue].countries; targetEmployees = industryStatsMapping[filterValue].employeesText; } else if (filterValue !== 'all') { targetCountries = '-'; targetEmployees = '-'; } const animationDuration = 700; const startCount = parseInt(statCompaniesNum.dataset.currentValue || 0); const startRevenueMillions = parseFloat(statRevenueNum.dataset.currentRevenueMillions || 0); const startCountries = parseInt(statCountriesNum.dataset.currentValue || 0); const startEmployeesMatch = (statEmployeesNum.dataset.currentValue || statEmployeesNum.textContent || '0').match(/\d+/); const startEmployees = startEmployeesMatch ? parseInt(startEmployeesMatch[0]) : 0; animateValue(statCompaniesNum, startCount, targetCount, animationDuration); statRevenueNum.dataset.currentRevenueMillions = targetRevenueMillions; animateValue(statRevenueNum, startRevenueMillions, targetRevenueMillions, animationDuration, formatRevenue); animateValue(statCountriesNum, startCountries, targetCountries, animationDuration); const targetEmployeesNumeric = parseInt(String(targetEmployees).replace(/[^0-9]/g, '')); if (!isNaN(targetEmployeesNumeric) && String(targetEmployeesNumeric) === String(targetEmployees)) { animateValue(statEmployeesNum, startEmployees, targetEmployeesNumeric, animationDuration); } else { animateValue(statEmployeesNum, startEmployees, targetEmployees, animationDuration); } const filterText = activeFilter ? activeFilter.textContent : 'All Companies'; if (filterValue === 'all') { statCompaniesTitle.textContent = 'Portfolio Companies'; statRevenueTitle.textContent = 'Annual Revenue'; } else { const titleText = filterText.charAt(0).toUpperCase() + filterText.slice(1).replace(' Companies', ''); statCompaniesTitle.textContent = `Companies (${titleText})`; statRevenueTitle.textContent = `Revenue (${titleText})`; } allStatCards.forEach(card => card.classList.add('visible'));
+         }
+
+        // --- Filtering Function (hides containers) ---
+        function filterPortfolio(filterValue) { /* ... same ... */
+            const allItems = portfolioItemsContainer.querySelectorAll('.portfolio-item'); const allContainers = portfolioItemsContainer.querySelectorAll('.industry-container'); const visibleItems = []; if (!allItems) { console.warn("No portfolio items found."); updateStats([]); allContainers.forEach(c => c.classList.add('hidden')); return; } allItems.forEach(item => { const itemCategory = item.dataset.category; const shouldShowItem = (filterValue === 'all' || itemCategory === filterValue); item.classList.toggle('hidden', !shouldShowItem); item.classList.toggle('visible', shouldShowItem); if (shouldShowItem) { visibleItems.push(item); } }); allContainers.forEach(container => { const header = container.querySelector('.industry-header'); const containerCategory = container.dataset.category; const hasVisibleItemsInCategory = visibleItems.some(item => item.dataset.category === containerCategory); const shouldShowContainer = (filterValue === 'all' || (filterValue === containerCategory && hasVisibleItemsInCategory)); container.classList.toggle('hidden', !shouldShowContainer); container.classList.toggle('visible', shouldShowContainer); if (header) { header.classList.toggle('hidden', !shouldShowContainer); header.classList.toggle('visible', shouldShowContainer); } }); updateStats(visibleItems);
+        }
+
+        // --- Function to Populate Partner Slider ---
+        function populatePartnerSlider() { /* ... same ... */
+             if (!partnerSliderTrack) { console.error("Partner slider track element not found!"); return; } partnerSliderTrack.innerHTML = ''; const fallbackLogo = '../Assets/General/placeholder_logo.png'; const logosToDisplay = [...partnerLogoFolders, ...partnerLogoFolders]; logosToDisplay.forEach(folderName => { const logoPath = `../Assets/Portfolio/${folderName}/${folderName}_Partner.png`; const logoItem = document.createElement('div'); logoItem.classList.add('partner-logo-item'); const img = document.createElement('img'); img.src = logoPath; img.alt = `${folderName} Partner Logo`; img.onerror = function() { this.onerror = null; this.src = fallbackLogo; console.error(`Failed to load partner logo: ${logoPath}`); }; logoItem.appendChild(img); partnerSliderTrack.appendChild(logoItem); }); console.log("Partner slider populated.");
+         }
+
+        // --- Main Initialization Logic ---
+        async function initializePortfolio() { /* ... same ... */
+             console.log("Initializing Portfolio..."); allStatCards.forEach(card => card.classList.remove('visible')); if (statCountriesNum) statCountriesNum.textContent = defaultStats.countries; if (statEmployeesNum) statEmployeesNum.textContent = defaultStats.employeesText; if (statCompaniesNum) statCompaniesNum.textContent = '0'; if (statRevenueNum) statRevenueNum.textContent = formatRevenue(0); statCompaniesNum.dataset.currentValue = 0; statRevenueNum.dataset.currentRevenueMillions = 0; statCountriesNum.dataset.currentValue = defaultStats.countries; const initialEmployeesNum = parseInt(defaultStats.employeesText.match(/\d+/)?.[0] || 0); statEmployeesNum.dataset.currentValue = isNaN(initialEmployeesNum) ? defaultStats.employeesText : initialEmployeesNum; populatePartnerSlider(); allStatCards.forEach((card, index) => { setTimeout(() => { card.classList.add('visible'); }, 100 + index * 100); }); const fetchPromises = companyNames.map(name => fetchCompanyData(name)); const results = await Promise.all(fetchPromises); allCompanyData = results.filter(data => data !== null); console.log(`Fetched data for ${allCompanyData.length} companies.`); if (allCompanyData.length === 0 && companyNames.length > 0) { console.error("Failed to load any company data."); portfolioItemsContainer.innerHTML = "<p>Error: Could not load portfolio data.</p>"; updateStats([]); return; } portfolioItemsContainer.innerHTML = ''; const categoryContainers = {}; const headerMap = { 'industrials': { icon: 'fa-cogs', title: 'Industrials' }, 'packaging': { icon: 'fa-box-open', title: 'Packaging' }, 'automotive': { icon: 'fa-car-alt', title: 'Automotive' }, 'goods-services': { icon: 'fa-shopping-cart', title: 'Goods & Services' }, 'software': { icon: 'fa-laptop-code', title: 'Software' } }; Object.keys(headerMap).forEach(catKey => { const headerInfo = headerMap[catKey]; const container = document.createElement('div'); container.classList.add('industry-container', 'hidden'); container.dataset.category = catKey; const header = document.createElement('div'); header.classList.add('industry-header', 'hidden'); header.dataset.category = catKey; header.innerHTML = `<div class="industry-header-icon"><i class="fas ${headerInfo.icon}"></i></div> <h2 class="industry-title">${headerInfo.title}</h2>`; const grid = document.createElement('div'); grid.classList.add('portfolio-grid'); container.appendChild(header); container.appendChild(grid); portfolioItemsContainer.appendChild(container); categoryContainers[catKey] = grid; }); let itemRenderIndex = 0; allCompanyData.forEach((data) => { const itemElement = createPortfolioItem(data); if (itemElement) { const targetGrid = categoryContainers[data.category]; if (targetGrid) { targetGrid.appendChild(itemElement); setTimeout(() => { itemElement.classList.add('visible'); itemElement.classList.add(`delay-${(itemRenderIndex % 5) + 1}`); }, 50); itemRenderIndex++; } else { /* console warn */ } } }); setTimeout(() => { filterPortfolio('all'); }, 100); filterButtons.forEach(button => { button.addEventListener('click', function() { filterButtons.forEach(btn => btn.classList.remove('active')); this.classList.add('active'); const filterValue = this.getAttribute('data-filter'); filterPortfolio(filterValue); }); }); console.log("Portfolio Initialized Successfully.");
+         }
+
+        // --- Hamburger Menu & Header Scroll ---
+        /* ... same ... */
+        const hamburgerMenu = document.getElementById('hamburger-menu'); const navMenu = document.getElementById('nav-menu'); if (hamburgerMenu && navMenu) { hamburgerMenu.addEventListener('click', function() { hamburgerMenu.classList.toggle('active'); navMenu.classList.toggle('active'); document.body.classList.toggle('no-scroll'); }); } const navLinks = document.querySelectorAll('.nav-links a'); navLinks.forEach(link => { link.addEventListener('click', function() { if (navMenu && navMenu.classList.contains('active')) { hamburgerMenu.classList.remove('active'); navMenu.classList.remove('active'); document.body.classList.remove('no-scroll'); } }); }); const header = document.querySelector('header'); if (header) { window.addEventListener('scroll', function() { if (window.scrollY > 50) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); } }); }
+
+        // --- Load Header and Footer
+        async function loadHeaderFooter() {
+            try {
+                const headerRes = await fetch('Header.html?v=' + new Date().getTime()); // Added cache-busting parameter
+                if (!headerRes.ok) throw new Error('Failed to fetch Header.html: ' + headerRes.statusText);
+                const headerHtml = await headerRes.text();
+                document.getElementById('header-placeholder').innerHTML = headerHtml;
+                initializeHeaderScripts();
+                const footerRes = await fetch('Footer.html');
+                if (!footerRes.ok) throw new Error('Failed to fetch Footer.html: ' + footerRes.statusText);
+                const footerHtml = await footerRes.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+                // Nachdem Header und Footer geladen wurden, Übersetzungen anwenden
+                if (window.initTranslation) {
+                    window.initTranslation();
+                }
+            } catch (e) {
+                document.getElementById('header-placeholder').innerHTML = '<p style="color:red; text-align:center;">Error loading header.</p>';
+                document.getElementById('footer-placeholder').innerHTML = '<p style="color:red; text-align:center;">Error loading footer.</p>';
+            }
+        }
+        function initializeHeaderScripts() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            if (hamburgerMenu && navMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    hamburgerMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navMenu.classList.contains('active')) {
+                            hamburgerMenu.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            document.body.classList.remove('no-scroll');
+                        }
+                    });
+                });
+            }
+            const header = document.querySelector('header');
+            if(header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        }
+        loadHeaderFooter();
+
+        // --- Initialize ---
+        initializePortfolio();
+
+
+    }); // End DOMContentLoaded
+</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+Company: COI
+Industry: Software
+Acquisition year: 2004.0
+Revenue: 6.0 Million EUR
+FTE: 30.0
+Countries: 1.0
+Website: https://www.coi.de
+Headquarter: Germany
+Seller: Schaeffler

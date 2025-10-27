@@ -1,0 +1,9 @@
+Company: Qcision
+Industry: Automotive
+Acquisition year: 2023.0
+Revenue: 40.0 Million EUR
+FTE: 140.0
+Countries: 1.0
+Website: https://www.qcision.com
+Headquarter: Switzerland
+Seller: Feintool

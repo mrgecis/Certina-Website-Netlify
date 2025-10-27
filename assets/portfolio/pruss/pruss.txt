@@ -1,0 +1,9 @@
+Company: Pruss
+Industry: Industrials
+Acquisition year: 1997.0
+Revenue: 25.0 Million EUR
+FTE: 100.0
+Countries: 1.0
+Website: https://www.pruss.de
+Headquarter: Germany
+Seller: Pruss family

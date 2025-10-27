@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Theme Colors (Standardized) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: transparent; /* Changed from solid to transparent */
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative; /* For pseudo-element positioning */
+            font-weight: 300;
+            min-height: 100vh;
+        }
+        /* Global Background Gradient Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Subtle gradient with new palette */
+            background-image: radial-gradient(circle at 10% 20%, rgba(102, 112, 133, 0.06) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(71, 84, 106, 0.06) 0%, transparent 40%);
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0; position: relative; }
+
+        /* Header */
+        header {
+             background: transparent;
+             padding: 15px 0; /* More padding for spacing */
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 150; /* Higher z-index to ensure it's above all content */
+             transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+             border-bottom: 1px solid transparent; /* Add transition for border */
+         }
+        header.scrolled {
+             background: rgba(255, 255, 255, 0.9); /* Slightly opaque when scrolling */
+             padding: 10px 0;
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             box-shadow: 0 2px 10px rgba(52, 64, 84, 0.05); /* Subtle shadow */
+             border-bottom: 1px solid rgba(52, 64, 84, 0.08); /* Subtle border */
+         }
+        .header-content {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 5px 0; /* Add padding inside the header content */
+         }
+        .logo { height: 40px; transition: all 0.3s ease; }
+        .logo:hover { opacity: 0.8; }
+
+        /* Hamburger Menu */
+        .hamburger-menu { /* ... styles ... */
+             width: 30px; height: 25px; position: relative; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; z-index: 101;
+         }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+        /* Nav Menu */
+        .nav-menu { /* ... styles ... */
+             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(249, 250, 251, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.5s ease; z-index: 99;
+         }
+        .nav-menu.active { visibility: visible; opacity: 1; }
+        .nav-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+        .nav-links li { margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; text-transform: uppercase; font-size: 24px; position: relative; transition: all 0.3s ease; letter-spacing: 2px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--gradient-1); bottom: -8px; left: 0; transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+        body.no-scroll { overflow: hidden; }
+
+        /* Portfolio Hero Section */
+        .portfolio-hero {
+            padding-top: 80px;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(253, 254, 255, 0.9) 0%, 
+                rgba(244, 246, 248, 0.95) 100%);
+        }
+
+        .portfolio-hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .portfolio-hero h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .portfolio-hero h2 {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .portfolio-hero p {
+            font-size: clamp(14px, 1.8vw, 18px);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Portfolio Animation */
+        .portfolio-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* General Section Styles */
+        .section { padding: 80px 0; position: relative; background-color: transparent; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        /* Unified section title style */
+        .section-title, .text-4xl {
+             font-size: 38px; /* Consistent size */
+             margin-bottom: 16px; /* Consistent margin */
+             font-weight: 300;
+             letter-spacing: 0.5px;
+             /* Apply gradient text */
+             background: var(--gradient-1);
+             -webkit-background-clip: text;
+             background-clip: text;
+             color: transparent;
+             display: inline-block; /* Needed for background clip */
+         }
+         /* Unified section subtitle style */
+        .section-subtitle, .text-lg {
+            font-size: 17px; /* Consistent size */
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.65; /* Consistent line height */
+            font-weight: 300;
+        }
+
+        /* Portfolio Filter */
+        .portfolio-filter { /* ... styles ... */
+             display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px;
+         }
+        .filter-btn { /* ... styles ... */
+             padding: 10px 20px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 30px; cursor: pointer; transition: all 0.3s ease; font-size: 14px; font-weight: 500; color: var(--text-secondary); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+         }
+        .filter-btn:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); transform: translateY(-2px); }
+        .filter-btn.active { background: var(--gradient-1); color: white; border-color: transparent; }
+
+        /* Portfolio Stats */
+        .portfolio-stats { /* ... styles ... */
+             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-bottom: 80px;
+         }
+        .stat-card { background: var(--glass-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, opacity 0.5s ease; text-align: center; position: relative; overflow: hidden; opacity: 0; transform: translateY(30px); }
+        .stat-card.visible { opacity: 1; transform: translateY(0); }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border: 1px solid rgba(0, 0, 0, 0.1); }
+        .stat-icon, .stat-number {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-title { font-size: 16px; color: var(--text-secondary); font-weight: 300; }
+
+        /* --- REFINED Hidden/Visible CSS Block --- */
+        .hidden {
+             display: none !important; /* Collapse space */
+             opacity: 0 !important;
+             pointer-events: none !important;
+             transition: none !important; /* No transition needed when using display: none */
+         }
+         /* Reapply display properties and transitions ONLY when VISIBLE and NOT hidden */
+         .portfolio-item.visible:not(.hidden) {
+             display: flex; /* Keep the flex layout for item content */
+             opacity: 1;
+             transform: none; /* Reset transforms */
+             pointer-events: auto;
+             transition: transform 0.4s ease, opacity 0.5s ease; /* Reapply transition */
+         }
+         .industry-header.visible:not(.hidden) {
+             display: flex; /* Keep flex for header content */
+             opacity: 1;
+             transform: none; /* Reset transforms */
+             pointer-events: auto;
+             transition: opacity 0.5s ease, transform 0.5s ease; /* Reapply transition */
+         }
+         .industry-container.visible:not(.hidden) {
+              display: block; /* Explicitly use block display for the container */
+              opacity: 1;
+              transform: none; /* Reset transforms */
+              pointer-events: auto;
+              transition: opacity 0.5s ease; /* Simple fade */
+          }
+         /* --- END REFINED Block --- */
+
+         /* Portfolio grid with smaller, more elegant boxes */
+         .portfolio-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+              gap: 24px;
+              margin-bottom: 60px;
+         }
+
+        /* Portfolio Items (General) - Smaller and more elegant */
+        .portfolio-item { 
+            background: var(--glass-bg); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: var(--glass-shadow); 
+            position: relative; 
+            height: 260px; 
+            display: flex; 
+            flex-direction: column; 
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+        }
+        .portfolio-item:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(52, 64, 84, 0.15); 
+            border: 1px solid rgba(71, 84, 106, 0.15); 
+        }
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+        .portfolio-logo { height: 150px; display: flex; align-items: center; justify-content: center; padding: 25px; background: linear-gradient(135deg, var(--card-bg-light), var(--glass-bg)); position: relative; overflow: hidden; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .portfolio-logo img { max-width: 90%; max-height: 100px; object-fit: contain; transition: transform 0.4s ease; }
+        .portfolio-item:hover .portfolio-logo img { transform: scale(1.05); }
+        .portfolio-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .portfolio-name { font-size: 22px; font-weight: 600; margin-bottom: 15px; color: var(--secondary); letter-spacing: 0.5px; }
+        .portfolio-details { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+        .detail-box { 
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(71, 84, 106, 0.08);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        .detail-box.acquisition { 
+            background: rgba(71, 84, 106, 0.15);
+        }
+        .detail-box.revenue { 
+            background: rgba(102, 112, 133, 0.1);
+        }
+        .portfolio-item:hover .detail-box {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-item:hover .detail-box.acquisition {
+            background: rgba(71, 84, 106, 0.25);
+        }
+        .portfolio-item:hover .detail-box.revenue {
+            background: rgba(102, 112, 133, 0.2);
+        }
+
+        /* Industry Section Headers */
+        .industry-header { margin-top: 60px; margin-bottom: 30px; text-align: left; border-left: 4px solid var(--secondary); padding-left: 15px; display: flex; align-items: center; }
+        .industry-header-icon { font-size: 28px; margin-right: 15px; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .industry-title { font-size: 24px; font-weight: 400; letter-spacing: 1px; margin: 0; color: var(--text); }
+
+        /* Delay classes */
+        .delay-1 { transition-delay: 0.1s !important; } .delay-2 { transition-delay: 0.2s !important; } .delay-3 { transition-delay: 0.3s !important; } .delay-4 { transition-delay: 0.4s !important; } .delay-5 { transition-delay: 0.5s !important; }
+
+        /* Background elements */
+        /* Removed empty body::before ruleset */
+
+        /* === Footer === */
+        footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 80px 0 30px; position: relative; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */ gap: 60px; margin-bottom: 50px; align-items: start; }
+        .footer-title { font-size: 20px; margin-bottom: 25px; /* Use accent color for title */ color: var(--accent); font-weight: 500; /* Slightly bolder */ letter-spacing: 0.5px; }
+        .copyright { text-align: center; padding-top: 30px; /* Increased spacing */ border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */ color: var(--footer-text-secondary); font-weight: 300; }
+        .footer-links { margin-top: 0; display: flex; flex-wrap: wrap; /* Allow wrapping */ justify-content: center; gap: 30px; list-style: none; padding-left: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 300; }
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo-container p, .footer-contact p { color: var(--footer-text-secondary); font-size: 15px; /* Consistent font size */ line-height: 1.7; font-weight: 300; }
+        .footer-logo { display: block; max-height: 45px; margin-bottom: 20px; }
+        /* === END Footer Styles === */
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Darker, more modern overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto; /* Added for scrolling if modal itself is too tall */
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #ffffff;
+            width: 90vw;
+            /* height: 85vh; */ /* REMOVED */
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: flex-start;
+            padding: 0;
+            box-sizing: border-box;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            overflow-x: hidden; /* CHANGED from overflow: hidden */
+            max-height: 85vh;   /* Unified max-height */
+            overflow-y: auto;   /* Ensure this is effective */
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateX(0); /* Slide in to center */
+        }
+        .modal-content > * {
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition-delay: 0.3s;
+        }
+        #modal-company-image {
+            transform: translateY(20px);
+        }
+        #modal-company-text {
+            transform: translateX(20px);
+        }
+        .modal-overlay.active .modal-content > * {
+            opacity: 1;
+            transform: translate(0) !important;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 35px; /* Larger close button */
+            font-weight: 300; /* Lighter font weight */
+            color: #333; /* Darker color for better visibility on white */
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            z-index: 1010; /* Ensure it's above other modal content */
+        }
+        .modal-close-btn:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+        #modal-company-image {
+            width: 40%; /* MAINTAINED - 40% of the new modal width */
+            height: 100%; /* MAINTAINED - 100% of the new modal height */
+            object-fit: cover;
+        }
+        #modal-company-text {
+            flex-grow: 1;
+            height: 100%; /* 100% of the modal height */
+            display: flex;
+            flex-direction: column;
+            /* overflow: hidden; */ /* REMOVED to allow child scrolling */
+        }
+        #modal-company-name {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding: 40px 40px 0 40px;
+        }
+        #modal-company-description {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0 40px 20px 40px;
+            box-sizing: border-box;
+            font-size: 17px;
+            line-height: 1.65;
+            color: #333;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        /* Company Info Cards Styles */
+        .modal-company-info {
+            padding: 0 40px 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .modal-company-info {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px 20px 20px;
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .modal-company-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .modal-info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .modal-info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-info-card-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .modal-info-card-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* Website Section Styles */
+        .modal-website-section {
+            padding: 0 40px 20px 40px;
+            border-top: 1px solid var(--separator-color);
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+        
+        .modal-website-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .modal-website-link {
+            display: inline-block;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-website-link:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive styles */
+        /* Responsive styles for portfolio grid */
+        @media (max-width: 1100px) { 
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+        }
+        /* Mobile-optimized Portfolio Modal Styles */
+        @media (max-width: 768px) { 
+             /* Footer Responsive Adjustment */
+             .footer-content { grid-template-columns: 1fr; text-align: center; }
+             .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+             .footer-contact { margin-top: 40px; }
+             
+             /* Modal Responsive Adjustments - Tablet */
+             .modal-content {
+                 flex-direction: column !important;
+                 width: 95% !important;
+                 max-width: none !important;
+                 height: auto !important;
+                 max-height: 90vh !important;
+                 overflow: hidden !important;
+                 margin: 20px auto !important;
+                 padding: 0 !important;
+                 box-sizing: border-box !important;
+                 display: flex !important;
+             }
+             
+             #modal-company-image {
+                 width: 100% !important;
+                 height: 150px !important;
+                 min-height: 150px !important;
+                 max-height: 150px !important;
+                 object-fit: cover !important;
+                 border-radius: 15px 15px 0 0 !important;
+                 flex-shrink: 0 !important;
+             }
+             
+             #modal-company-text {
+                 flex: 1 !important;
+                 display: flex !important;
+                 flex-direction: column !important;
+                 overflow: hidden !important;
+                 min-height: 0 !important;
+             }
+             
+             #modal-company-name {
+                 padding: 15px 25px 8px 25px !important;
+                 font-size: 22px !important;
+                 line-height: 1.2 !important;
+                 text-align: center !important;
+                 margin-bottom: 8px !important;
+                 flex-shrink: 0 !important;
+             }
+             
+             .modal-company-info {
+                 padding: 0 25px 12px 25px !important;
+                 grid-template-columns: repeat(2, 1fr) !important;
+                 gap: 8px !important;
+                 margin-bottom: 8px !important;
+                 flex-shrink: 0 !important;
+             }
+             
+             #modal-company-description {
+                 flex: 1 !important;
+                 padding: 0 25px !important;
+                 font-size: 15px !important;
+                 line-height: 1.6 !important;
+                 overflow-y: auto !important;
+                 min-height: 200px !important;
+                 max-height: none !important;
+             }
+             
+             .modal-website-section {
+                 padding: 15px 25px 20px 25px !important;
+                 text-align: center !important;
+                 flex-shrink: 0 !important;
+             }
+             
+             .modal-close-btn {
+                 top: 15px !important;
+                 right: 15px !important;
+                 font-size: 28px !important;
+                 background: rgba(255, 255, 255, 0.9) !important;
+                 width: 40px !important;
+                 height: 40px !important;
+                 border-radius: 50% !important;
+                 display: flex !important;
+                 align-items: center !important;
+                 justify-content: center !important;
+                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+                 color: #333 !important;
+             }
+             
+             .modal-close-btn:hover {
+                 background: rgba(255, 255, 255, 1) !important;
+                 transform: scale(1.05) !important;
+             }
+        }
+        
+        @media (max-width: 480px) { 
+            /* Portfolio Grid Mobile Adjustments */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .portfolio-item {
+                height: 240px;
+            }
+            .portfolio-logo {
+                height: 130px;
+                padding: 20px;
+            }
+            .portfolio-logo img {
+                max-height: 80px;
+            }
+            
+            /* Modal Mobile Optimizations - Phone */
+            .modal-content {
+                width: calc(100% - 16px) !important;
+                max-height: 95vh !important;
+                margin: 8px !important;
+                border-radius: 12px !important;
+                overflow: hidden !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            
+            #modal-company-image {
+                height: 120px !important;
+                min-height: 120px !important;
+                max-height: 120px !important;
+                border-radius: 12px 12px 0 0 !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #modal-company-text {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: hidden !important;
+                min-height: 0 !important;
+            }
+            
+            #modal-company-name {
+                padding: 12px 15px 6px 15px !important;
+                font-size: 18px !important;
+                margin-bottom: 6px !important;
+                text-align: center !important;
+                flex-shrink: 0 !important;
+            }
+            
+            .modal-company-info {
+                padding: 0 15px 8px 15px !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                margin-bottom: 8px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #modal-company-description {
+                flex: 1 !important;
+                padding: 0 15px !important;
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+                overflow-y: auto !important;
+                min-height: 250px !important;
+                max-height: none !important;
+            }
+            
+            .modal-website-section {
+                padding: 10px 15px 15px 15px !important;
+                text-align: center !important;
+                flex-shrink: 0 !important;
+            }
+            
+            .modal-info-card {
+                padding: 10px !important;
+            }
+            
+            .modal-info-card-label {
+                font-size: 10px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .modal-info-card-value {
+                font-size: 13px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .modal-website-section {
+                padding: 0 15px 20px 15px !important;
+                padding-top: 15px !important;
+                margin-top: 15px !important;
+            }
+            
+            .modal-website-label {
+                font-size: 13px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .modal-website-link {
+                padding: 10px 20px !important;
+                font-size: 14px !important;
+                border-radius: 6px !important;
+            }
+            
+            .modal-close-btn {
+                top: 10px !important;
+                right: 10px !important;
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 18px !important;
+            }
+        }
+
+</style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="portfolio-hero" id="portfolio-hero">
+    <div class="portfolio-animation">
+        <div class="floating-element">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-industry"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-rocket"></i>
+        </div>
+    </div>
+    <div class="container">
+        <div class="portfolio-hero-content">
+            <h2 data-lang-key="portfolio.hero.subtitle">Strategic Investments</h2>
+            <h1 data-lang-key="portfolio.hero.title">Our Portfolio</h1>
+            <p data-lang-key="portfolio.hero.description">Innovative companies across various industries, driving operational excellence and sustainable growth through strategic partnerships.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="section">
+<div class="container">
+    <!-- Portfolio Filter -->
+    <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all" data-lang-key="portfolio.filter.all" type="button">All Companies</button>
+        <button class="filter-btn" data-filter="industrials" data-lang-key="portfolio.filter.industrials" type="button">Industrials</button>
+        <button class="filter-btn" data-filter="packaging" data-lang-key="portfolio.filter.packaging" type="button">Packaging</button>
+        <button class="filter-btn" data-filter="automotive" data-lang-key="portfolio.filter.automotive" type="button">Automotive</button>
+        <button class="filter-btn" data-filter="goods-services" data-lang-key="portfolio.filter.goods-services" type="button">Goods &amp; Services</button>
+        <button class="filter-btn" data-filter="software" data-lang-key="portfolio.filter.software" type="button">Software</button>
+    </div>
+    
+    <!-- Portfolio Stats Section -->
+    <div class="portfolio-stats">
+        <div class="stat-card delay-1">
+            <div class="stat-icon"><i class="fas fa-building"></i></div>
+            <div class="stat-number" id="stat-companies-number">0</div>
+            <div class="stat-title" id="stat-companies-title" data-lang-key="portfolio.stats.companies">Portfolio Companies</div>
+        </div>
+        <div class="stat-card delay-2">
+            <div class="stat-icon"><i class="fas fa-globe-europe"></i></div>
+            <div class="stat-number" id="stat-countries-number">?</div>
+            <div class="stat-title" data-lang-key="portfolio.stats.countries">Countries</div>
+        </div>
+        <div class="stat-card delay-3">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-number" id="stat-employees-number">?</div>
+            <div class="stat-title" data-lang-key="portfolio.stats.employees">Employees</div>
+        </div>
+        <div class="stat-card delay-4">
+            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-number" id="stat-revenue-number">€?</div>
+            <div class="stat-title" id="stat-revenue-title" data-lang-key="portfolio.stats.revenue">Annual Revenue</div>
+        </div>
+    </div>
+    
+    <!-- Portfolio Items Container -->
+    <div id="portfolio-items-container"></div>
+</div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- Company Details Modal -->
+<div id="company-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="modal-close-btn">&times;</span>
+        <img id="modal-company-image" src="#" alt="Company Image">
+        <div id="modal-company-text">
+            <h2 id="modal-company-name">Company Name</h2>
+            <div class="modal-company-info" id="modal-company-info">
+                <!-- Info cards will be dynamically added here -->
+            </div>
+            <div id="modal-company-description">Loading company details...</div>
+            <div class="modal-website-section" id="modal-website-section" style="display: none;">
+                <div class="modal-website-label" data-lang-key="portfolio.modal.website">Website</div>
+                <a id="modal-website-link" class="modal-website-link" href="#" target="_blank" rel="noopener noreferrer" data-lang-key="portfolio.modal.visit-website">Visit Website</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Global Variables ---
+        const portfolioItemsContainer = document.getElementById('portfolio-items-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const statCompaniesNum = document.getElementById('stat-companies-number');
+        const statRevenueNum = document.getElementById('stat-revenue-number');
+        const statCompaniesTitle = document.getElementById('stat-companies-title');
+        const statRevenueTitle = document.getElementById('stat-revenue-title');
+        const statCountriesNum = document.getElementById('stat-countries-number');
+        const statEmployeesNum = document.getElementById('stat-employees-number');
+        const allStatCards = document.querySelectorAll('.stat-card');
+
+        // Modal DOM Elements
+        const companyModal = document.getElementById('company-modal');
+        const modalCompanyImage = document.getElementById('modal-company-image');
+        const modalCompanyName = document.getElementById('modal-company-name');
+        const modalCompanyDescription = document.getElementById('modal-company-description');
+        const modalCompanyInfo = document.getElementById('modal-company-info');
+        const modalWebsiteSection = document.getElementById('modal-website-section');
+        const modalWebsiteLink = document.getElementById('modal-website-link');
+        const modalCloseBtn = document.querySelector('.modal-close-btn');
+
+        // --- Company Definitions & Partner Folders ---
+        const companyNames = [ /* ... list ... */
+             "Hannemann", "Horn", "Pruss", "HermannKoch", "Qualiform", "Rebhan", "Trassl", "AFT", "Demm", "Enorise", "Shieldtech", "PAL", "SCV", "wegener", "Isolite", "UST", "Vielfaltmenue", "COI", "WPS", "MOBOTIX", "metasystem"
+         ];
+        let allCompanyData = [];
+
+        // --- Industry Specific Stats Mapping ---
+        const industryStatsMapping = {
+             'automotive': { countries: 13, employees: 2630, employeesText: '2630' }, 
+             'packaging': { countries: 3, employees: 500, employeesText: '500' }, 
+             'industrials': { countries: 8, employees: 910, employeesText: '910' }, 
+             'goods-services': { countries: 1, employees: 360, employeesText: '360' }, 
+             'software': { countries: 9, employees: 439, employeesText: '439' }
+         };
+        const defaultStats = { countries: 18, employeesText: '5400+' };
+
+        // === Function to load external HTML components (Copied from Team.html) ===
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} for ${url}`);
+                }
+                const content = await response.text();
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = content;
+                    // No special script init needed for footer in this case
+                } else {
+                     console.error(`Element with ID ${elementId} not found.`);
+                }
+            } catch (error) {
+                console.error(`Could not load ${url}: ${error}`);
+                const element = document.getElementById(elementId);
+                if (element) {
+                     element.innerHTML = `<p style='color:red; text-align:center;'>Error loading component.</p>`;
+                }
+            }
+        }
+
+        // --- Helper Functions ---
+        function parseCompanyData(text) {
+             const data = {}; 
+             const lines = text.split('\n'); 
+             lines.forEach(line => { 
+                 const parts = line.split(': '); 
+                 if (parts.length === 2) { 
+                     const key = parts[0].trim().toLowerCase().replace(' ', '-');
+                     const value = parts[1].trim();
+                     data[key] = value;
+                 } 
+             }); 
+             
+             if (!data.company || !data.industry || !data['acquisition-year'] || !data.revenue) { 
+                 console.warn("Incomplete data parsed:", data); 
+                 return null; 
+             } 
+             
+             // Update categories based on Excel data industry assignments
+             if (data.company === 'WPS') data.category = 'software';
+             if (data.company === 'MOBOTIX') data.category = 'software';
+             if (data.company === 'AFT') data.category = 'industrials';
+             if (data.company === 'COI') data.category = 'software';
+             if (data.company === 'DEMM') data.category = 'industrials';
+             if (data.company === 'Enorise') data.category = 'automotive';
+             if (data.company === 'Hannemann') data.category = 'industrials';
+             if (data.company === 'HermannKoch') data.category = 'packaging';
+             if (data.company === 'Horn') data.category = 'industrials';
+             if (data.company === 'ISOLITE') data.category = 'automotive';
+             if (data.company === 'Meta System') data.category = 'automotive';
+             if (data.company === 'PAL') data.category = 'automotive';
+             if (data.company === 'Pruss') data.category = 'industrials';
+             if (data.company === 'Qualiform') data.category = 'packaging';
+             if (data.company === 'Rebhan') data.category = 'packaging';
+             if (data.company === 'SCV') data.category = 'automotive';
+             if (data.company === 'Shieldtec') data.category = 'automotive';
+             if (data.company === 'Trassl') data.category = 'packaging';
+             if (data.company === 'UST') data.category = 'goods-services';
+             if (data.company === 'VielfaltMenü') data.category = 'goods-services';
+             if (data.company === 'Wegener+Stapel') data.category = 'industrials';
+             
+             // Fallback to parsing from industry field if not in Excel mapping
+             if (!data.category) {
+                 data.category = data.industry.toLowerCase().replace('&', '').replace(/\s+/g, '-'); 
+             }
+             
+             return data;
+         }
+         function parseRevenue(revenueString) { /* ... Corrected version ... */
+              if (!revenueString) return 0; const match = revenueString.match(/([\d.,]+)\s*(Mio|M|B)?/i); if (match && match[1]) { let numberString = match[1].replace(/,/g, ''); let value = parseFloat(numberString); if (isNaN(value)) { console.warn(`Could not parse number from: "${numberString}"`); return 0; } const unit = match[2] ? match[2].toLowerCase() : ''; if (unit === 'b') { value *= 1000; } return value; } console.warn(`Could not parse revenue format: "${revenueString}"`); return 0;
+         }
+         function formatRevenue(totalMillions) {
+             if (isNaN(totalMillions)) return '€?';
+             if (totalMillions < 1000) {
+                 return `€${Math.round(totalMillions)}M`;
+             } else {
+                 const totalBillions = totalMillions / 1000;
+                 return `€${totalBillions.toFixed(1)}B`;
+             }
+         }
+        function animateValue(element, start, end, duration, formatFn = null, suffix = '') { /* ... same ... */
+              if (element._animationRequest) { cancelAnimationFrame(element._animationRequest); } if (isNaN(end) || typeof end !== 'number') { element.textContent = end; if (element.dataset.currentValue) { delete element.dataset.currentValue; } return; } let currentStartVal = parseFloat(element.dataset.currentValue || start || 0); if (isNaN(currentStartVal)) currentStartVal = 0; if (currentStartVal === end) { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; return; } const range = end - currentStartVal; let startTime = null; function step(timestamp) { if (!startTime) startTime = timestamp; const progress = timestamp - startTime; const easedProgress = Math.min(progress / duration, 1); const easedValue = easedProgress * (2 - easedProgress); let currentValue = currentStartVal + (range * easedValue); element.textContent = formatFn ? formatFn(currentValue) : Math.round(currentValue) + suffix; if (progress < duration) { element._animationRequest = requestAnimationFrame(step); } else { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; delete element._animationRequest; } } element._animationRequest = requestAnimationFrame(step);
+         }
+         function createPortfolioItem(data) {
+              if (!data || !data.company) return null;
+              
+              // Function to format revenue for portfolio cards
+              function formatRevenueForCard(revenueString) {
+                  if (!revenueString) return 'N/A';
+                  
+                  // Extract number from revenue string like "27.0 Million EUR"
+                  const match = revenueString.match(/([\d.]+)\s*(Million|Mio)/i);
+                  if (match && match[1]) {
+                      const value = parseFloat(match[1]);
+                      if (!isNaN(value)) {
+                          return `€ ${value}M`;
+                      }
+                  }
+                  return revenueString; // fallback to original if parsing fails
+              }
+              
+              const item = document.createElement('div');
+              item.classList.add('portfolio-item');
+              item.dataset.company = data.company;
+              item.dataset.category = data.category;
+              item.dataset.revenue = parseRevenue(data.revenue);
+              
+              const folderName = data.folderName || data.company;
+              const logoPath = `../Assets/Portfolio/${folderName}/${folderName}_Logo.png`;
+              const fallbackLogo = '../Assets/General/placeholder_logo.png';
+              
+              item.innerHTML = `
+                <div class="portfolio-logo">
+                  <img src="${logoPath}" alt="${data.company} Logo" onerror="this.onerror=null; this.src='${fallbackLogo}';">
+                </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-name">${data.company}</h3>
+                  <div class="portfolio-details">
+                    <span class="detail-box acquisition">${Math.round(parseFloat(data['acquisition-year']) || 0)}</span>
+                    <span class="detail-box revenue">${formatRevenueForCard(data.revenue)}</span>
+                  </div>
+                </div>`;
+              
+              // Add click listener to open modal
+              item.addEventListener('click', () => displayCompanyModal(data));
+              
+              return item;
+         }
+         async function fetchCompanyData(companyName) { /* ... same ... */
+              const filePath = `../Assets/Portfolio/${companyName}/${companyName}.txt`; try { const response = await fetch(filePath); if (!response.ok) { if (response.status === 404) { console.error(`FNF: ${filePath}`); } else { console.error(`HTTP Err: ${response.status} for ${filePath}`); } return null; } const text = await response.text(); const parsedData = parseCompanyData(text); if (!parsedData) { console.error(`Parse Err for ${companyName}`); return null; } parsedData.folderName = companyName; return parsedData; } catch (error) { console.error(`Fetch Err for ${companyName}:`, error); return null; }
+         }
+        function updateStats(visibleItems) {
+            if (!statCompaniesNum || !statRevenueNum || !statCompaniesTitle || !statRevenueTitle || !statCountriesNum || !statEmployeesNum) { 
+                console.error("Stat DOM elements missing!"); 
+                return; 
+            } 
+            
+            const targetCount = visibleItems.length; 
+            let targetRevenueMillions = visibleItems.reduce((sum, item) => { 
+                const revenue = parseFloat(item.dataset.revenue) || 0; 
+                return sum + revenue; 
+            }, 0); 
+            
+            const activeFilter = document.querySelector('.filter-btn.active'); 
+            const filterValue = activeFilter ? activeFilter.dataset.filter : 'all'; 
+            
+            // Override revenue to show 1.44B for "All Companies" filter
+            if (filterValue === 'all') {
+                targetRevenueMillions = 1440; // 1.44 billion = 1440 million
+            }
+            
+            let targetCountries = defaultStats.countries; 
+            let targetEmployees = defaultStats.employeesText;
+            
+            // Override employees to show 5400+ for "All Companies" filter
+            if (filterValue === 'all') {
+                targetEmployees = '5400+';
+            } 
+            
+            if (filterValue !== 'all' && industryStatsMapping[filterValue]) { 
+                targetCountries = industryStatsMapping[filterValue].countries; 
+                targetEmployees = industryStatsMapping[filterValue].employeesText; 
+            } else if (filterValue !== 'all') { 
+                targetCountries = '-'; 
+                targetEmployees = '-'; 
+            } 
+            
+            const animationDuration = 700; 
+            const startCount = parseInt(statCompaniesNum.dataset.currentValue || 0); 
+            const startRevenueMillions = parseFloat(statRevenueNum.dataset.currentRevenueMillions || 0); 
+            const startCountries = parseInt(statCountriesNum.dataset.currentValue || 0); 
+            const startEmployeesMatch = (statEmployeesNum.dataset.currentValue || statEmployeesNum.textContent || '0').match(/\d+/); 
+            const startEmployees = startEmployeesMatch ? parseInt(startEmployeesMatch[0]) : 0; 
+            
+            animateValue(statCompaniesNum, startCount, targetCount, animationDuration); 
+            statRevenueNum.dataset.currentRevenueMillions = targetRevenueMillions; 
+            animateValue(statRevenueNum, startRevenueMillions, targetRevenueMillions, animationDuration, formatRevenue); 
+            animateValue(statCountriesNum, startCountries, targetCountries, animationDuration); 
+            
+            const targetEmployeesNumeric = parseInt(String(targetEmployees).replace(/[^0-9]/g, '')); 
+            if (!isNaN(targetEmployeesNumeric) && String(targetEmployeesNumeric) === String(targetEmployees)) { 
+                animateValue(statEmployeesNum, startEmployees, targetEmployeesNumeric, animationDuration); 
+            } else { 
+                animateValue(statEmployeesNum, startEmployees, targetEmployees, animationDuration); 
+            } 
+            
+            // Get current language for translations
+            const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+            
+            if (filterValue === 'all') {
+                const companiesKey = translations.portfolio?.stats?.companies || 'Portfolio Companies';
+                const revenueKey = translations.portfolio?.stats?.revenue || 'Annual Revenue';
+                statCompaniesTitle.textContent = companiesKey;
+                statRevenueTitle.textContent = revenueKey;
+            } else {
+                const filterText = translations.portfolio?.filter?.[filterValue] || activeFilter.textContent;
+                const companiesText = translations.portfolio?.stats?.companies || 'Portfolio Companies';
+                const revenueText = translations.portfolio?.stats?.revenue || 'Annual Revenue';
+                
+                statCompaniesTitle.textContent = `${companiesText} (${filterText})`;
+                statRevenueTitle.textContent = `${revenueText} (${filterText})`;
+            }
+            
+            allStatCards.forEach(card => card.classList.add('visible'));
+        }
+
+        // --- Function to fetch company description ---
+        async function fetchCompanyDescription(folderName) {
+            const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+            
+            // First try to get translated description
+            const companyKey = folderName.toLowerCase();
+            if (translations.portfolio && translations.portfolio.companies && translations.portfolio.companies[companyKey]) {
+                console.log('Using translated description for:', folderName);
+                return translations.portfolio.companies[companyKey];
+            }
+            
+            // Fallback to file-based description (corrected path)
+            const descriptionPath = `../Assets/Portfolio/${folderName}/_description.txt`;
+            
+            try {
+                const response = await fetch(descriptionPath);
+                if (!response.ok) {
+                    console.warn(`Description file not found for ${folderName}: ${response.status}`);
+                    return `Description for ${folderName} is not available.`;
+                }
+                const description = await response.text();
+                return description.trim() || `No description available for ${folderName}.`;
+            } catch (error) {
+                console.error(`Error fetching description for ${folderName}:`, error);
+                return `Description for ${folderName} is not available.`;
+            }
+        }
+
+        // --- Function to display company modal ---
+        async function displayCompanyModal(companyData) {
+            if (!companyData || !companyData.folderName) {
+                console.error("Invalid company data for modal.");
+                return;
+            }
+
+            const folderName = companyData.folderName;
+            const imagePath = `../Assets/Portfolio/${folderName}/${folderName}_Bild.png`;
+            const fallbackImagePath = '../Assets/General/placeholder_logo.png';
+
+            // Set company name in the modal
+            if (modalCompanyName) {
+                modalCompanyName.textContent = companyData.company;
+            }
+
+            // Create company info cards
+            if (modalCompanyInfo) {
+                modalCompanyInfo.innerHTML = '';
+                
+                // Function to format revenue for modal display
+                function formatRevenueForModal(revenueString) {
+                    if (!revenueString || revenueString === 'N/A') return 'N/A';
+                    
+                    // Extract number from revenue string like "27.0 Million EUR"
+                    const match = revenueString.match(/([\d.]+)\s*(Million|Mio)/i);
+                    if (match && match[1]) {
+                        const value = parseFloat(match[1]);
+                        if (!isNaN(value)) {
+                            return `€ ${value}M`;
+                        }
+                    }
+                    return revenueString; // fallback to original if parsing fails
+                }
+                
+                // Function to format integer values (remove decimals)
+                function formatIntegerValue(value) {
+                    if (!value || value === 'N/A') return 'N/A';
+                    const numValue = parseFloat(value);
+                    return isNaN(numValue) ? value : Math.round(numValue).toString();
+                }
+                
+                // Get current language for translations
+                const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+                const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+                
+                // Define the info cards data with translation keys
+                const infoCards = [
+                    {
+                        labelKey: 'acquisition-year',
+                        label: 'Year of Acquisition',
+                        value: formatIntegerValue(companyData['acquisition-year']),
+                        icon: 'fas fa-calendar-alt'
+                    },
+                    {
+                        labelKey: 'annual-revenue',
+                        label: 'Annual Revenue',
+                        value: formatRevenueForModal(companyData.revenue),
+                        icon: 'fas fa-chart-line'
+                    },
+                    {
+                        labelKey: 'fte',
+                        label: 'FTE',
+                        value: formatIntegerValue(companyData.fte),
+                        icon: 'fas fa-users'
+                    },
+                    {
+                        labelKey: 'countries',
+                        label: 'Countries',
+                        value: formatIntegerValue(companyData.countries),
+                        icon: 'fas fa-globe'
+                    },
+                    {
+                        labelKey: 'headquarter',
+                        label: 'Headquarter',
+                        value: companyData.headquarter || 'N/A',
+                        icon: 'fas fa-building'
+                    },
+                    {
+                        labelKey: 'seller',
+                        label: 'Seller',
+                        value: companyData.seller || 'N/A',
+                        icon: 'fas fa-handshake'
+                    }
+                ];
+
+                // Create and append info cards
+                infoCards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'modal-info-card';
+                    
+                    // Get translation or fall back to default
+                    const translatedLabel = translations.portfolio?.modal?.[card.labelKey] || card.label;
+                    
+                    cardElement.innerHTML = `
+                        <div class="modal-info-card-label">${translatedLabel}</div>
+                        <div class="modal-info-card-value">${card.value}</div>
+                    `;
+                    modalCompanyInfo.appendChild(cardElement);
+                });
+            }
+
+            // Set company image
+            modalCompanyImage.src = imagePath;
+            modalCompanyImage.alt = `${companyData.company} Image`;
+            modalCompanyImage.onerror = function() {
+                this.onerror = null; 
+                this.src = fallbackImagePath;
+                console.warn(`Primary image ${imagePath} not found for ${folderName}, using fallback.`);
+            };
+
+            // Set company description
+            const description = await fetchCompanyDescription(folderName);
+            modalCompanyDescription.textContent = description;
+
+            // Handle website section WITH TRANSLATION
+            if (modalWebsiteSection && modalWebsiteLink) {
+                if (companyData.website) {
+                    modalWebsiteSection.style.display = 'block';
+                    modalWebsiteLink.href = companyData.website;
+                    
+                    // TRANSLATE THE WEBSITE BUTTON TEXT
+                    const websiteButtonText = translations.portfolio?.modal?.['visit-website'] || 'Visit Website';
+                    modalWebsiteLink.textContent = websiteButtonText;
+                    
+                    // TRANSLATE THE WEBSITE LABEL
+                    const websiteLabelElement = modalWebsiteSection.querySelector('.modal-website-label');
+                    if (websiteLabelElement) {
+                        const websiteLabelText = translations.portfolio?.modal?.website || 'Website';
+                        websiteLabelElement.textContent = websiteLabelText;
+                    }
+                } else {
+                    modalWebsiteSection.style.display = 'none';
+                }
+            }
+
+            // Display the modal
+            if (companyModal) {
+                companyModal.style.display = 'flex';
+                setTimeout(() => { 
+                    companyModal.classList.add('active');
+                }, 10);
+            }
+        }
+
+        // ADD THIS FUNCTION to update modal translations when language changes
+        function updateModalTranslations() {
+            // Only update if modal is currently open
+            if (companyModal && companyModal.classList.contains('active')) {
+                const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+                const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+                
+                // Update website button text
+                if (modalWebsiteLink && modalWebsiteLink.href && modalWebsiteLink.href !== '#') {
+                    const websiteButtonText = translations.portfolio?.modal?.['visit-website'] || 'Visit Website';
+                    modalWebsiteLink.textContent = websiteButtonText;
+                }
+                
+                // Update website label
+                const websiteLabelElement = modalWebsiteSection?.querySelector('.modal-website-label');
+                if (websiteLabelElement) {
+                    const websiteLabelText = translations.portfolio?.modal?.website || 'Website';
+                    websiteLabelElement.textContent = websiteLabelText;
+                }
+                
+                // Update info card labels
+                const infoCards = modalCompanyInfo?.querySelectorAll('.modal-info-card');
+                if (infoCards) {
+                    const labelKeys = ['acquisition-year', 'annual-revenue', 'fte', 'countries', 'headquarter', 'seller'];
+                    infoCards.forEach((card, index) => {
+                        const labelElement = card.querySelector('.modal-info-card-label');
+                        if (labelElement && labelKeys[index]) {
+                            const translatedLabel = translations.portfolio?.modal?.[labelKeys[index]] || labelElement.textContent;
+                            labelElement.textContent = translatedLabel;
+                        }
+                    });
+                }
+            }
+        }
+
+        // --- Function to close modal ---
+        function closeCompanyModal() {
+            if (companyModal) {
+                companyModal.classList.remove('active');
+                setTimeout(() => {
+                    companyModal.style.display = 'none';
+                    // Clear content when hidden
+                    if (modalCompanyName) modalCompanyName.textContent = '';
+                    if (modalCompanyDescription) modalCompanyDescription.textContent = '';
+                    if (modalCompanyImage) modalCompanyImage.src = '#';
+                }, 500);
+            }
+        }
+        
+        // --- Event listeners for closing modal ---
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeCompanyModal);
+        }
+
+        if (companyModal) {
+            // Close when clicking on overlay
+            companyModal.addEventListener('click', (event) => {
+                if (event.target === companyModal) {
+                    closeCompanyModal();
+                }
+            });
+            
+            // Close when pressing ESC key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && companyModal.classList.contains('active')) {
+                    closeCompanyModal();
+                }
+            });
+        }
+
+        // --- Filtering Function (hides containers) ---
+        function filterPortfolio(filterValue) { /* ... same ... */
+            const allItems = portfolioItemsContainer.querySelectorAll('.portfolio-item'); const allContainers = portfolioItemsContainer.querySelectorAll('.industry-container'); const visibleItems = []; if (!allItems) { console.warn("No portfolio items found."); updateStats([]); allContainers.forEach(c => c.classList.add('hidden')); return; } allItems.forEach(item => { const itemCategory = item.dataset.category; const shouldShowItem = (filterValue === 'all' || itemCategory === filterValue); item.classList.toggle('hidden', !shouldShowItem); item.classList.toggle('visible', shouldShowItem); if (shouldShowItem) { visibleItems.push(item); } }); allContainers.forEach(container => { const header = container.querySelector('.industry-header'); const containerCategory = container.dataset.category; const hasVisibleItemsInCategory = visibleItems.some(item => item.dataset.category === containerCategory); const shouldShowContainer = (filterValue === 'all' || (filterValue === containerCategory && hasVisibleItemsInCategory)); container.classList.toggle('hidden', !shouldShowContainer); container.classList.toggle('visible', shouldShowContainer); if (header) { header.classList.toggle('hidden', !shouldShowContainer); header.classList.toggle('visible', shouldShowContainer); } }); updateStats(visibleItems);
+        }
+
+        // --- Main Initialization Logic ---
+        async function initializePortfolio() { /* ... same ... */
+             console.log("Initializing Portfolio..."); allStatCards.forEach(card => card.classList.remove('visible')); if (statCountriesNum) statCountriesNum.textContent = defaultStats.countries; if (statEmployeesNum) statEmployeesNum.textContent = defaultStats.employeesText; if (statCompaniesNum) statCompaniesNum.textContent = '0'; if (statRevenueNum) statRevenueNum.textContent = formatRevenue(0); statCompaniesNum.dataset.currentValue = 0; statRevenueNum.dataset.currentRevenueMillions = 0; statCountriesNum.dataset.currentValue = defaultStats.countries; const initialEmployeesNum = parseInt(defaultStats.employeesText.match(/\d+/)?.[0] || 0); statEmployeesNum.dataset.currentValue = isNaN(initialEmployeesNum) ? defaultStats.employeesText : initialEmployeesNum; allStatCards.forEach((card, index) => { setTimeout(() => { card.classList.add('visible'); }, 100 + index * 100); }); const fetchPromises = companyNames.map(name => fetchCompanyData(name)); const results = await Promise.all(fetchPromises); allCompanyData = results.filter(data => data !== null); console.log(`Fetched data for ${allCompanyData.length} companies.`); if (allCompanyData.length === 0 && companyNames.length > 0) { console.error("Failed to load any company data."); portfolioItemsContainer.innerHTML = "<p>Error: Could not load portfolio data.</p>"; updateStats([]); return; } portfolioItemsContainer.innerHTML = ''; const categoryContainers = {}; const headerMap = { 'industrials': { icon: 'fa-cogs', title: 'Industrials' }, 'packaging': { icon: 'fa-box-open', title: 'Packaging' }, 'automotive': { icon: 'fa-car-alt', title: 'Automotive' }, 'goods-services': { icon: 'fa-shopping-cart', title: 'Goods & Services' }, 'software': { icon: 'fa-laptop-code', title: 'Software' } }; Object.keys(headerMap).forEach(catKey => { const headerInfo = headerMap[catKey]; const container = document.createElement('div'); container.classList.add('industry-container', 'hidden'); container.dataset.category = catKey; const header = document.createElement('div'); header.classList.add('industry-header', 'hidden'); header.dataset.category = catKey; header.innerHTML = `<div class="industry-header-icon"><i class="fas ${headerInfo.icon}"></i></div> <h2 class="industry-title">${headerInfo.title}</h2>`; const grid = document.createElement('div'); grid.classList.add('portfolio-grid'); container.appendChild(header); container.appendChild(grid); portfolioItemsContainer.appendChild(container); categoryContainers[catKey] = grid; }); let itemRenderIndex = 0; allCompanyData.forEach((data) => { const itemElement = createPortfolioItem(data); if (itemElement) { const targetGrid = categoryContainers[data.category]; if (targetGrid) { targetGrid.appendChild(itemElement); setTimeout(() => { itemElement.classList.add('visible'); itemElement.classList.add(`delay-${(itemRenderIndex % 5) + 1}`); }, 50); itemRenderIndex++; } else { /* console warn */ } } }); setTimeout(() => { filterPortfolio('all'); }, 100); filterButtons.forEach(button => { button.addEventListener('click', function() { filterButtons.forEach(btn => btn.classList.remove('active')); this.classList.add('active'); const filterValue = this.getAttribute('data-filter'); filterPortfolio(filterValue); }); }); console.log("Portfolio Initialized Successfully.");
+         }
+
+
+
+        // --- Load Header and Footer
+        async function loadHeaderFooter() {
+            try {
+                const [headerRes, footerRes] = await Promise.all([
+                    fetch('Header.html?v=' + new Date().getTime()),
+                    fetch('Footer.html?v=' + new Date().getTime())
+                ]);
+                
+                if (!headerRes.ok) throw new Error('Failed to fetch Header.html: ' + headerRes.statusText);
+                const headerHtml = await headerRes.text();
+                const headerPlaceholder = document.getElementById('header-placeholder');
+                headerPlaceholder.innerHTML = headerHtml;
+                
+                // Extract and execute scripts from the injected HTML
+                const scriptTags = headerPlaceholder.querySelectorAll('script');
+                scriptTags.forEach(scriptTag => {
+                    if (scriptTag.innerHTML.trim()) {
+                        console.log('[Portfolio.js] Executing script from Header.html...');
+                        try {
+                            const newScript = document.createElement('script');
+                            newScript.innerHTML = scriptTag.innerHTML;
+                            document.head.appendChild(newScript);
+                        } catch (error) {
+                            console.error('[Portfolio.js] Error executing script:', error);
+                        }
+                    }
+                });
+                
+                // Initialize header functionality after scripts are executed
+                setTimeout(() => {
+                    if (typeof window.initializeHeaderFunctionality === 'function') {
+                        window.initializeHeaderFunctionality();
+                    } else {
+                        console.error('[Portfolio.js] initializeHeaderFunctionality not found after script execution');
+                    }
+                }, 100);
+                
+                if (!footerRes.ok) throw new Error('Failed to fetch Footer.html: ' + footerRes.statusText);
+                const footerHtml = await footerRes.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHtml;
+            } catch (e) {
+                document.getElementById('header-placeholder').innerHTML = '<p style="color:red; text-align:center;">Error loading header.</p>';
+                document.getElementById('footer-placeholder').innerHTML = '<p style="color:red; text-align:center;">Error loading footer.</p>';
+            }
+        }
+        
+        loadHeaderFooter();
+
+        // --- Initialize ---
+        initializePortfolio();
+
+
+    }); // End DOMContentLoaded
+
+    // Listen for language changes
+document.addEventListener('languageChanged', function(event) {
+    console.log('Portfolio: Language changed to:', event.detail.language);
+    translateIndustryHeaders();
+    updatePortfolioStats();
+    updateModalTranslations(); // ADD THIS LINE
+});
+
+// Function to translate industry headers
+function translateIndustryHeaders() {
+    const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+    
+    const headerMapping = {
+        'industrials': translations.portfolio?.filter?.industrials || 'Industrials',
+        'packaging': translations.portfolio?.filter?.packaging || 'Packaging',
+        'automotive': translations.portfolio?.filter?.automotive || 'Automotive',
+        'goods-services': translations.portfolio?.filter?.['goods-services'] || 'Goods & Services',
+        'software': translations.portfolio?.filter?.software || 'Software'
+    };
+    
+    // Update all industry headers
+    Object.keys(headerMapping).forEach(category => {
+        const header = document.querySelector(`.industry-header[data-category="${category}"] .industry-title`);
+        if (header) {
+            header.textContent = headerMapping[category];
+            console.log('Updated industry header:', category, '→', headerMapping[category]);
+        }
+    });
+}
+
+// Function to update portfolio stats with current language
+function updatePortfolioStats() {
+    const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
+    
+    // Update stat titles
+    const statCompaniesTitle = document.getElementById('stat-companies-title');
+    const statRevenueTitle = document.getElementById('stat-revenue-title');
+    
+    if (statCompaniesTitle) {
+        statCompaniesTitle.textContent = translations.portfolio?.stats?.companies || 'Portfolio Companies';
+    }
+    if (statRevenueTitle) {
+        statRevenueTitle.textContent = translations.portfolio?.stats?.revenue || 'Annual Revenue';
+    }
+}
+
+// Call translation function on page load for initial language
+setTimeout(() => {
+    translateIndustryHeaders();
+    updatePortfolioStats();
+}, 500);
+</script>
+
+<!-- Language Switcher JavaScript -->
+<script src="../Assets/JS/language-switcher.js"></script>
+<script src="../Assets/js/scroll-to-top.js"></script>
+</body>
+</html>

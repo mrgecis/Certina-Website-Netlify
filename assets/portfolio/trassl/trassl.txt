@@ -1,0 +1,9 @@
+Company: Trassl
+Industry: Packaging
+Acquisition year: 2020.0
+Revenue: 5.0 Million EUR
+FTE: 50.0
+Countries: 1.0
+Website: https://www.trassl-polymer.de
+Headquarter: Germany
+Seller: Owner family

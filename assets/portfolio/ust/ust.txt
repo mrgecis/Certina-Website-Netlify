@@ -1,0 +1,9 @@
+Company: UST
+Industry: Goods & Services
+Acquisition year: 2021.0
+Revenue: 17.0 Million EUR
+FTE: 140.0
+Countries: 1.0
+Website: https://www.ust-germany.com
+Headquarter: Germany
+Seller: n.a.

@@ -1,0 +1,9 @@
+Company: Horn
+Industry: Industrials
+Acquisition year: 2000.0
+Revenue: 90.0 Million EUR
+FTE: 475.0
+Countries: 5.0
+Website: https://www.hornglass.com
+Headquarter: Germany
+Seller: n.a.

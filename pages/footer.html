@@ -1,0 +1,54 @@
+<!-- Stylesheets for Footer -->
+<link rel="stylesheet" href="../Assets/css/footer.css">
+<link rel="stylesheet" href="../Assets/css/language-switcher.css">
+<!-- Footer JavaScript -->
+<script>
+    // Set current year for copyright
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearElem = document.getElementById('current-year');
+        if (yearElem) yearElem.textContent = new Date().getFullYear();
+    });
+</script>
+<!-- Footer Structure -->
+<footer>
+<div class="footer-container">
+    <div class="footer-content">
+        <!-- Address Section -->
+        <div class="footer-logo-container">
+            <div class="footer-address">
+                <p><i class="fas fa-map-marker-alt"></i> <strong data-translate="footer_headquarters">Headquarters</strong></p>
+                <p>
+                    Robert-Koch-Straße 5a<br>
+                    82031 Grünwald<br>
+                    <span data-translate="footer_country">Germany</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <div class="footer-contact-info">
+                <p><i class="fas fa-address-book"></i> <strong data-translate="footer_contact">Contact</strong></p>
+                <p>
+                    <i class="fas fa-phone-alt"></i> <strong data-translate="footer_phone">Phone:</strong>
+                    +49 89 210896-0
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> <strong data-translate="footer_email">Email:</strong>
+                    info@certina-group.com
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="footer-links">
+            <a href="Imprint.html" data-translate="footer_imprint">Imprint</a>
+            <a href="Privacy.html" data-translate="footer_data_privacy">Privacy Policy</a>
+            <a href="Career.html" data-translate="footer_career">Career</a>
+            <a href="https://www.linkedin.com/company/certina-group" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</div>
+</footer>

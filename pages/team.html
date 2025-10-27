@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: transparent; /* Transparent to allow gradient overlay */
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative; /* For pseudo-element positioning */
+            font-weight: 300;
+            min-height: 100vh;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+        /* Global Background Gradient Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Subtle gradient with new palette */
+            background-image: radial-gradient(circle at 10% 20%, rgba(102, 112, 133, 0.06) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(71, 84, 106, 0.06) 0%, transparent 40%);
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0; position: relative; }
+
+        /* === Styles for Header/Footer Must Remain === */
+        header {
+             background: transparent;
+             padding: 15px 0; /* More padding for spacing */
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 150; /* Higher z-index to ensure it's above all content */
+             transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+             border-bottom: 1px solid transparent; /* Add transition for border */
+         }
+        header.scrolled {
+             background: rgba(255, 255, 255, 0.9); /* Slightly opaque when scrolling */
+             padding: 10px 0;
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             box-shadow: 0 2px 10px rgba(52, 64, 84, 0.05); /* Subtle shadow */
+             border-bottom: 1px solid rgba(52, 64, 84, 0.08); /* Subtle border */
+         }
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 5px 0; /* Add padding inside the header content */
+        }
+        .logo { height: 40px; transition: all 0.3s ease; }
+        .logo:hover { opacity: 0.8; }
+        .hamburger-menu { width: 30px; height: 25px; position: relative; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; z-index: 101; }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+        .nav-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(249, 250, 251, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.5s ease; z-index: 99; }
+        .nav-menu.active { visibility: visible; opacity: 1; }
+        .nav-links { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; list-style: none; padding-left: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; text-transform: uppercase; font-size: 24px; position: relative; transition: all 0.3s ease; letter-spacing: 2px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--gradient-1); bottom: -8px; left: 0; transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+        @keyframes gradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .hamburger-menu.active .hamburger-line:nth-child(1),
+        .hamburger-menu.active .hamburger-line:nth-child(3) { background: var(--gradient-1); background-size: 200% 200%; animation: gradientAnimation 3s ease infinite; }
+        
+        /* === Buttons === */
+        .btn { display: inline-block; padding: 14px 35px; /* Adjusted padding */ border-radius: 30px; text-decoration: none; font-weight: 500; /* Slightly bolder */ letter-spacing: 0.8px; transition: all 0.4s ease; position: relative; overflow: hidden; z-index: 1; text-transform: uppercase; font-size: 13px; /* Slightly smaller */ border: 1px solid transparent; /* Base border */ }
+        .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--gradient-1); z-index: -1; transition: all 0.5s ease; }
+        .btn-primary { color: white; border-color: var(--secondary); } /* Use variable for border color */
+        .btn-primary:hover { background: var(--gradient-1); /* Keep gradient */ color: white; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(71, 84, 106, 0.2); } /* Use --secondary RGB */
+        .btn-primary:hover::before { transform: scale(1.05); filter: brightness(1.1); }
+        .btn-outline { background: transparent; border: 1px solid var(--secondary); color: var(--secondary); }
+        .btn-outline::before { background: var(--gradient-1); /* Use same gradient for consistency */ width: 0; }
+        .btn-outline:hover { color: white; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(71, 84, 106, 0.15); } /* Use --secondary RGB */
+        .btn-outline:hover::before { width: 100%; }
+        .btn-container { flex-direction: column; align-items: center; gap: 15px; }
+        /* === Footer === */
+        footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 80px 0 30px; position: relative; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */ gap: 60px; margin-bottom: 50px; align-items: start; }
+        .footer-title { font-size: 20px; margin-bottom: 25px; /* Use accent color for title */ color: var(--accent); font-weight: 500; /* Slightly bolder */ letter-spacing: 0.5px; }
+        .copyright { text-align: center; padding-top: 30px; /* Increased spacing */ border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */ color: var(--footer-text-secondary); font-weight: 300; }
+        .footer-links { margin-top: 0; display: flex; flex-wrap: wrap; /* Allow wrapping */ justify-content: center; gap: 30px; list-style: none; padding-left: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 300; }
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo-container p, .footer-contact p { color: var(--footer-text-secondary); font-size: 15px; /* Consistent font size */ line-height: 1.7; font-weight: 300; }
+        .footer-logo { display: block; max-height: 45px; margin-bottom: 20px; }
+        /* === End Styles for Header/Footer === */
+
+
+        /* Team Hero Section */
+        .team-hero {
+            padding-top: 80px;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(253, 254, 255, 0.9) 0%, 
+                rgba(244, 246, 248, 0.95) 100%);
+        }
+
+        .team-hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .team-hero h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .team-hero h2 {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .team-hero p {
+            font-size: clamp(14px, 1.8vw, 18px);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Team Animation */
+        .team-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(106, 123, 162, 0.2);
+            animation: gentleFloat 15s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(106, 123, 162, 0.6);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* General Section Styles */
+        .section { padding: 80px 0; position: relative; overflow: hidden; }
+        .section-header { text-align: center; margin-bottom: 60px; position: relative; }
+        .section-title { font-size: 38px; margin-bottom: 16px; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; position: relative; display: inline-block; font-weight: 300; letter-spacing: 0.5px; }
+        .section-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; line-height: 1.65; font-weight: 300; }
+
+        /* Team Grid */
+        .department-header { margin-top: 60px; margin-bottom: 30px; text-align: left; border-left: 4px solid var(--secondary); padding-left: 15px; display: flex; align-items: center; opacity: 0; transform: translateX(-30px); animation: fadeInLeft 0.8s forwards; }
+        .department-header-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .department-title { font-size: 24px; font-weight: 400; letter-spacing: 1px; margin: 0; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; margin-bottom: 60px; background: transparent; }
+        .team-member { 
+            background: var(--glass-bg); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: var(--glass-shadow); 
+            position: relative; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column;
+            cursor: pointer;
+            opacity: 0; 
+            transform: translateY(30px); 
+            animation: fadeInUp 0.8s forwards; 
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+        }
+        .team-member:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(52, 64, 84, 0.15); 
+            border: 1px solid rgba(71, 84, 106, 0.15); 
+        }
+        .team-member::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .team-member:hover::after {
+            opacity: 1;
+        }
+
+        .member-photo {
+            aspect-ratio: 3 / 4;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--card-bg-light), var(--glass-bg));
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .member-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: grayscale(100%); /* Schwarz-Weiß-Filter für alle Teamfotos */
+        }
+        .team-member:hover .member-photo img { transform: scale(1.05); }
+
+        .member-info { 
+            padding: 20px; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+        }
+        .member-name { 
+            font-size: 22px; 
+            font-weight: 600; 
+            margin-bottom: 15px; 
+            color: var(--secondary); 
+            letter-spacing: 0.5px; 
+        }
+        .member-position { 
+            font-size: 16px; 
+            color: var(--text-secondary); 
+            font-weight: 300; 
+            margin-bottom: 15px; 
+        }
+        .member-contact { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: auto; 
+            padding-top: 10px; 
+        }
+        .member-contact a {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: rgba(71, 84, 106, 0.08);
+            font-size: 14px;
+            color: var(--text);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .member-contact a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(71, 84, 106, 0.25);
+            color: var(--secondary);
+        }
+        .member-contact a i {
+            font-size: 16px;
+        }
+        .hidden { display: none; }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
+        .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; } .delay-6 { animation-delay: 0.6s; } .delay-7 { animation-delay: 0.7s; } .delay-8 { animation-delay: 0.8s; }
+
+        /* Background elements */
+        .orb { position: absolute; border-radius: 50%; opacity: 0.15; filter: blur(50px); pointer-events: none; }
+        .orb-1 { background: var(--secondary); width: 500px; height: 500px; top: -250px; left: -250px; }
+        .orb-2 { background: var(--accent); width: 400px; height: 400px; bottom: -200px; right: -200px; }
+        .orb-3 { background: var(--light-shade); width: 300px; height: 300px; top: 40%; left: 60%; opacity: 0.1; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 10% 20%, rgba(102, 112, 133, 0.06) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(71, 84, 106, 0.06) 0%, transparent 40%); background-attachment: fixed; z-index: -2; pointer-events: none; }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) { .team-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+        @media (max-width: 768px) {
+            .team-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            /* Footer Responsive Adjustment */
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+            .footer-contact { margin-top: 40px; }
+        }
+        @media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
+
+    /* Team Member Modal Styles */
+    .team-member-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        overflow-y: auto; /* Added for scrolling if modal itself is too tall */
+    }
+    .team-member-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .team-member-modal-content {
+        background-color: var(--primary-bg);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        width: 90%;
+        max-width: 800px; /* Increased max-width for side-by-side layout */
+        /* max-height: 80vh; */ /* REMOVED fixed max-height */
+        overflow-y: auto; /* Ensured for content scrolling */
+        overflow-x: hidden; /* Added to prevent horizontal scroll */
+        position: relative;
+        display: flex;
+        flex-direction: row; /* Changed to row for side-by-side layout */
+        align-items: flex-start; /* Align items to the top */
+        max-height: 85vh; /* ADDED - consistent with Portfolio modal */
+    }
+    .team-member-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    .team-member-modal-close:hover {
+        color: var(--secondary);
+    }
+    .team-member-modal-image-container {
+        width: 40%; /* Assign a width for the image container */
+        max-width: 300px; /* Max width for the image part */
+        min-width: 200px; /* Min width for the image part */
+        max-height: 75vh; /* Adjust max height if needed */
+        margin-right: 30px; /* Changed from margin-bottom to margin-right */
+        margin-bottom: 0; /* Remove bottom margin */
+        text-align: center;
+        overflow: hidden;
+        flex-shrink: 0; /* Prevent image container from shrinking */
+    }
+    .team-member-modal-image {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: contain;
+    }
+    .team-member-modal-name {
+        font-size: 24px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 15px; /* Increased margin */
+        text-align: left; /* Align text to the left */
+    }
+    .team-member-modal-description {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        white-space: pre-wrap;
+        text-align: left; /* Align text to the left */
+        flex-grow: 1; /* Allow description to take remaining space */
+    }
+
+    /* Create a container for name and description to sit to the right of the image */
+    .team-member-modal-text-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto; /* ADDED - to allow this section to scroll if needed */
+        max-height: calc(85vh - 60px); /* ADDED - ensure it fits within modal padding */
+    }
+    /* Mobile-optimized Modal Styles */
+    @media (max-width: 768px) {
+        .team-member-modal-content {
+            flex-direction: column;
+            width: 95%;
+            max-width: none;
+            padding: 20px 15px;
+            margin: 20px auto;
+            max-height: 90vh;
+            box-sizing: border-box;
+        }
+        
+        .team-member-modal-image-container {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto 20px auto;
+            max-height: 250px;
+        }
+        
+        .team-member-modal-text-content {
+            width: 100%;
+            max-height: none;
+        }
+        
+        .team-member-modal-name {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .team-member-modal-description {
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+            padding: 0;
+        }
+        
+        .team-member-modal-close {
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .team-member-modal-content {
+            padding: 15px 10px;
+            margin: 10px;
+            width: calc(100% - 20px);
+            max-height: 95vh;
+        }
+        
+        .team-member-modal-image-container {
+            max-width: 150px;
+            max-height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .team-member-modal-name {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .team-member-modal-description {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .team-member-modal-close {
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            font-size: 16px;
+        }
+    }
+    /* End Team Member Modal Styles */
+
+    /* Farbvariablen und Styles aus der Homepage */
+    :root {
+        --primary-bg: #f9fafb;
+        --secondary: #47546A;
+        --accent: #667085;
+        --dark-shade: #344054;
+        --light-shade: #D0D5DD;
+        --highlight-blue: #5A6A8A;
+        --ultra-light-bg: #F2F4F7;
+        --text: #1f2937;
+        --text-secondary: #6b7280;
+        --footer-bg: rgba(13, 13, 15, 0.95);
+        --footer-text: #e6e6e6;
+        --footer-text-secondary: #9ca3af;
+        --card-bg-light: rgba(255, 255, 255, 0.85);
+        --card-bg-news: rgba(255, 255, 255, 0.95);
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(71, 84, 106, 0.15);
+        --glass-shadow: 0 6px 24px 0 rgba(52, 64, 84, 0.08);
+        --separator-color: rgba(102, 112, 133, 0.2);
+        --gradient-1: linear-gradient(135deg, var(--secondary), var(--accent));
+        --gradient-2: linear-gradient(135deg, var(--accent), var(--secondary));
+    }
+    body {
+        background-color: var(--primary-bg);
+        color: var(--text);
+    }
+    .section-title {
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .section-subtitle {
+        color: var(--text-secondary);
+    }
+    .team-card, .card-bg {
+        background: var(--card-bg-light);
+        color: var(--text);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+    }
+    .team-role, .role {
+        color: var(--accent);
+    }
+    footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+    }
+    .footer-links a { color: var(--footer-text-secondary); }
+    .footer-links a:hover { color: var(--footer-text); }
+    /* Passe weitere relevante Selektoren nach Bedarf an */
+</style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+<!-- Header Placeholder -->
+<div id="header-container"></div>
+
+<!-- Hero Section -->
+<section class="team-hero" id="team-hero">
+    <div class="team-animation">
+        <div class="floating-element">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-lightbulb"></i>
+        </div>
+    </div>
+    <div class="container">
+        <div class="team-hero-content">
+            <h1>Team</h1>
+            <h2>Our Expertise</h2>
+            <p>Experienced professionals bringing together diverse expertise and perspectives to deliver exceptional results in complex transactions and change processes.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="section">
+<div class="container">
+
+    <!-- Managing Partners -->
+    <div class="department-header" data-category="managing-partner">
+        <div class="department-header-icon"><i class="fas fa-users-cog"></i></div>
+        <h2 class="department-title">Managing Partners</h2>
+    </div>
+    <div class="team-grid" id="managing-partner-grid">
+        <!-- Member cards will be dynamically added here -->
+    </div>
+
+    <!-- M&A Team -->
+    <div class="department-header" data-category="ma">
+        <div class="department-header-icon"><i class="fas fa-chart-line"></i></div>
+        <h2 class="department-title" data-translate="ma_team">M&amp;A and Corporate Development Team</h2>
+    </div>
+    <div class="team-grid" id="ma-grid">
+        <!-- Member cards will be dynamically added here -->
+    </div>
+</div>
+</section>
+
+<!-- Footer Placeholder -->
+<div id="footer-container"></div>
+
+<!-- Team Member Modal -->
+<div id="teamMemberModal" class="team-member-modal">
+    <div class="team-member-modal-content">
+        <span id="teamMemberModalClose" class="team-member-modal-close">&times;</span>
+        <div class="team-member-modal-image-container">
+            <img id="modalMemberImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Team Member" class="team-member-modal-image">
+        </div>
+        <div class="team-member-modal-text-content">
+            <h3 id="modalMemberName" class="team-member-modal-name">&nbsp;</h3>
+            <div id="modalMemberDescription" class="team-member-modal-description">
+                <!-- Description will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for component loading -->
+<script>
+
+    // Function to load external HTML components
+    async function loadComponent(url, elementId) {
+        try {
+            // Add cache-busting parameter to prevent caching of header and footer
+            const cacheBustedUrl = url + '?v=' + new Date().getTime();
+            const response = await fetch(cacheBustedUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} for ${url}`);
+            }
+            const content = await response.text();
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = content;
+                // Special handling for header to initialize its scripts AFTER loading
+                if (elementId === 'header-container') {
+                    // Extract and execute scripts from the injected HTML
+                    const scriptTags = element.querySelectorAll('script');
+                    scriptTags.forEach(scriptTag => {
+                        if (scriptTag.innerHTML.trim()) {
+                            console.log('[Team.js] Executing script from Header.html...');
+                            try {
+                                const newScript = document.createElement('script');
+                                newScript.innerHTML = scriptTag.innerHTML;
+                                document.head.appendChild(newScript);
+                            } catch (error) {
+                                console.error('[Team.js] Error executing script:', error);
+                            }
+                        }
+                    });
+                    
+                    // Initialize header functionality after scripts are executed
+                    setTimeout(() => {
+                        if (typeof window.initializeHeaderFunctionality === 'function') {
+                            window.initializeHeaderFunctionality();
+                        } else {
+                            console.error('[Team.js] initializeHeaderFunctionality not found after script execution');
+                        }
+                    }, 100);
+                }
+            } else {
+                 console.error(`Element with ID ${elementId} not found.`);
+            }
+        } catch (error) {
+            console.error(`Could not load ${url}: ${error}`);
+            const element = document.getElementById(elementId);
+            if (element) {
+                 element.innerHTML = `<p style='color:red; text-align:center;'>Error loading component.</p>`;
+            }
+        }
+    }
+
+
+
+
+    // Function to load team members from text files
+    async function loadTeamMembers() {
+        console.log("Starting to load team members...");
+        const initialTeamMembers = [
+            'Wondra', 'Santamaria', 'Schmidt', 'Brungs', 'vonKontz', 'Brockmann',
+            'Koszegi', 'Grizzo', 'Meier', 'Burmester', 'Tao', 'Welke'
+        ];
+        initialTeamMembers.sort(); // Sort the rest of the members alphabetically
+        const teamMembers = ['Wehrmann', 'Eiblmeier', ...initialTeamMembers]; // Add Wehrmann first, then Eiblmeier for M&A head
+
+        const managingPartnerGrid = document.getElementById('managing-partner-grid');
+        const maGrid = document.getElementById('ma-grid');
+
+        // Clear existing cards if any (e.g., during debugging)
+        if (managingPartnerGrid) managingPartnerGrid.innerHTML = '';
+        if (maGrid) maGrid.innerHTML = '';
+
+        let mpCount = 0;
+        let maCount = 0;
+        let maTeamMembers = []; // Collect M&A team members for proper sorting
+
+        for (const memberLastName of teamMembers) {
+            const infoFilePath = `../Assets/Team/${memberLastName}/${memberLastName}_info.txt`;
+            try {
+                console.log(`Fetching ${infoFilePath}...`);
+                const response = await fetch(infoFilePath);
+                console.log(`Response status for ${infoFilePath}: ${response.status}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const infoText = await response.text();
+                 console.log(`Raw info text for ${memberLastName}:\n${infoText}`);
+
+                const memberInfo = parseInfoText(infoText);
+                console.log(`Parsed info for ${memberLastName}:`, memberInfo);
+
+                // Determine grid and counter
+                let targetGrid = null;
+                let delayIndex = 0;
+                if (memberInfo.team.toLowerCase() === 'managing partner') {
+                    targetGrid = managingPartnerGrid;
+                    delayIndex = mpCount++;
+                    const memberCard = createMemberCard(memberLastName, memberInfo, delayIndex);
+                    targetGrid.appendChild(memberCard);
+                    console.log(`Added ${memberLastName} to ${memberInfo.team} grid`);
+                } else if (memberInfo.team.toLowerCase() === 'm&a') {
+                    // Collect M&A members for proper sorting
+                    maTeamMembers.push({ lastName: memberLastName, info: memberInfo });
+                    console.log(`Collected M&A member: ${memberLastName}`);
+                } else {
+                    console.warn(`Unknown or missing team for ${memberLastName}: "${memberInfo.team}"`);
+                    createFallbackCard(memberLastName, new Error(`Team "${memberInfo.team}" not recognized`), managingPartnerGrid, maGrid);
+                }
+            } catch (error) {
+                console.error(`Error loading or processing team member ${memberLastName}:`, error);
+                createFallbackCard(memberLastName, error, managingPartnerGrid, maGrid);
+            }
+        }
+        
+        // Now sort and add M&A team members: Eiblmeier first, then alphabetically
+        maTeamMembers.sort((a, b) => {
+            if (a.lastName === 'Eiblmeier') return -1; // Eiblmeier always first
+            if (b.lastName === 'Eiblmeier') return 1;
+            return a.lastName.localeCompare(b.lastName); // Others alphabetically
+        });
+        
+        // Add M&A team members to the grid
+        maTeamMembers.forEach((member, index) => {
+            const memberCard = createMemberCard(member.lastName, member.info, index);
+            maGrid.appendChild(memberCard);
+            console.log(`Added M&A member: ${member.lastName} at position ${index}`);
+        });
+        
+         console.log("Finished loading team members.");
+    } // End of loadTeamMembers
+
+    // Function to create a fallback card for debugging
+    function createFallbackCard(lastName, error, mpGrid, maGrid) {
+        const fallbackCard = document.createElement('div');
+        fallbackCard.className = 'team-member';
+        fallbackCard.style.backgroundColor = 'rgba(255,200,200,0.7)';
+        fallbackCard.style.animation = 'none'; // Prevent animation issues
+         fallbackCard.style.opacity = '1';
+         fallbackCard.style.transform = 'none';
+
+
+        fallbackCard.innerHTML = `
+            <div class="member-photo" style="height: auto; padding: 20px; text-align: center; aspect-ratio: 3 / 4;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #e63946;"></i>
+            </div>
+            <div class="member-info">
+                <h3 class="member-name">${lastName}</h3>
+                <div class="member-position">Error loading data</div>
+                <div style="font-size: 12px; color: #d62828; margin-top: 10px; word-break: break-all;">
+                    ${error.toString()}
+                </div>
+            </div>
+        `;
+
+        // Try adding to a default grid if specific one fails or isn't found
+        if (mpGrid) mpGrid.appendChild(fallbackCard.cloneNode(true));
+        else if (maGrid) maGrid.appendChild(fallbackCard.cloneNode(true));
+        else console.error("Could not display fallback card, grids not found");
+    } // End of createFallbackCard
+
+    // Function to parse the info text file (Corrected)
+    function parseInfoText(text) {
+        const lines = text.split('\n');
+        const info = {};
+
+        lines.forEach(line => {
+            const separatorIndex = line.indexOf(':'); // Find first colon only
+            if (separatorIndex > 0) { // Ensure colon exists and is not at the start
+                const key = line.substring(0, separatorIndex).trim().toLowerCase(); // Key to lowercase
+                const value = line.substring(separatorIndex + 1).trim();
+                if (key && value) {
+                    info[key] = value; // Store with lowercase key
+                }
+            }
+        });
+
+        // Access properties using lowercase keys
+        return {
+            name: info.name || 'N/A',
+            title: info.titel || 'N/A', // Handle "Titel" key
+            email: info.email || 'N/A',
+            linkedin: info.linkedin || '#',
+            team: info.team || 'Unknown' // Default team if missing
+        };
+    } // End of parseInfoText
+
+    // Function to create a team member card
+    function createMemberCard(lastName, info, index) {
+        const memberCard = document.createElement('div');
+        // Ensure team category is lowercase and hyphenated for data-category
+        const category = info.team.toLowerCase().replace(/\s+/g, '-');
+        memberCard.className = `team-member delay-${(index % 8) + 1}`; // Use index for animation delay class
+        memberCard.setAttribute('data-category', category);
+        memberCard.setAttribute('data-member', lastName); // Add last name as identifier
+
+        memberCard.innerHTML = `
+            <div class="member-photo">
+                <img src="../Assets/Team/${lastName}/${lastName}_Passbild.png" alt="${info.name}" onerror="this.style.display='none'; console.error('Image not found for ${lastName}'); this.parentElement.style.background='#eee';"> {/* Basic error handling for image */}
+            </div>
+            <div class="member-info">
+                <h3 class="member-name">${info.name}</h3>
+                <div class="member-position">${info.title}</div>
+                <div class="member-contact">
+                    ${info.email !== 'N/A' ? `<a href="mailto:${info.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
+                    ${info.linkedin !== '#' ? `<a href="${info.linkedin}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>` : ''}
+                </div>
+            </div>
+        `;
+
+        // Add click event to open modal
+        memberCard.addEventListener('click', () => openMemberModal(lastName, info));
+
+        return memberCard;
+    } // End of createMemberCard
+
+    // Function to open the team member modal
+    async function openMemberModal(lastName, info) {
+        const modal = document.getElementById('teamMemberModal');
+        const modalName = document.getElementById('modalMemberName');
+        const modalImage = document.getElementById('modalMemberImage');
+        const modalDescription = document.getElementById('modalMemberDescription');
+
+        if (!modal || !modalName || !modalImage || !modalDescription) {
+            console.error('Modal elements not found');
+            return;
+        }
+
+        // Set basic info
+        modalName.textContent = info.name || 'Name not available';
+        modalImage.src = `../Assets/Team/${lastName}/${lastName}_Passbild.png`;
+        modalImage.alt = info.name || 'Team Member';
+
+        // Get description with translation support
+        try {
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const descriptionKey = `${lastName.toLowerCase()}_description`;
+            
+            // Prüfe zuerst, ob eine Übersetzung verfügbar ist
+            if (window.translations && window.translations[currentLang] && window.translations[currentLang][descriptionKey]) {
+                modalDescription.textContent = window.translations[currentLang][descriptionKey];
+                console.log(`Using translated description for ${lastName} in ${currentLang}`);
+            } else {
+                // Fallback: Lade aus Datei
+                const descriptionFilePath = `../Assets/Team/${lastName}/${lastName}_description.txt`;
+                console.log(`Loading description from file: ${descriptionFilePath}`);
+                const response = await fetch(descriptionFilePath);
+                
+                if (response.ok) {
+                    const descriptionText = await response.text();
+                    modalDescription.textContent = descriptionText.trim() || 'No description available.';
+                } else {
+                    modalDescription.textContent = 'Description not available.';
+                }
+            }
+        } catch (error) {
+            modalDescription.textContent = 'Error loading description.';
+            console.error(`Error loading description for ${lastName}:`, error);
+        }
+
+        // Open modal
+        modal.classList.add('active');
+        modal.style.display = 'flex'; 
+
+        // Close modal handlers
+        const closeModal = () => {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none'; 
+            }, 300); 
+        };
+
+        const closeButton = document.getElementById('teamMemberModalClose');
+        if (closeButton) {
+            closeButton.onclick = closeModal;
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        document.addEventListener('keydown', function escKeyHandler(event) {
+            if (event.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+                document.removeEventListener('keydown', escKeyHandler);
+            }
+        });
+    }
+
+    // --- Main Execution ---
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load Header and Footer first
+        Promise.all([
+            loadComponent('Header.html', 'header-container'), // Assumes Header.html is in the same directory (Pages/)
+            loadComponent('Footer.html', 'footer-container')  // Assumes Footer.html is in the same directory (Pages/)
+        ]).then(() => {
+            // AFTER header/footer are attempted, load team members
+            console.log("Header and Footer loading initiated. Now loading team members...");
+            loadTeamMembers();
+        }).catch(error => {
+            console.error("Error loading initial page components (Header/Footer):", error);
+             // Still attempt to load team members even if header/footer fail? Maybe not.
+             // loadTeamMembers(); // Decide if team should load if header/footer fail
+        });
+
+        // Any other scripts specific to team.html can go here
+    });
+
+</script>
+
+<!-- Language Switcher JavaScript -->
+<script src="../Assets/JS/language-switcher.js"></script>
+<script src="../Assets/js/scroll-to-top.js"></script>
+</body>
+</html>

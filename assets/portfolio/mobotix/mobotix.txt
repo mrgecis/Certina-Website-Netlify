@@ -1,0 +1,9 @@
+Company: MOBOTIX
+Industry: Software
+Acquisition year: 2025.0
+Revenue: 55.0 Million EUR
+FTE: 269.0
+Countries: 6.0
+Website: https://www.mobotix.com
+Headquarter: Germany
+Seller: Konica Minolta

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CERTINA GROUP - Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+        /* Certina Light Theme Colors (Base) */
+        :root {
+            /* Core Palette - Refined for sophistication */
+            --primary-bg: #FDFEFF;
+            --secondary: #3D4A5D;
+            --accent: #5C6B7F;
+            --dark-shade: #2E3A4A;
+            --light-shade: #D3D9E2;
+            --highlight-blue: #6A7BA2;
+            --ultra-light-bg: #F4F6F8;
+
+            /* Text Colors */
+            --text: #1D2633;
+            --text-secondary: #626E7F;
+
+            /* Footer Text (for dark background) */
+            --footer-bg: rgba(10, 10, 12, 0.97);
+            --footer-text: #ECEFF1;
+            --footer-text-secondary: #A0A7B0;
+
+            /* Card/Glass Effects - Refined for subtlety and depth */
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-news: rgba(255, 255, 255, 0.97);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(61, 74, 93, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(46, 58, 74, 0.08);
+            --card-shadow: 0 4px 12px rgba(46, 58, 74, 0.05), 0 10px 30px rgba(46, 58, 74, 0.07);
+            --separator-color: rgba(92, 107, 127, 0.18);
+
+            /* Gradients - Will use the new core palette */
+            --gradient-1: linear-gradient(135deg, var(--secondary), var(--highlight-blue));
+            --gradient-2: linear-gradient(135deg, var(--highlight-blue), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: transparent; /* Changed from solid to transparent */
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative; /* For pseudo-element positioning */
+            font-weight: 300;
+            min-height: 100vh;
+        }
+        
+        /* Header Placeholder - container for the fixed header */
+        #header-placeholder {
+            min-height: 0; /* Allow header to overlay the hero */
+            position: relative;
+            z-index: 101; /* Ensure it's above the hero */
+        }
+        /* Global Background Gradient Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Subtle gradient with new palette */
+            background-image: radial-gradient(circle at 10% 20%, rgba(102, 112, 133, 0.06) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(71, 84, 106, 0.06) 0%, transparent 40%);
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; padding: 0; }
+
+        /* --- START: Added Header Styles (Copied from Homepage) --- */
+        header {
+             background: transparent;
+             padding: 15px 0; /* More padding for spacing */
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 150; /* Higher z-index to ensure it's above all content */
+             transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+             border-bottom: 1px solid transparent; /* Add transition for border */
+         }
+        header.scrolled {
+             background: rgba(255, 255, 255, 0.9); /* Slightly opaque when scrolling */
+             padding: 10px 0;
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             box-shadow: 0 2px 10px rgba(52, 64, 84, 0.05); /* Subtle shadow */
+             border-bottom: 1px solid rgba(52, 64, 84, 0.08); /* Subtle border */
+         }
+        .header-content {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 5px 0; /* Add padding inside the header content */
+         }
+        .logo { height: 40px; transition: all 0.3s ease; }
+        .logo:hover { opacity: 0.8; }
+
+        /* Hamburger Menu */
+        .hamburger-menu { width: 30px; height: 25px; position: relative; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; z-index: 101; }
+        .hamburger-line { width: 100%; height: 3px; background: var(--secondary); border-radius: 5px; transition: all 0.4s ease; }
+        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+        /* Nav Menu */
+        .nav-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(249, 250, 251, 0.97); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.5s ease; z-index: 99; }
+        .nav-menu.active { visibility: visible; opacity: 1; }
+        .nav-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+        .nav-links li { margin: 0; /* Removed extra margin from portfolio style */ }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; text-transform: uppercase; font-size: 24px; position: relative; transition: all 0.3s ease; letter-spacing: 2px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--gradient-1); bottom: -8px; left: 0; transition: width 0.4s ease; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Utility class used by header JS */
+        body.no-scroll {
+            overflow: hidden;
+        }
+        /* --- END: Added Header Styles --- */
+
+        /* Hero Section - Academy */
+        .academy-hero {
+            /* Added padding-top to push content below fixed header */
+            padding-top: 80px; /* Adjust value based on final header height */
+            height: 60vh;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--ultra-light-bg); /* Kept original background */
+        }
+
+        /* Ensure video doesn't overlap fixed header */
+        .academy-bg-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0; /* Behind hero content */
+            opacity: 0.2;
+        }
+
+        .academy-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 30px; /* Removed top padding, handled by .academy-hero */
+            position: relative;
+            z-index: 1; /* Above video */
+        }
+        .academy-hero h1 {
+            font-size: 54px;
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--dark-shade);
+            line-height: 1.2;
+        }
+        .academy-hero h2 {
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        .academy-hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        /* General Section Styles */
+        .section { padding: 80px 0; position: relative; overflow: hidden; }
+        .section-header { 
+            text-align: center; 
+            margin-bottom: 70px; 
+            position: relative;
+            padding-bottom: 20px; 
+}
+.section-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-1);
+    border-radius: 3px;
+}        .section-title { 
+            font-size: 38px;
+            margin-bottom: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+.section-subtitle { 
+    font-size: 17px; 
+    color: var(--text-secondary); 
+    max-width: 700px; 
+    margin: 0 auto; 
+    line-height: 1.65; 
+    font-weight: 300; 
+}
+
+/* About Academy Section */
+        .about-academy {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+        .about-text h3 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+        .about-text p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background-color: var(--ultra-light-bg);
+            padding: 80px 0;
+            position: relative;
+        }
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .partner-card {
+            display: flex; 
+            flex-direction: column;
+            height: 100%;
+            background: var(--card-bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(52, 64, 84, 0.15);
+            border: 1px solid rgba(71, 84, 106, 0.25);
+        }
+        .partner-photo {
+            flex: 0 0 auto; /* Don't allow photo to grow/shrink */
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            position: relative;
+        }
+        .partner-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            filter: grayscale(20%);
+        }
+        .partner-card:hover .partner-photo img {
+            transform: scale(1.02);
+            filter: grayscale(0%);
+        }
+        .partner-info {
+            display: flex;
+            flex-direction: column;
+            padding: 18px !important;
+            height: auto !important;
+            min-height: 110px;
+            flex-grow: 1;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,1) 100%);
+            position: relative;
+            justify-content: space-between; /* Align items consistently */
+            /* min-height: 120px; /* Ensure consistent height */
+        }
+        .partner-field {
+            order: 1; /* Always at top */
+            font-size: 11px !important; /* Smaller text */
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            position: relative;
+        }
+        .partner-field:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-1);
+        }
+        .partner-name {
+            order: 2; /* Always after field */
+            font-size: 15px !important; /* Use important to override previous definition */
+            line-height: 1.25;
+            font-weight: 400;
+            color: var(--text);
+            margin-top: auto;
+            margin-bottom: 5px;
+            max-height: 3.75em;
+            overflow: hidden;
+        }
+        .partner-overlay {
+            order: 3; /* Always at bottom */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .partner-card:hover .partner-overlay {
+            opacity: 1;
+        }
+
+        .partner-card:hover .partner-field {
+            color: var(--accent);
+        }
+
+        .partner-card:hover .partner-field:after {
+            width: 60px;
+        }
+
+        /* Special treatment for long titles */
+        .partner-card:nth-child(2) .partner-field {
+            font-size: 10px !important; /* Smaller for longer field titles */
+        }
+
+        /* News Section - Styles kept as they are specific to Academy page */
+        .news-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .news-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+        .news-number {
+            flex: 0 0 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 24px;
+            font-weight: 300;
+            margin-right: 25px;
+            border: 1px solid var(--secondary);
+        }
+        .news-content {
+            flex: 1;
+        }
+        .news-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .news-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+        .news-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        .news-link:hover {
+            color: var(--accent);
+        }
+
+        /* Background elements */
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(96, 165, 250, 0.03) 0%, transparent 40%); background-attachment: fixed; z-index: -2; pointer-events: none; }        /* === Footer === */
+        footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 80px 0 30px; position: relative; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */ gap: 60px; margin-bottom: 50px; align-items: start; }
+        .footer-title { font-size: 20px; margin-bottom: 25px; /* Use accent color for title */ color: var(--accent); font-weight: 500; /* Slightly bolder */ letter-spacing: 0.5px; }
+        .copyright { text-align: center; padding-top: 30px; /* Increased spacing */ border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */ color: var(--footer-text-secondary); font-weight: 300; }
+        .footer-links { margin-top: 0; display: flex; flex-wrap: wrap; /* Allow wrapping */ justify-content: center; gap: 30px; list-style: none; padding-left: 0;}
+        .footer-links a { color: var(--footer-text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 300; }
+        .footer-links a:hover { color: var(--footer-text); }
+        .footer-logo-container p, .footer-contact p { color: var(--footer-text-secondary); font-size: 15px; /* Consistent font size */ line-height: 1.7; font-weight: 300; }
+        .footer-logo { display: block; max-height: 45px; margin-bottom: 20px; }
+        @media (max-width: 768px) { /* Adjust footer grid for mobile devices */
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+            .footer-contact { margin-top: 40px; }
+        }
+
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            .about-content {
+                flex-direction: column;
+            }
+            .about-image {
+                max-width: 100%;
+                margin-top: 40px;
+                order: 2;
+            }
+            .about-text {
+                order: 1;
+            }
+             /* Footer responsive */
+             .footer-content { grid-template-columns: 1fr; text-align: center; }
+             .footer-logo-container, .footer-contact { display: flex; flex-direction: column; align-items: center; }
+             .footer-logo { margin-left: auto; margin-right: auto; }
+             .footer-contact { margin-top: 40px; }
+             .footer-title { display: block; }
+        }
+        @media (max-width: 1200px) {
+            .partners-grid {
+                gap: 20px; /* Reduce gap slightly on medium screens */
+            }
+        }
+        @media (max-width: 992px) { /* Added a breakpoint to handle 4 cards better on medium tablets */
+             .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px; /* Restore standard gap for 2-column layout */
+             }
+             .partner-card {
+                max-width: 400px; /* Prevent cards from getting too wide */
+                margin: 0 auto; /* Center cards */
+                width: 100%;
+             }
+             .partner-info {
+        height: 120px; /* Slightly less height on tablets */
+    }
+        }
+        @media (max-width: 768px) {
+            .academy-hero { padding-top: 70px; } /* Adjust padding for smaller header */
+            .academy-hero h1 { font-size: 40px; }
+            .academy-hero h2 { font-size: 16px; letter-spacing: 3px; }
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr); /* Stays 2x2 from 992px down */
+                gap: 20px; /* Reduce gap further on smaller screens */
+            }
+            .partner-photo {
+                aspect-ratio: 1 / 1.2; /* Slightly shorter images on mobile */
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .section-title {
+                font-size: 36px;
+            }
+            .about-text h3 {
+                font-size: 28px;
+            }
+            .news-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .news-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .partner-info {
+        padding: 15px;
+        height: 110px; /* Even less height on mobile */
+    }
+    .partner-field {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+    
+    .partner-name {
+        font-size: 16px;
+    }
+            /* Footer responsive adjustments if needed */
+        }
+        @media (max-width: 480px) {
+             .academy-hero {
+                min-height: 350px;
+                 padding-top: 60px; /* Adjust padding for smaller header */
+            }
+            .academy-hero h1 {
+                font-size: 32px;
+            }
+            .academy-hero p {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .section-subtitle {
+                font-size: 16px;
+            }
+            .partners-grid {
+                /* Stack vertically on small mobile */
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .partner-photo {
+                aspect-ratio: 3/4; /* Return to original aspect ratio */
+            }
+            .partner-info {
+        height: auto; /* Auto height on smallest devices */
+        min-height: 100px;
+        padding: 15px 12px;
+    }
+            .partner-field {
+                font-size: 12px;
+            }
+            .partner-name {
+                font-size: 20px;
+            }
+            /* Footer responsive adjustments if needed */
+        }
+
+        /* Background decorations for partners section */
+        .bg-decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            background: var(--gradient-1);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -150px;
+        }
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            right: -100px;
+        }
+        .partners-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Removed duplicated video styles */
+        /* .academy-bg-video { ... } */
+        /* .academy-hero { ... } */
+
+        .partner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.partner-card:hover .partner-overlay {
+    opacity: 1;
+}
+
+.partner-card:hover .partner-field {
+    color: var(--accent);
+}
+
+.partner-card:hover .partner-field:after {
+    width: 60px;
+}
+</style>
+</head>
+<body>
+<!-- Header Placeholder -->
+<div id="header-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="academy-hero">
+    <!-- Video moved inside hero, but ensure z-index is correct -->
+    <video muted loop playsinline class="academy-bg-video" id="academy-bg-video">
+        <source src="../Assets/Academy/Academy_Hero.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        <div class="academy-hero-content">
+            <h1>CERTINA Academy</h1>
+            <h2>Empowering Knowledge and Strategic Growth</h2>
+            <p>An internal initiative aimed at building and promoting knowledge and competencies within the company through partnerships with experts across various sectors and industries.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Academy Section -->
+<section class="about-academy section">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Building Excellence Through Knowledge</h3>
+                <p>The CERTINA Academy is an internal initiative of the CERTINA GROUP aimed at building and promoting knowledge and competencies within the company. It brings together partners from various sectors and industries to support the employees and businesses of the CERTINA GROUP in different issues and projects.</p>
+                <p>A key component of the Academy is the CERTINA Growth Partners, who share their knowledge through coaching and training or by directly contributing to projects, such as M&A transactions or operational turnaround measures, to support the strategic development of the group.</p>
+                <p>Thus, the Academy contributes to the continuous education and development of all stakeholders and supports the management of the CERTINA GROUP in achieving its corporate goals.</p>
+            </div>
+            <div class="about-image">
+                <img src="../Assets/Academy/Academy_cover.png" alt="CERTINA Academy in action">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="partners-section">
+    <!-- Background decorative elements -->
+    <div class="bg-decoration circle-1"></div>
+    <div class="bg-decoration circle-2"></div>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Growth Partners</h2>
+            <p class="section-subtitle">Meet the experts who contribute their knowledge and expertise to our Academy</p>
+        </div>
+        <div class="partners-grid">
+            <!-- Finance and Legal Partner -->
+            <div class="partner-card">
+                <div class="partner-photo">
+                    <img src="../Assets/Academy/Professors/Haecker/Haecker_Passbild.png" alt="Prof. Dr. Dr. Joachim Häcker">
+                </div>
+                <div class="partner-info">
+                    <div class="partner-field">Finance and Legal</div>
+                    <h3 class="partner-name">Prof. Dr. Dr. Joachim Häcker</h3>
+                    <div class="partner-overlay"></div>
+                </div>
+            </div>
+
+            <!-- Artificial Intelligence Partner -->
+            <div class="partner-card">
+                <div class="partner-photo">
+                    <img src="../Assets/Academy/Professors/Choi/Choi_Passbild.png" alt="Prof. Dr. Joon Nak Choi">
+                </div>
+                <div class="partner-info">
+                    <div class="partner-field">Artificial Intelligence and Data Analytics</div>
+                    <h3 class="partner-name">Prof. Dr. Joon Nak Choi</h3>
+                    <div class="partner-overlay"></div>
+                </div>
+            </div>
+
+            <!-- Communication Partner -->
+            <div class="partner-card">
+                <div class="partner-photo">
+                    <img src="../Assets/Academy/Professors/Siong/Siong_Passbild.png" alt="Prof. Dr. Kian Siong T">
+                </div>
+                <div class="partner-info">
+                    <div class="partner-field">Communication and Negotiation</div>
+                    <h3 class="partner-name">Prof. Dr. Kian Siong T</h3>
+                    <div class="partner-overlay"></div>
+                </div>
+            </div>
+
+            <!-- R&D Partner -->
+            <div class="partner-card">
+                <div class="partner-photo">
+                    <img src="../Assets/Academy/Professors/Honig/Honig_Passbild.png" alt="Prof. Dr. Dr. Vladimír Hönig">
+                </div>
+                <div class="partner-info">
+                    <div class="partner-field">Research &amp; Development</div>
+                    <h3 class="partner-name">Prof. Dr. Dr. Vladimír Hönig</h3>
+                    <div class="partner-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Placeholder -->
+<div id="footer-placeholder"></div>
+
+<!-- Lade translation.js für Sprachumschaltung -->
+<script src="../Assets/js/translation.js"></script>
+
+<!-- JavaScript for component loading (Identical to Portfolio.html) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to load external HTML components
+        const loadComponents = async () => {
+            try {
+                const headerRes = await fetch('Header.html?v=' + new Date().getTime()); // Added cache-busting parameter
+                if (!headerRes.ok) throw new Error(`Failed to fetch Header.html: ${headerRes.statusText}`);
+                const headerHtml = await headerRes.text();
+                document.getElementById('header-placeholder').innerHTML = headerHtml;
+
+                // Initialize header scripts after loading
+                initializeHeaderScripts(); // Ensure this function exists and is called
+
+                const footerRes = await fetch('Footer.html');
+                if (!footerRes.ok) throw new Error(`Failed to fetch Footer.html: ${footerRes.statusText}`);
+                const footerHtml = await footerRes.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+                 // Add error handlers to newly loaded images in header/footer
+                 document.querySelectorAll('#header-placeholder img, #footer-placeholder img').forEach(img => {
+                    if (!img.hasAttribute('onerror')) {
+                        img.onerror = function() {
+                            console.error(`Failed to load image: ${this.src}`);
+                            // Optionally set a placeholder
+                            // this.src = '../Assets/placeholder.png';
+                        };
+                    }
+                });
+
+                // Nachdem Header und Footer geladen wurden, Übersetzungen anwenden
+                if (window.initTranslation) {
+                    window.initTranslation();
+                }
+
+            } catch (error) {
+                console.error("Error loading components:", error);
+                document.getElementById('header-placeholder').innerHTML = "<p style='color:red; text-align:center;'>Error loading header.</p>";
+                document.getElementById('footer-placeholder').innerHTML = "<p style='color:red; text-align:center;'>Error loading footer.</p>";
+            }
+        };
+
+        // This function MUST be defined here or loaded externally
+        // It contains the logic for hamburger menu, scroll effect etc.
+        function initializeHeaderScripts() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            // Check if elements exist BEFORE adding listeners
+            if (hamburgerMenu && navMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    hamburgerMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll'); // Make sure body.no-scroll CSS exists
+                });
+
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navMenu.classList.contains('active')) {
+                            hamburgerMenu.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            document.body.classList.remove('no-scroll');
+                        }
+                        // Optional: Smooth scroll to section if using anchors
+                        // const targetId = this.getAttribute('href');
+                        // if (targetId && targetId.startsWith('#')) {
+                        //     // e.preventDefault(); // Prevent default jump
+                        //     // document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                        // }
+                    });
+                });
+            } else {
+                console.warn("Hamburger menu or nav menu element not found after loading header.");
+            }
+
+            const header = document.querySelector('header');
+            if(header) {
+                window.addEventListener('scroll', function() {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                });
+            } else {
+                 console.warn("Header element not found after loading header for scroll effect.");
+            }
+        }
+
+        // Add error handlers to images already present in Academy.html
+        document.querySelectorAll('img').forEach(img => {
+            if (!img.hasAttribute('onerror')) {
+                img.onerror = function() {
+                    console.error(`Failed to load image: ${this.src}`);
+                    // Consider setting a visible placeholder or default image
+                    // this.src = '../Assets/placeholder.png'; // Example placeholder
+                     this.alt = `Error loading ${this.src}`; // Update alt text
+                     this.style.border = '1px solid red'; // Visual indicator (optional)
+                };
+            }
+        });
+
+        // Load Header and Footer
+        loadComponents();
+    });
+</script>
+
+<!-- Language Switcher JavaScript -->
+<script src="../Assets/JS/language-switcher.js"></script>
+
+</body>
+</html>
