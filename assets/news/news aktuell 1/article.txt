@@ -1,5 +1,26 @@
 [TITLE]
-CERTINA Tech Days 2025 - Driving Innovation Together
+Forensic Accounting Innovation by Prof. Dr. Dr. Joachim Häcker
 
 [TEXT]
-This week, CERTINA Group proudly hosted the first-ever CERTINA Tech Days in Prague, Czech Republic, bringing together our leading automotive technology companies, academic partners, and research institutions to strengthen collaboration in advanced R&D.
+• Forensic accounting algorithm developed by CERTINA's Head of the CERTINA Academy, Prof. Dr. Dr. Joachim Häcker
+• Detects potential balance sheet manipulation through advanced statistical analysis
+• Successfully applied in CERTINA's due diligence for the MOBOTIX AG acquisition
+
+Dear colleagues and partners,
+
+How can investors detect balance sheet manipulation early — before committing capital?
+
+This question has guided Prof. Dr. Dr. Joachim Häcker, Head of the CERTINA Academy, who has developed a forensic accounting algorithm based on advanced data analytics.
+
+The model identifies statistical irregularities in financial statements that may indicate manipulation or accounting inconsistencies. It has already been applied successfully in our recent due diligence processes — for example, during CERTINA's acquisition of Konica Minolta's majority stake in MOBOTIX AG.
+
+By applying this model in every CERTINA due diligence, we can reduce transaction risk and make investment decisions with greater confidence.
+A tool like this might have identified irregularities such as those seen in the Wirecard case much earlier.
+
+The algorithm and its methodology were recently published in the October 2025 issue of ZIR (Zeitschrift für Interne Revision).
+You can download the German version here: https://eiqf.de/publikationen/
+
+The English translation is attached.
+
+For further information, feel free to contact:
+Prof. Dr. Dr. Joachim Häcker – joachim.haecker@certina-group.com
