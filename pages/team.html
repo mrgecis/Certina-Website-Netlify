@@ -954,7 +954,7 @@
         memberCard.innerHTML = `
             <div class="member-photo">
                 ${isPlaceholder 
-                    ? `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); font-size: 64px; color: #6366f1;">
+                    ? `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #D3D9E2 0%, #5C6B7F 100%); font-size: 64px; color: #FDFEFF;">
                         <i class="fas fa-user"></i>
                       </div>`
                     : `<img src="../Assets/Team/${lastName}/${lastName}_Passbild.png" alt="${info.name}" onerror="this.style.display='none'; console.error('Image not found for ${lastName}'); this.parentElement.style.background='#eee';"> {/* Basic error handling for image */}`
@@ -993,7 +993,7 @@
         
         // Handle placeholder image for Corinna Holz
         if (lastName === 'CorrinnaHolz') {
-            modalImage.innerHTML = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); font-size: 64px; color: #6366f1;">
+            modalImage.innerHTML = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #D3D9E2 0%, #5C6B7F 100%); font-size: 64px; color: #FDFEFF;">
                 <i class="fas fa-user"></i>
               </div>`;
         } else {
