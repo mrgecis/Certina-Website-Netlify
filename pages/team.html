@@ -713,6 +713,15 @@
     <div class="team-grid" id="legal-grid">
         <!-- Member cards will be dynamically added here -->
     </div>
+
+    <!-- New Business Models Team -->
+    <div class="department-header" data-category="new-business-models">
+        <div class="department-header-icon"><i class="fas fa-lightbulb"></i></div>
+        <h2 class="department-title">New Business Models</h2>
+    </div>
+    <div class="team-grid" id="new-business-models-grid">
+        <!-- Member cards will be dynamically added here -->
+    </div>
 </div>
 </section>
 
@@ -805,11 +814,13 @@
         const managingPartnerGrid = document.getElementById('managing-partner-grid');
         const maGrid = document.getElementById('ma-grid');
         const legalGrid = document.getElementById('legal-grid');
+        const newBusinessModelsGrid = document.getElementById('new-business-models-grid');
 
         // Clear existing cards if any (e.g., during debugging)
         if (managingPartnerGrid) managingPartnerGrid.innerHTML = '';
         if (maGrid) maGrid.innerHTML = '';
         if (legalGrid) legalGrid.innerHTML = '';
+        if (newBusinessModelsGrid) newBusinessModelsGrid.innerHTML = '';
 
         let mpCount = 0;
         let maCount = 0;
@@ -881,6 +892,18 @@
         legalGrid.appendChild(corinnaCard);
         console.log('Added Corinna Holz to Legal grid');
         
+        // Add Stefan Stefanovic to New Business Models grid
+        const stefanInfo = {
+            name: 'Stefan Stefanovic',
+            title: 'Manager - New Business Models',
+            email: 'N/A',
+            linkedin: '#',
+            team: 'New Business Models'
+        };
+        const stefanCard = createMemberCard('StefanStefanovic', stefanInfo, 0);
+        newBusinessModelsGrid.appendChild(stefanCard);
+        console.log('Added Stefan Stefanovic to New Business Models grid');
+        
          console.log("Finished loading team members.");
     } // End of loadTeamMembers
 
@@ -948,8 +971,8 @@
         memberCard.setAttribute('data-category', category);
         memberCard.setAttribute('data-member', lastName); // Add last name as identifier
 
-        // Determine if this is a placeholder member (Corinna Holz)
-        const isPlaceholder = lastName === 'CorrinnaHolz';
+        // Determine if this is a placeholder member (Corinna Holz or Stefan Stefanovic)
+        const isPlaceholder = lastName === 'CorrinnaHolz' || lastName === 'StefanStefanovic';
         
         memberCard.innerHTML = `
             <div class="member-photo">
@@ -991,8 +1014,8 @@
         // Set basic info
         modalName.textContent = info.name || 'Name not available';
         
-        // Handle placeholder image for Corinna Holz
-        if (lastName === 'CorrinnaHolz') {
+        // Handle placeholder image for Corinna Holz or Stefan Stefanovic
+        if (lastName === 'CorrinnaHolz' || lastName === 'StefanStefanovic') {
             modalImage.innerHTML = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #D3D9E2 0%, #5C6B7F 100%); font-size: 64px; color: #FDFEFF;">
                 <i class="fas fa-user"></i>
               </div>`;
