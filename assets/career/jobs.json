@@ -1,0 +1,77 @@
+{
+  "jobs": [
+    {
+      "id": "junior-legal-counsel-2025",
+      "active": true,
+      "title": {
+        "de": "Junior Legal Counsel / Volljurist (m/w/d)",
+        "en": "Junior Legal Counsel (m/f/d)"
+      },
+      "company": {
+        "de": "CERTINA Group",
+        "en": "CERTINA Group"
+      },
+      "location": {
+        "de": "München/Hybrid",
+        "en": "Munich/Hybrid"
+      },
+      "type": {
+        "de": "Vollzeit",
+        "en": "Full-time"
+      },
+      "description": {
+        "de": "Als Junior Legal Counsel arbeitest Du nah am operativen Geschäft in enger Zusammenarbeit mit Management-Teams, unserem Investment-Team und externen Beratern und übernimmst früh Verantwortung in rechtlich wie unternehmerisch anspruchsvollen Projekten.",
+        "en": "As Junior Legal Counsel, you will work closely with the operational business in collaboration with management teams, our investment team, and external advisors, taking on early responsibility in legally and entrepreneurially challenging projects."
+      },
+      "responsibilities": {
+        "de": [
+          "M&A-Transaktionen (national & international)",
+          "Reorganisationen, Restrukturierungen und Transformationsprojekte",
+          "Rechtliche Betreuung unserer Portfoliounternehmen"
+        ],
+        "en": [
+          "M&A transactions (national & international)",
+          "Reorganizations, restructurings and transformation projects",
+          "Legal support for our portfolio companies"
+        ]
+      },
+      "requirements": {
+        "de": [
+          "Zweites Staatsexamen abgeschlossen oder kurz davor",
+          "Sehr gutes juristisches Fundament (Gesellschaftsrecht / M&A von Vorteil)",
+          "Sehr gute Englischkenntnisse",
+          "Strukturierte, selbstständige Arbeitsweise",
+          "Eigeninitiative und unternehmerisches Denken"
+        ],
+        "en": [
+          "Second state examination completed or close to completion",
+          "Excellent legal foundation (Corporate Law / M&A advantageous)",
+          "Excellent English skills",
+          "Structured, independent working style",
+          "Initiative and entrepreneurial thinking"
+        ]
+      },
+      "benefits": {
+        "de": [
+          "Internationales Umfeld mit hohem und kontinuierlichem Dealflow",
+          "Direkte Zusammenarbeit mit internationalen Teams und Management",
+          "Family Equity ohne Exit-Druck",
+          "Schnelle Entscheidungen, kurze Wege",
+          "Entwicklung durch Praxis, Mentoring und CERTINA Academy"
+        ],
+        "en": [
+          "International environment with high and continuous deal flow",
+          "Direct collaboration with international teams and management",
+          "Family Equity without exit pressure",
+          "Fast decisions, short paths",
+          "Development through practice, mentoring and CERTINA Academy"
+        ]
+      },
+      "applyEmail": "tobias.eiblmeier@certina-group.com",
+      "applyInstructions": {
+        "de": "Wenn Du ein Umfeld suchst, das fordert und fördert, freuen wir uns auf Deine Bewerbung mit allen relevanten Unterlagen, Deinem frühestmöglichen Eintrittstermin und Deiner Gehaltsvorstellung.",
+        "en": "If you are looking for an environment that challenges and promotes, we look forward to receiving your application with all relevant documents, your earliest possible start date and your salary expectations."
+      }
+    }
+  ]
+}
