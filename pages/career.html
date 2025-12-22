@@ -1579,8 +1579,11 @@
         let allJobs = []; // Store all fetched jobs globally
         let currentOpenJobId = null; // Track the currently open job ID for modal refresh on lang change
 
-        async function loadJobPostings() {
+        async function loadJobPostings(lang = null) {
             try {
+                const useLang = lang || currentLanguage;
+                console.log('[Career.js loadJobPostings] Loading jobs with language:', useLang);
+                
                 const jobsContainer = document.getElementById('jobs-container');
                 const noJobsMessage = document.getElementById('no-jobs-message');
                 
@@ -1592,7 +1595,7 @@
                     jobsContainer.innerHTML = ''; // Clear previous job cards
                     
                     jobs.forEach(job => {
-                        const jobCard = createJobCard(job);
+                        const jobCard = createJobCard(job, useLang);
                         jobsContainer.appendChild(jobCard);
                     });
                 } else {
@@ -1638,11 +1641,11 @@
             return lang;
         }
 
-        function getLocalizedText(textObj) {
+        function getLocalizedText(textObj, lang = null) {
             if (!textObj) return ''; // Handle undefined/null
             if (typeof textObj === 'string') return textObj;
-            const lang = getCurrentLanguage(); // Use fresh language every time
-            return textObj[lang] || textObj['de'] || textObj['en'] || '';
+            const selectedLang = lang || currentLanguage; // Use provided lang or fallback to currentLanguage
+            return textObj[selectedLang] || textObj['de'] || textObj['en'] || '';
         }
 
         async function fetchJobPostings() {
@@ -1659,35 +1662,35 @@
             }
         }
 
-        function createJobCard(job) {
+        function createJobCard(job, lang = null) {
             const card = document.createElement('div');
             card.className = 'job-card';
             // card.style.cursor = 'pointer'; // Already in CSS
 
-            const lang = getCurrentLanguage(); // Get fresh language
-            console.log('[Career.js createJobCard] Current language:', lang);
+            const useLang = lang || currentLanguage; // Use provided language or current
+            console.log('[Career.js createJobCard] Using language:', useLang);
             console.log('[Career.js createJobCard] Job title object:', job.title);
             console.log('[Career.js createJobCard] Job description object:', job.description);
             
-            const title = getLocalizedText(job.title);
-            const description = getLocalizedText(job.description);
+            const title = getLocalizedText(job.title, useLang);
+            const description = getLocalizedText(job.description, useLang);
             const shortDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
             
             console.log('[Career.js createJobCard] Localized title:', title);
             console.log('[Career.js createJobCard] Localized description:', description);
             
-            const viewDetailsText = window.translations?.[lang]?.career_view_details || (lang === 'de' ? 'Details ansehen' : 'View Details');
+            const viewDetailsText = window.translations?.[useLang]?.career_view_details || (useLang === 'de' ? 'Details ansehen' : 'View Details');
             
-            console.log('[Career.js] Creating job card - Language:', lang, '| Title:', title, '| Button:', viewDetailsText);
+            console.log('[Career.js] Creating job card - Language:', useLang, '| Title:', title, '| Button:', viewDetailsText);
 
             card.innerHTML = `
                 <h3 class="job-title">${title}</h3>
-                <p class="job-company">${getLocalizedText(job.company)}</p>
+                <p class="job-company">${getLocalizedText(job.company, useLang)}</p>
                 <p class="job-description">${shortDescription}</p>
                 <div class="job-meta">
                     <div class="job-details">
-                        <span class="job-location"><i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location)}</span>
-                        <span class="job-type"><i class="fas fa-clock"></i> ${getLocalizedText(job.type)}</span>
+                        <span class="job-location"><i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location, useLang)}</span>
+                        <span class="job-type"><i class="fas fa-clock"></i> ${getLocalizedText(job.type, useLang)}</span>
                     </div>
                     <button class="apply-btn view-details-btn">
                         ${viewDetailsText}
@@ -1834,11 +1837,9 @@
                 window.translatePage(lang); 
             }
 
-            // Wait a tiny bit to ensure localStorage is written, then reload job postings
-            setTimeout(() => {
-                console.log('[Career.js] Reloading jobs with language:', getCurrentLanguage());
-                loadJobPostings(); 
-            }, 50);
+            // Reload job postings immediately with the new language (no timeout needed!)
+            console.log('[Career.js] Reloading jobs with language:', lang);
+            loadJobPostings(lang); 
 
             // Update modal if open
             if (document.getElementById('job-modal').style.display === 'flex' && currentOpenJobId) {
