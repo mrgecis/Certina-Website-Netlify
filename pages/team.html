@@ -705,15 +705,6 @@
         <!-- Member cards will be dynamically added here -->
     </div>
 
-    <!-- Legal Team -->
-    <div class="department-header" data-category="legal">
-        <div class="department-header-icon"><i class="fas fa-gavel"></i></div>
-        <h2 class="department-title">Legal</h2>
-    </div>
-    <div class="team-grid" id="legal-grid">
-        <!-- Member cards will be dynamically added here -->
-    </div>
-
     <!-- New Business Models Team -->
     <div class="department-header" data-category="new-business-models">
         <div class="department-header-icon"><i class="fas fa-lightbulb"></i></div>
@@ -813,13 +804,11 @@
 
         const managingPartnerGrid = document.getElementById('managing-partner-grid');
         const maGrid = document.getElementById('ma-grid');
-        const legalGrid = document.getElementById('legal-grid');
         const newBusinessModelsGrid = document.getElementById('new-business-models-grid');
 
         // Clear existing cards if any (e.g., during debugging)
         if (managingPartnerGrid) managingPartnerGrid.innerHTML = '';
         if (maGrid) maGrid.innerHTML = '';
-        if (legalGrid) legalGrid.innerHTML = '';
         if (newBusinessModelsGrid) newBusinessModelsGrid.innerHTML = '';
 
         let mpCount = 0;
@@ -879,18 +868,6 @@
             maGrid.appendChild(memberCard);
             console.log(`Added M&A member: ${member.lastName} at position ${index}`);
         });
-        
-        // Add Corinna Holz to Legal grid
-        const corinnaInfo = {
-            name: 'Corinna Holz',
-            title: 'Legal Counsel',
-            email: 'corinna.holz@certina-group.com',
-            linkedin: 'https://www.linkedin.com/in/corinna-holz-25509519b/?originalSubdomain=de',
-            team: 'Legal'
-        };
-        const corinnaCard = createMemberCard('CorrinnaHolz', corinnaInfo, 0);
-        legalGrid.appendChild(corinnaCard);
-        console.log('Added Corinna Holz to Legal grid');
         
         // Add Stefan Stefanovic to New Business Models grid
         const stefanInfo = {
