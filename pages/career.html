@@ -1652,6 +1652,8 @@
             const shortDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
             
             const viewDetailsText = window.translations?.[currentLanguage]?.career_view_details || (currentLanguage === 'de' ? 'Details ansehen' : 'View Details');
+            
+            console.log('[Career.js] Creating job card with language:', currentLanguage, 'View Details Text:', viewDetailsText);
 
             card.innerHTML = `
                 <h3 class="job-title">${getLocalizedText(job.title)}</h3>
@@ -1797,11 +1799,13 @@
 
         // Language switching functionality
         function updateLanguage(lang) {
+            console.log('[Career.js] Updating language to:', lang, 'from:', currentLanguage);
             if (currentLanguage !== lang) {
                 currentLanguage = lang;
                 localStorage.setItem('selectedLanguage', lang);
+                console.log('[Career.js] Current language updated to:', currentLanguage);
 
-                // Force translation update
+                // Force translation update for static content
                 if (window.translatePage) {
                     window.translatePage(lang); 
                 }
