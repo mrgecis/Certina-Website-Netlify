@@ -1502,6 +1502,23 @@
 
     <script src="../Assets/js/translation.js"></script>
     <script>
+        // Define these BEFORE DOMContentLoaded to catch early events
+        let currentLanguage = localStorage.getItem('selectedLanguage') || 'de';
+        let allJobs = [];
+        let currentOpenJobId = null;
+
+        // Register event listeners IMMEDIATELY (before DOMContentLoaded)
+        window.addEventListener('languageChanged', function(e) {
+            console.log('[Career.js] Language change event received:', e.detail.language);
+            updateLanguage(e.detail.language);
+        });
+
+        // Globally expose a function to update career page language
+        window.updatePageLanguage = function(newLang) {
+            console.log(`[Career.js] Global language update requested to: ${newLang}`);
+            updateLanguage(newLang);
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             // Use the same header loading pattern as Homepage
             const loadComponents = async () => {
@@ -1575,9 +1592,10 @@
             setupModalEventListeners();
         });
 
-        let currentLanguage = getSavedLanguage(); // Initialize with saved language
-        let allJobs = []; // Store all fetched jobs globally
-        let currentOpenJobId = null; // Track the currently open job ID for modal refresh on lang change
+        // Variables already defined at top of script
+        // let currentLanguage = getSavedLanguage(); // REMOVED - already defined above
+        // let allJobs = []; // REMOVED - already defined above
+        // let currentOpenJobId = null; // REMOVED - already defined above
 
         async function loadJobPostings(lang = null) {
             try {
@@ -1849,18 +1867,8 @@
             }
         }
 
-        // ADD THESE EVENT LISTENERS
-        // Register this page for language updates
-        window.addEventListener('languageChanged', function(e) {
-            console.log('[Career.js] Language change event received:', e.detail.language);
-            updateLanguage(e.detail.language);
-        });
-
-        // Globally expose a function to update career page language
-        window.updatePageLanguage = function(newLang) {
-            console.log(`[Career.js] Global language update requested to: ${newLang}`);
-            updateLanguage(newLang);
-        };
+        // Event listeners are registered at the TOP of the script (before DOMContentLoaded)
+        // to ensure they catch early language change events
 
     </script>
 
