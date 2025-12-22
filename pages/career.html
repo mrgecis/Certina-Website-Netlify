@@ -1630,7 +1630,7 @@
 
         async function fetchJobPostings() {
             try {
-                const response = await fetch('/assets/career/jobs.json?v=' + new Date().getTime());
+                const response = await fetch('../assets/career/jobs.json?v=' + new Date().getTime());
                 if (!response.ok) {
                     throw new Error('Failed to fetch jobs');
                 }
