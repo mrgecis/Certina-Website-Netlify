@@ -1624,8 +1624,9 @@
         }
 
         function getLocalizedText(textObj) {
+            if (!textObj) return ''; // Handle undefined/null
             if (typeof textObj === 'string') return textObj;
-            return textObj[currentLanguage] || textObj['de'] || textObj['en'] || 'N/A';
+            return textObj[currentLanguage] || textObj['de'] || textObj['en'] || '';
         }
 
         async function fetchJobPostings() {
@@ -1732,14 +1733,14 @@
                 modalLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location)}`;
                 modalType.innerHTML = `<i class="fas fa-clock"></i> ${getLocalizedText(job.type)}`;
                 
-                // Full description
-                const fullDescription = getLocalizedText(job.fullDescription) || getLocalizedText(job.description);
+                // Full description - use description if fullDescription is not available
+                const fullDescription = job.fullDescription ? getLocalizedText(job.fullDescription) : getLocalizedText(job.description);
                 modalDescription.textContent = fullDescription;
 
                 // Populate lists using the helper function
-                populateList(modalResponsibilities, getLocalizedText(job.responsibilities));
-                populateList(modalRequirements, getLocalizedText(job.requirements));
-                populateList(modalBenefits, getLocalizedText(job.benefits));
+                populateList(modalResponsibilities, job.responsibilities ? getLocalizedText(job.responsibilities) : []);
+                populateList(modalRequirements, job.requirements ? getLocalizedText(job.requirements) : []);
+                populateList(modalBenefits, job.benefits ? getLocalizedText(job.benefits) : []);
 
                 // Apply link
                 modalApplyLink.href = job.applicationLink || 'mailto:tobias.eiblmeier@certina-group.com';
