@@ -1634,7 +1634,8 @@
 
         // Helper function to get current language (always fresh from localStorage)
         function getCurrentLanguage() {
-            return localStorage.getItem('selectedLanguage') || 'de';
+            const lang = localStorage.getItem('selectedLanguage') || 'de';
+            return lang;
         }
 
         function getLocalizedText(textObj) {
@@ -1664,15 +1665,23 @@
             // card.style.cursor = 'pointer'; // Already in CSS
 
             const lang = getCurrentLanguage(); // Get fresh language
+            console.log('[Career.js createJobCard] Current language:', lang);
+            console.log('[Career.js createJobCard] Job title object:', job.title);
+            console.log('[Career.js createJobCard] Job description object:', job.description);
+            
+            const title = getLocalizedText(job.title);
             const description = getLocalizedText(job.description);
             const shortDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
             
+            console.log('[Career.js createJobCard] Localized title:', title);
+            console.log('[Career.js createJobCard] Localized description:', description);
+            
             const viewDetailsText = window.translations?.[lang]?.career_view_details || (lang === 'de' ? 'Details ansehen' : 'View Details');
             
-            console.log('[Career.js] Creating job card with language:', lang, 'View Details Text:', viewDetailsText);
+            console.log('[Career.js] Creating job card - Language:', lang, '| Title:', title, '| Button:', viewDetailsText);
 
             card.innerHTML = `
-                <h3 class="job-title">${getLocalizedText(job.title)}</h3>
+                <h3 class="job-title">${title}</h3>
                 <p class="job-company">${getLocalizedText(job.company)}</p>
                 <p class="job-description">${shortDescription}</p>
                 <div class="job-meta">
