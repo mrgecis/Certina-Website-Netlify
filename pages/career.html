@@ -1818,19 +1818,24 @@
             console.log('[Career.js] Updating language to:', lang, 'from:', currentLanguage);
             currentLanguage = lang;
             localStorage.setItem('selectedLanguage', lang);
-            console.log('[Career.js] Current language updated to:', currentLanguage);
+            console.log('[Career.js] LocalStorage updated. Current language:', localStorage.getItem('selectedLanguage'));
 
             // Force translation update for static content
             if (window.translatePage) {
                 window.translatePage(lang); 
             }
 
-            // Reload job postings with new language
-            loadJobPostings(); 
+            // Wait a tiny bit to ensure localStorage is written, then reload job postings
+            setTimeout(() => {
+                console.log('[Career.js] Reloading jobs with language:', getCurrentLanguage());
+                loadJobPostings(); 
+            }, 50);
 
             // Update modal if open
             if (document.getElementById('job-modal').style.display === 'flex' && currentOpenJobId) {
-                openJobModal(currentOpenJobId); 
+                setTimeout(() => {
+                    openJobModal(currentOpenJobId); 
+                }, 100);
             }
         }
 
