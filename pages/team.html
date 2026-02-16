@@ -948,8 +948,8 @@
         memberCard.setAttribute('data-category', category);
         memberCard.setAttribute('data-member', lastName); // Add last name as identifier
 
-        // Determine if this is a placeholder member (Corinna Holz or Stefan Stefanovic)
-        const isPlaceholder = lastName === 'CorrinnaHolz' || lastName === 'StefanStefanovic';
+        // Determine if this is a placeholder member (Corinna Holz only)
+        const isPlaceholder = lastName === 'CorrinnaHolz';
         
         memberCard.innerHTML = `
             <div class="member-photo">
@@ -991,8 +991,8 @@
         // Set basic info
         modalName.textContent = info.name || 'Name not available';
         
-        // Handle placeholder image for Corinna Holz or Stefan Stefanovic
-        if (lastName === 'CorrinnaHolz' || lastName === 'StefanStefanovic') {
+        // Handle placeholder image for Corinna Holz only
+        if (lastName === 'CorrinnaHolz') {
             modalImage.innerHTML = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #D3D9E2 0%, #5C6B7F 100%); font-size: 64px; color: #FDFEFF;">
                 <i class="fas fa-user"></i>
               </div>`;
