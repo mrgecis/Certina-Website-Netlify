@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>CERTINA GROUP - Team</title>
+<meta name="description" content="Meet the CERTINA GROUP team — experienced investors and industry experts driving operational excellence and sustainable growth.">
+<meta property="og:title" content="Our Team | CERTINA GROUP">
+<meta property="og:description" content="Experienced investors and industry experts at the heart of CERTINA GROUP.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certina-group.com/pages/team.html">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/cookie-banner.css">
 <style>
         /* Certina Light Theme Colors (Base) */
         :root {
@@ -722,7 +731,7 @@
 <!-- Team Member Modal -->
 <div id="teamMemberModal" class="team-member-modal">
     <div class="team-member-modal-content">
-        <span id="teamMemberModalClose" class="team-member-modal-close">&times;</span>
+        <button type="button" id="teamMemberModalClose" class="team-member-modal-close" aria-label="Close">&times;</button>
         <div class="team-member-modal-image-container">
             <img id="modalMemberImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Team Member" class="team-member-modal-image">
         </div>
@@ -741,9 +750,7 @@
     // Function to load external HTML components
     async function loadComponent(url, elementId) {
         try {
-            // Add cache-busting parameter to prevent caching of header and footer
-            const cacheBustedUrl = url + '?v=' + new Date().getTime();
-            const response = await fetch(cacheBustedUrl);
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status} for ${url}`);
             }
@@ -800,7 +807,7 @@
             'Koszegi', 'Grizzo', 'Meier', 'Burmester', 'Tao', 'Welke'
         ];
         initialTeamMembers.sort(); // Sort the rest of the members alphabetically
-        const teamMembers = ['Wehrmann', 'Eiblmeier', ...initialTeamMembers]; // Add Wehrmann first, then Eiblmeier for M&A head
+        const teamMembers = ['Wehrmann', ...initialTeamMembers];
 
         const managingPartnerGrid = document.getElementById('managing-partner-grid');
         const maGrid = document.getElementById('ma-grid');
@@ -816,7 +823,7 @@
         let maTeamMembers = []; // Collect M&A team members for proper sorting
 
         for (const memberLastName of teamMembers) {
-            const infoFilePath = `../Assets/Team/${memberLastName}/${memberLastName}_info.txt`;
+            const infoFilePath = `../assets/team/${memberLastName.toLowerCase()}/${memberLastName.toLowerCase()}_info.txt`;
             try {
                 console.log(`Fetching ${infoFilePath}...`);
                 const response = await fetch(infoFilePath);
@@ -855,12 +862,7 @@
             }
         }
         
-        // Now sort and add M&A team members: Eiblmeier first, then alphabetically
-        maTeamMembers.sort((a, b) => {
-            if (a.lastName === 'Eiblmeier') return -1; // Eiblmeier always first
-            if (b.lastName === 'Eiblmeier') return 1;
-            return a.lastName.localeCompare(b.lastName); // Others alphabetically
-        });
+        maTeamMembers.sort((a, b) => a.lastName.localeCompare(b.lastName));
         
         // Add M&A team members to the grid
         maTeamMembers.forEach((member, index) => {
@@ -957,7 +959,7 @@
                     ? `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #D3D9E2 0%, #5C6B7F 100%); font-size: 64px; color: #FDFEFF;">
                         <i class="fas fa-user"></i>
                       </div>`
-                    : `<img src="../Assets/Team/${lastName}/${lastName}_Passbild.png" alt="${info.name}" onerror="this.style.display='none'; console.error('Image not found for ${lastName}'); this.parentElement.style.background='#eee';"> {/* Basic error handling for image */}`
+                    : `<img src="../assets/team/${lastName.toLowerCase()}/${lastName.toLowerCase()}_passbild.png" alt="${info.name}" onerror="this.style.display='none'; this.parentElement.style.background='#eee';">`
                 }
             </div>
             <div class="member-info">
@@ -970,8 +972,12 @@
             </div>
         `;
 
-        // Add click event to open modal
-        memberCard.addEventListener('click', () => openMemberModal(lastName, info));
+        // Only Managing Partners are clickable
+        if (info.team.toLowerCase() === 'managing partner') {
+            memberCard.addEventListener('click', () => openMemberModal(lastName, info));
+        } else {
+            memberCard.style.cursor = 'default';
+        }
 
         return memberCard;
     } // End of createMemberCard
@@ -997,7 +1003,7 @@
                 <i class="fas fa-user"></i>
               </div>`;
         } else {
-            modalImage.src = `../Assets/Team/${lastName}/${lastName}_Passbild.png`;
+            modalImage.src = `../assets/team/${lastName.toLowerCase()}/${lastName.toLowerCase()}_passbild.png`;
             modalImage.alt = info.name || 'Team Member';
         }
 
@@ -1012,7 +1018,7 @@
                 console.log(`Using translated description for ${lastName} in ${currentLang}`);
             } else {
                 // Fallback: Lade aus Datei
-                const descriptionFilePath = `../Assets/Team/${lastName}/${lastName}_description.txt`;
+                const descriptionFilePath = `../assets/team/${lastName.toLowerCase()}/${lastName.toLowerCase()}_description.txt`;
                 console.log(`Loading description from file: ${descriptionFilePath}`);
                 const response = await fetch(descriptionFilePath);
                 
@@ -1063,8 +1069,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Load Header and Footer first
         Promise.all([
-            loadComponent('Header.html', 'header-container'), // Assumes Header.html is in the same directory (Pages/)
-            loadComponent('Footer.html', 'footer-container')  // Assumes Footer.html is in the same directory (Pages/)
+            loadComponent('../pages/header.html?v=2', 'header-container'),
+            loadComponent('../pages/footer.html?v=2', 'footer-container')
         ]).then(() => {
             // AFTER header/footer are attempted, load team members
             console.log("Header and Footer loading initiated. Now loading team members...");
@@ -1081,7 +1087,8 @@
 </script>
 
 <!-- Language Switcher JavaScript -->
-<script src="../Assets/JS/language-switcher.js"></script>
-<script src="../Assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/language-switcher.js"></script>
+<script src="../assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

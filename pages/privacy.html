@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>CERTINA GROUP - Datenschutzerklärung</title>
+    <meta name="description" content="Privacy policy for CERTINA GROUP — how we handle and protect your personal data.">
+    <meta property="og:title" content="Privacy Policy | CERTINA GROUP">
+    <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="../assets/css/cookie-banner.css">
+
     <!-- Alle bestehenden Styles hier behalten -->
     <style>
         /* Certina Light Theme Colors (Base) */
@@ -619,8 +626,8 @@
             const loadComponents = async () => {
                 try {
                     const [headerRes, footerRes] = await Promise.all([
-                        fetch('Header.html?v=' + new Date().getTime()),
-                        fetch('Footer.html?v=' + new Date().getTime())
+                        fetch('../pages/header.html?v=2'),
+                        fetch('../pages/footer.html?v=2')
                     ]);
 
                     if (headerRes.ok) {
@@ -792,6 +799,7 @@
     </script>
 
     <!-- Language Switcher JavaScript -->
-    <script src="../Assets/js/language-switcher.js"></script>
+    <script src="../assets/js/language-switcher.js"></script>
+    <script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>CERTINA GROUP - Career</title>
+<meta name="description" content="Join CERTINA GROUP — explore career opportunities across our portfolio of industrial, automotive, packaging, software and services companies.">
+<meta property="og:title" content="Careers | CERTINA GROUP">
+<meta property="og:description" content="Career opportunities across 20+ portfolio companies in industrials, automotive, packaging and software.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certina-group.com/pages/career.html">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/cookie-banner.css">
 <style>
         /* Certina Light Theme Colors (Base) */
         :root {
@@ -1466,7 +1475,7 @@
     <div id="job-modal" class="job-modal">
         <div class="job-modal-content">
             <div class="job-modal-header">
-                <span class="close-modal">&times;</span>
+                <button class="close-modal" type="button" aria-label="Close dialog" style="background:none;border:none;padding:0;">&times;</button>
                 <h2 id="modal-job-title">Job Title</h2>
                 <p class="company" id="modal-job-company">Company</p>
                 <div class="meta">
@@ -1500,7 +1509,7 @@
 
 
 
-    <script src="../Assets/js/translation.js"></script>
+    <script src="../assets/js/translation.js"></script>
     <script>
         // Define these BEFORE DOMContentLoaded to catch early events
         let currentLanguage = localStorage.getItem('selectedLanguage') || 'de';
@@ -1524,8 +1533,8 @@
             const loadComponents = async () => {
                 try {
                     const [headerRes, footerRes] = await Promise.all([
-                        fetch('Header.html?v=' + new Date().getTime()).catch(e => { console.error('Error fetching Header.html', e); return null; }),
-                        fetch('Footer.html?v=' + new Date().getTime()).catch(e => { console.error('Error fetching Footer.html', e); return null; })
+                        fetch('../pages/header.html?v=2').catch(e => { console.error('Error fetching header.html', e); return null; }),
+                        fetch('../pages/footer.html?v=2').catch(e => { console.error('Error fetching footer.html', e); return null; })
                     ]);
 
                     if (headerRes && headerRes.ok) {
@@ -1873,7 +1882,8 @@
     </script>
 
 <!-- Language Switcher JavaScript -->
-<script src="../Assets/js/language-switcher.js"></script>
-<script src="../Assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/language-switcher.js"></script>
+<script src="../assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

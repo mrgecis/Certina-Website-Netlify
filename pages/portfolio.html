@@ -956,21 +956,29 @@
         const modalWebsiteLink = document.getElementById('modal-website-link');
         const modalCloseBtn = document.querySelector('.modal-close-btn');
 
-        // --- Company Definitions & Partner Folders ---
-        const companyNames = [ /* ... list ... */
-             "Hannemann", "Horn", "Pruss", "HermannKoch", "Qualiform", "Rebhan", "Trassl", "AFT", "Demm", "Enorise", "Shieldtech", "PAL", "SCV", "wegener", "Isolite", "UST", "Vielfaltmenue", "COI", "WPS", "MOBOTIX", "metasystem"
-         ];
         let allCompanyData = [];
+
+        // --- Helper: derive filter category from industry name ---
+        function deriveCategory(industry) {
+            const map = {
+                'Industrials': 'industrials',
+                'Software': 'software',
+                'Packaging': 'packaging',
+                'Automotive': 'automotive',
+                'Goods & Services': 'goods-services'
+            };
+            return map[industry] || industry.toLowerCase().replace(/\s*&\s*/g, '-').replace(/\s+/g, '-');
+        }
 
         // --- Industry Specific Stats Mapping ---
         const industryStatsMapping = {
-             'automotive': { countries: 13, employees: 2630, employeesText: '2630' }, 
-             'packaging': { countries: 3, employees: 500, employeesText: '500' }, 
-             'industrials': { countries: 8, employees: 910, employeesText: '910' }, 
-             'goods-services': { countries: 1, employees: 360, employeesText: '360' }, 
-             'software': { countries: 9, employees: 439, employeesText: '439' }
+             'automotive': { countries: 13, employees: 2490, employeesText: '2490' },
+             'packaging': { countries: 5, employees: 500, employeesText: '500' },
+             'industrials': { countries: 8, employees: 1105, employeesText: '1105' },
+             'goods-services': { countries: 1, employees: 1140, employeesText: '1140' },
+             'software': { countries: 9, employees: 414, employeesText: '414' }
          };
-        const defaultStats = { countries: 18, employeesText: '5400+' };
+        const defaultStats = { countries: 18, employeesText: '5769+' };
 
         // === Function to load external HTML components (Copied from Team.html) ===
         async function loadComponent(url, elementId) {
@@ -997,56 +1005,6 @@
         }
 
         // --- Helper Functions ---
-        function parseCompanyData(text) {
-             const data = {}; 
-             const lines = text.split('\n'); 
-             lines.forEach(line => { 
-                 const parts = line.split(': '); 
-                 if (parts.length === 2) { 
-                     const key = parts[0].trim().toLowerCase().replace(' ', '-');
-                     const value = parts[1].trim();
-                     data[key] = value;
-                 } 
-             }); 
-             
-             if (!data.company || !data.industry || !data['acquisition-year'] || !data.revenue) { 
-                 console.warn("Incomplete data parsed:", data); 
-                 return null; 
-             } 
-             
-             // Update categories based on Excel data industry assignments
-             if (data.company === 'WPS') data.category = 'software';
-             if (data.company === 'MOBOTIX') data.category = 'software';
-             if (data.company === 'AFT') data.category = 'industrials';
-             if (data.company === 'COI') data.category = 'software';
-             if (data.company === 'DEMM') data.category = 'industrials';
-             if (data.company === 'Enorise') data.category = 'automotive';
-             if (data.company === 'Hannemann') data.category = 'industrials';
-             if (data.company === 'HermannKoch') data.category = 'packaging';
-             if (data.company === 'Horn') data.category = 'industrials';
-             if (data.company === 'ISOLITE') data.category = 'automotive';
-             if (data.company === 'Meta System') data.category = 'automotive';
-             if (data.company === 'PAL') data.category = 'automotive';
-             if (data.company === 'Pruss') data.category = 'industrials';
-             if (data.company === 'Qualiform') data.category = 'packaging';
-             if (data.company === 'Rebhan') data.category = 'packaging';
-             if (data.company === 'SCV') data.category = 'automotive';
-             if (data.company === 'Shieldtec') data.category = 'automotive';
-             if (data.company === 'Trassl') data.category = 'packaging';
-             if (data.company === 'UST') data.category = 'goods-services';
-             if (data.company === 'VielfaltMenü') data.category = 'goods-services';
-             if (data.company === 'Wegener+Stapel') data.category = 'industrials';
-             
-             // Fallback to parsing from industry field if not in Excel mapping
-             if (!data.category) {
-                 data.category = data.industry.toLowerCase().replace('&', '').replace(/\s+/g, '-'); 
-             }
-             
-             return data;
-         }
-         function parseRevenue(revenueString) { /* ... Corrected version ... */
-              if (!revenueString) return 0; const match = revenueString.match(/([\d.,]+)\s*(Mio|M|B)?/i); if (match && match[1]) { let numberString = match[1].replace(/,/g, ''); let value = parseFloat(numberString); if (isNaN(value)) { console.warn(`Could not parse number from: "${numberString}"`); return 0; } const unit = match[2] ? match[2].toLowerCase() : ''; if (unit === 'b') { value *= 1000; } return value; } console.warn(`Could not parse revenue format: "${revenueString}"`); return 0;
-         }
          function formatRevenue(totalMillions) {
              if (isNaN(totalMillions)) return '€?';
              if (totalMillions < 1000) {
@@ -1059,53 +1017,36 @@
         function animateValue(element, start, end, duration, formatFn = null, suffix = '') { /* ... same ... */
               if (element._animationRequest) { cancelAnimationFrame(element._animationRequest); } if (isNaN(end) || typeof end !== 'number') { element.textContent = end; if (element.dataset.currentValue) { delete element.dataset.currentValue; } return; } let currentStartVal = parseFloat(element.dataset.currentValue || start || 0); if (isNaN(currentStartVal)) currentStartVal = 0; if (currentStartVal === end) { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; return; } const range = end - currentStartVal; let startTime = null; function step(timestamp) { if (!startTime) startTime = timestamp; const progress = timestamp - startTime; const easedProgress = Math.min(progress / duration, 1); const easedValue = easedProgress * (2 - easedProgress); let currentValue = currentStartVal + (range * easedValue); element.textContent = formatFn ? formatFn(currentValue) : Math.round(currentValue) + suffix; if (progress < duration) { element._animationRequest = requestAnimationFrame(step); } else { element.textContent = formatFn ? formatFn(end) : Math.round(end) + suffix; element.dataset.currentValue = end; delete element._animationRequest; } } element._animationRequest = requestAnimationFrame(step);
          }
-         function createPortfolioItem(data) {
-              if (!data || !data.company) return null;
-              
-              // Function to format revenue for portfolio cards
-              function formatRevenueForCard(revenueString) {
-                  if (!revenueString) return 'N/A';
-                  
-                  // Extract number from revenue string like "27.0 Million EUR"
-                  const match = revenueString.match(/([\d.]+)\s*(Million|Mio)/i);
-                  if (match && match[1]) {
-                      const value = parseFloat(match[1]);
-                      if (!isNaN(value)) {
-                          return `€ ${value}M`;
-                      }
-                  }
-                  return revenueString; // fallback to original if parsing fails
-              }
-              
+         function createPortfolioItem(company) {
+              if (!company || !company.name) return null;
+
+              const category = deriveCategory(company.industry);
               const item = document.createElement('div');
               item.classList.add('portfolio-item');
-              item.dataset.company = data.company;
-              item.dataset.category = data.category;
-              item.dataset.revenue = parseRevenue(data.revenue);
-              
-              const folderName = data.folderName || data.company;
-              const logoPath = `../Assets/Portfolio/${folderName}/${folderName}_Logo.png`;
+              item.dataset.company = company.name;
+              item.dataset.category = category;
+              item.dataset.revenue = company.revenue;
+              item.dataset.businessModel = company.businessModel;
+
+              const logoPath = `../assets/portfolio/${company.id}/${company.id}_logo.png`;
               const fallbackLogo = '../Assets/General/placeholder_logo.png';
-              
+
               item.innerHTML = `
                 <div class="portfolio-logo">
-                  <img src="${logoPath}" alt="${data.company} Logo" onerror="this.onerror=null; this.src='${fallbackLogo}';">
+                  <img src="${logoPath}" alt="${company.name} Logo" loading="lazy" onerror="this.onerror=null; this.src='${fallbackLogo}';">
                 </div>
                 <div class="portfolio-info">
-                  <h3 class="portfolio-name">${data.company}</h3>
+                  <h3 class="portfolio-name">${company.name}</h3>
                   <div class="portfolio-details">
-                    <span class="detail-box acquisition">${Math.round(parseFloat(data['acquisition-year']) || 0)}</span>
-                    <span class="detail-box revenue">${formatRevenueForCard(data.revenue)}</span>
+                    <span class="detail-box acquisition">${company.acquisitionYear}</span>
+                    <span class="detail-box revenue">€ ${company.revenue}M</span>
                   </div>
                 </div>`;
-              
+
               // Add click listener to open modal
-              item.addEventListener('click', () => displayCompanyModal(data));
-              
+              item.addEventListener('click', () => displayCompanyModal(company));
+
               return item;
-         }
-         async function fetchCompanyData(companyName) { /* ... same ... */
-              const filePath = `../Assets/Portfolio/${companyName}/${companyName}.txt`; try { const response = await fetch(filePath); if (!response.ok) { if (response.status === 404) { console.error(`FNF: ${filePath}`); } else { console.error(`HTTP Err: ${response.status} for ${filePath}`); } return null; } const text = await response.text(); const parsedData = parseCompanyData(text); if (!parsedData) { console.error(`Parse Err for ${companyName}`); return null; } parsedData.folderName = companyName; return parsedData; } catch (error) { console.error(`Fetch Err for ${companyName}:`, error); return null; }
          }
         function updateStats(visibleItems) {
             if (!statCompaniesNum || !statRevenueNum || !statCompaniesTitle || !statRevenueTitle || !statCountriesNum || !statEmployeesNum) { 
@@ -1183,105 +1124,61 @@
             allStatCards.forEach(card => card.classList.add('visible'));
         }
 
-        // --- Function to fetch company description ---
-        async function fetchCompanyDescription(folderName) {
+        // --- Function to get company description (from JSON or translations) ---
+        function getCompanyDescription(company) {
             const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
             const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
-            
-            // First try to get translated description
-            const companyKey = folderName.toLowerCase();
-            if (translations.portfolio && translations.portfolio.companies && translations.portfolio.companies[companyKey]) {
-                console.log('Using translated description for:', folderName);
-                return translations.portfolio.companies[companyKey];
-            }
-            
-            // Fallback to file-based description (corrected path)
-            const descriptionPath = `../Assets/Portfolio/${folderName}/_description.txt`;
-            
-            try {
-                const response = await fetch(descriptionPath);
-                if (!response.ok) {
-                    console.warn(`Description file not found for ${folderName}: ${response.status}`);
-                    return `Description for ${folderName} is not available.`;
-                }
-                const description = await response.text();
-                return description.trim() || `No description available for ${folderName}.`;
-            } catch (error) {
-                console.error(`Error fetching description for ${folderName}:`, error);
-                return `Description for ${folderName} is not available.`;
-            }
+            // Prefer translated description, fall back to embedded JSON description
+            return (translations.portfolio?.companies?.[company.id]) || company.description || `Description for ${company.name} is not available.`;
         }
 
         // --- Function to display company modal ---
-        async function displayCompanyModal(companyData) {
-            if (!companyData || !companyData.folderName) {
+        function displayCompanyModal(companyData) {
+            if (!companyData || !companyData.id) {
                 console.error("Invalid company data for modal.");
                 return;
             }
 
-            const folderName = companyData.folderName;
-            const imagePath = `../Assets/Portfolio/${folderName}/${folderName}_Bild.png`;
+            const imagePath = `../assets/portfolio/${companyData.id}/${companyData.id}_bild.png`;
             const fallbackImagePath = '../Assets/General/placeholder_logo.png';
 
             // Set company name in the modal
             if (modalCompanyName) {
-                modalCompanyName.textContent = companyData.company;
+                modalCompanyName.textContent = companyData.name;
             }
 
             // Create company info cards
             if (modalCompanyInfo) {
                 modalCompanyInfo.innerHTML = '';
-                
-                // Function to format revenue for modal display
-                function formatRevenueForModal(revenueString) {
-                    if (!revenueString || revenueString === 'N/A') return 'N/A';
-                    
-                    // Extract number from revenue string like "27.0 Million EUR"
-                    const match = revenueString.match(/([\d.]+)\s*(Million|Mio)/i);
-                    if (match && match[1]) {
-                        const value = parseFloat(match[1]);
-                        if (!isNaN(value)) {
-                            return `€ ${value}M`;
-                        }
-                    }
-                    return revenueString; // fallback to original if parsing fails
-                }
-                
-                // Function to format integer values (remove decimals)
-                function formatIntegerValue(value) {
-                    if (!value || value === 'N/A') return 'N/A';
-                    const numValue = parseFloat(value);
-                    return isNaN(numValue) ? value : Math.round(numValue).toString();
-                }
-                
+
                 // Get current language for translations
                 const currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
                 const translations = window.translations && window.translations[currentLanguage] ? window.translations[currentLanguage] : {};
-                
+
                 // Define the info cards data with translation keys
                 const infoCards = [
                     {
                         labelKey: 'acquisition-year',
                         label: 'Year of Acquisition',
-                        value: formatIntegerValue(companyData['acquisition-year']),
+                        value: String(companyData.acquisitionYear),
                         icon: 'fas fa-calendar-alt'
                     },
                     {
                         labelKey: 'annual-revenue',
                         label: 'Annual Revenue',
-                        value: formatRevenueForModal(companyData.revenue),
+                        value: `€ ${companyData.revenue}M`,
                         icon: 'fas fa-chart-line'
                     },
                     {
                         labelKey: 'fte',
                         label: 'FTE',
-                        value: formatIntegerValue(companyData.fte),
+                        value: String(companyData.fte),
                         icon: 'fas fa-users'
                     },
                     {
                         labelKey: 'countries',
                         label: 'Countries',
-                        value: formatIntegerValue(companyData.countries),
+                        value: String(companyData.countries),
                         icon: 'fas fa-globe'
                     },
                     {
@@ -1316,16 +1213,15 @@
 
             // Set company image
             modalCompanyImage.src = imagePath;
-            modalCompanyImage.alt = `${companyData.company} Image`;
+            modalCompanyImage.alt = `${companyData.name} Image`;
             modalCompanyImage.onerror = function() {
-                this.onerror = null; 
+                this.onerror = null;
                 this.src = fallbackImagePath;
-                console.warn(`Primary image ${imagePath} not found for ${folderName}, using fallback.`);
+                console.warn(`Primary image not found for ${companyData.id}, using fallback.`);
             };
 
-            // Set company description
-            const description = await fetchCompanyDescription(folderName);
-            modalCompanyDescription.textContent = description;
+            // Set company description (from JSON or translations)
+            modalCompanyDescription.textContent = getCompanyDescription(companyData);
 
             // Handle website section WITH TRANSLATION
             if (modalWebsiteSection && modalWebsiteLink) {
@@ -1434,7 +1330,7 @@
 
         // --- Main Initialization Logic ---
         async function initializePortfolio() { /* ... same ... */
-             console.log("Initializing Portfolio..."); allStatCards.forEach(card => card.classList.remove('visible')); if (statCountriesNum) statCountriesNum.textContent = defaultStats.countries; if (statEmployeesNum) statEmployeesNum.textContent = defaultStats.employeesText; if (statCompaniesNum) statCompaniesNum.textContent = '0'; if (statRevenueNum) statRevenueNum.textContent = formatRevenue(0); statCompaniesNum.dataset.currentValue = 0; statRevenueNum.dataset.currentRevenueMillions = 0; statCountriesNum.dataset.currentValue = defaultStats.countries; const initialEmployeesNum = parseInt(defaultStats.employeesText.match(/\d+/)?.[0] || 0); statEmployeesNum.dataset.currentValue = isNaN(initialEmployeesNum) ? defaultStats.employeesText : initialEmployeesNum; allStatCards.forEach((card, index) => { setTimeout(() => { card.classList.add('visible'); }, 100 + index * 100); }); const fetchPromises = companyNames.map(name => fetchCompanyData(name)); const results = await Promise.all(fetchPromises); allCompanyData = results.filter(data => data !== null); console.log(`Fetched data for ${allCompanyData.length} companies.`); if (allCompanyData.length === 0 && companyNames.length > 0) { console.error("Failed to load any company data."); portfolioItemsContainer.innerHTML = "<p>Error: Could not load portfolio data.</p>"; updateStats([]); return; } portfolioItemsContainer.innerHTML = ''; const categoryContainers = {}; const headerMap = { 'industrials': { icon: 'fa-cogs', title: 'Industrials' }, 'packaging': { icon: 'fa-box-open', title: 'Packaging' }, 'automotive': { icon: 'fa-car-alt', title: 'Automotive' }, 'goods-services': { icon: 'fa-shopping-cart', title: 'Goods & Services' }, 'software': { icon: 'fa-laptop-code', title: 'Software' } }; Object.keys(headerMap).forEach(catKey => { const headerInfo = headerMap[catKey]; const container = document.createElement('div'); container.classList.add('industry-container', 'hidden'); container.dataset.category = catKey; const header = document.createElement('div'); header.classList.add('industry-header', 'hidden'); header.dataset.category = catKey; header.innerHTML = `<div class="industry-header-icon"><i class="fas ${headerInfo.icon}"></i></div> <h2 class="industry-title">${headerInfo.title}</h2>`; const grid = document.createElement('div'); grid.classList.add('portfolio-grid'); container.appendChild(header); container.appendChild(grid); portfolioItemsContainer.appendChild(container); categoryContainers[catKey] = grid; }); let itemRenderIndex = 0; allCompanyData.forEach((data) => { const itemElement = createPortfolioItem(data); if (itemElement) { const targetGrid = categoryContainers[data.category]; if (targetGrid) { targetGrid.appendChild(itemElement); setTimeout(() => { itemElement.classList.add('visible'); itemElement.classList.add(`delay-${(itemRenderIndex % 5) + 1}`); }, 50); itemRenderIndex++; } else { /* console warn */ } } }); setTimeout(() => { filterPortfolio('all'); }, 100); filterButtons.forEach(button => { button.addEventListener('click', function() { filterButtons.forEach(btn => btn.classList.remove('active')); this.classList.add('active'); const filterValue = this.getAttribute('data-filter'); filterPortfolio(filterValue); }); }); console.log("Portfolio Initialized Successfully.");
+             console.log("Initializing Portfolio..."); allStatCards.forEach(card => card.classList.remove('visible')); if (statCountriesNum) statCountriesNum.textContent = defaultStats.countries; if (statEmployeesNum) statEmployeesNum.textContent = defaultStats.employeesText; if (statCompaniesNum) statCompaniesNum.textContent = '0'; if (statRevenueNum) statRevenueNum.textContent = formatRevenue(0); statCompaniesNum.dataset.currentValue = 0; statRevenueNum.dataset.currentRevenueMillions = 0; statCountriesNum.dataset.currentValue = defaultStats.countries; const initialEmployeesNum = parseInt(defaultStats.employeesText.match(/\d+/)?.[0] || 0); statEmployeesNum.dataset.currentValue = isNaN(initialEmployeesNum) ? defaultStats.employeesText : initialEmployeesNum; allStatCards.forEach((card, index) => { setTimeout(() => { card.classList.add('visible'); }, 100 + index * 100); }); const jsonResponse = await fetch('../assets/portfolio/companies.json'); if (!jsonResponse.ok) throw new Error('Failed to load companies.json: ' + jsonResponse.status); allCompanyData = await jsonResponse.json(); console.log(`Loaded data for ${allCompanyData.length} companies.`); if (allCompanyData.length === 0) { console.error("Failed to load any company data."); portfolioItemsContainer.innerHTML = "<p>Error: Could not load portfolio data.</p>"; updateStats([]); return; } portfolioItemsContainer.innerHTML = ''; const categoryContainers = {}; const headerMap = { 'industrials': { icon: 'fa-cogs', title: 'Industrials' }, 'packaging': { icon: 'fa-box-open', title: 'Packaging' }, 'automotive': { icon: 'fa-car-alt', title: 'Automotive' }, 'goods-services': { icon: 'fa-shopping-cart', title: 'Goods & Services' }, 'software': { icon: 'fa-laptop-code', title: 'Software' } }; Object.keys(headerMap).forEach(catKey => { const headerInfo = headerMap[catKey]; const container = document.createElement('div'); container.classList.add('industry-container', 'hidden'); container.dataset.category = catKey; const header = document.createElement('div'); header.classList.add('industry-header', 'hidden'); header.dataset.category = catKey; header.innerHTML = `<div class="industry-header-icon"><i class="fas ${headerInfo.icon}"></i></div> <h2 class="industry-title">${headerInfo.title}</h2>`; const grid = document.createElement('div'); grid.classList.add('portfolio-grid'); container.appendChild(header); container.appendChild(grid); portfolioItemsContainer.appendChild(container); categoryContainers[catKey] = grid; }); let itemRenderIndex = 0; allCompanyData.forEach((data) => { const itemElement = createPortfolioItem(data); if (itemElement) { const targetGrid = categoryContainers[deriveCategory(data.industry)]; if (targetGrid) { targetGrid.appendChild(itemElement); setTimeout(() => { itemElement.classList.add('visible'); itemElement.classList.add(`delay-${(itemRenderIndex % 5) + 1}`); }, 50); itemRenderIndex++; } else { /* console warn */ } } }); setTimeout(() => { filterPortfolio('all'); }, 100); filterButtons.forEach(button => { button.addEventListener('click', function() { filterButtons.forEach(btn => btn.classList.remove('active')); this.classList.add('active'); const filterValue = this.getAttribute('data-filter'); filterPortfolio(filterValue); }); }); console.log("Portfolio Initialized Successfully.");
          }
 
 
@@ -1443,8 +1339,8 @@
         async function loadHeaderFooter() {
             try {
                 const [headerRes, footerRes] = await Promise.all([
-                    fetch('Header.html?v=' + new Date().getTime()),
-                    fetch('Footer.html?v=' + new Date().getTime())
+                    fetch('Header.html?v=2'),
+                    fetch('Footer.html?v=2')
                 ]);
                 
                 if (!headerRes.ok) throw new Error('Failed to fetch Header.html: ' + headerRes.statusText);

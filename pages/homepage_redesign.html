@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>CERTINA GROUP - The Sustainable Investor (Updated)</title>
+<meta name="description" content="CERTINA GROUP — a visionary, financially strong and sustainable investor. We acquire and develop industrial, automotive, packaging and software companies across Europe.">
+<meta property="og:title" content="CERTINA GROUP — Visionary. Financially Strong. Sustainable.">
+<meta property="og:description" content="A visionary, financially strong and sustainable investor acquiring and developing industrial companies across Europe.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certina-group.com/">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link href="../Assets/css/cookie-banner.css" rel="stylesheet">
+<link href="../assets/css/cookie-banner.css" rel="stylesheet">
 <style>
         /* Certina Theme Colors (Updated with #47546A and Shades) */
         :root {
@@ -713,7 +721,7 @@
 <div id="header-placeholder"></div>
 
 <section class="hero" id="home">
-<video muted loop playsinline class="video-bg" id="homepage-hero-video">
+<video muted loop playsinline preload="none" poster="" class="video-bg" id="homepage-hero-video">
     <source src="../Assets/General/hero.mp4" type="video/mp4"> Your browser does not support the video tag.
 </video>
 <script>
@@ -782,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="quote-block signature-box">
                     <blockquote data-translate="about_quote_text">"Our sweet spot is business units or subsidiaries of corporate groups with operational improvement potential, whose sale is of strategic value for the seller and the company."</blockquote>
                     <div class="signature-content">
-                        <div class="signature-icon"><img src="../Assets/Team/Schmidt/Schmidt_Passbild.png" alt="Holger J. Schmidt"></div>
+                        <div class="signature-icon"><img src="../Assets/Team/Schmidt/Schmidt_Passbild.png" alt="Holger J. Schmidt" loading="lazy"></div>
                         <div>
                             <div class="signature-title">Holger J. Schmidt</div>
                             <p class="signature-text">Managing Partner Consumer Goods &amp; Retail</p>
@@ -842,7 +850,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="orbital-container">
                     <div class="orbital-wrapper">
                         <div class="orbital-visualization">
-                            <div class="orbital-center" id="orbital-center"><div class="orbital-center-3d"><div class="orbital-logo-container"><div class="orbital-logo-glow"></div><div class="orbital-logo-inner"><div class="orbital-logo-image"><img src="../Assets/General/logo_dark.png" alt="Certina Group Logo" style="width: 100%; height: auto; object-fit: contain;"></div></div></div></div></div>
+                            <div class="orbital-center" id="orbital-center"><div class="orbital-center-3d"><div class="orbital-logo-container"><div class="orbital-logo-glow"></div><div class="orbital-logo-inner"><div class="orbital-logo-image"><img src="../Assets/General/logo_dark.png" alt="Certina Group Logo" loading="lazy" style="width: 100%; height: auto; object-fit: contain;"></div></div></div></div></div>
                             <div class="orbital-ring orbital-ring-1" id="ring-1"></div>
                             <div class="orbital-ring orbital-ring-2" id="ring-2"></div>
                             <div class="orbital-ring orbital-ring-3" id="ring-3"></div>
@@ -971,8 +979,8 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 // Header und Footer parallel abrufen
                 const [headerRes, footerRes] = await Promise.all([
-                     fetch('Header.html?v=' + new Date().getTime()).catch(e => { console.error('Fehler beim Abrufen von Header.html', e); return null; }), // Added cache-busting parameter
-                     fetch('Footer.html?v=' + new Date().getTime()).catch(e => { console.error('Fehler beim Abrufen von Footer.html', e); return null; })
+                     fetch('../pages/header.html?v=2').catch(e => { console.error('Fehler beim Abrufen von header.html', e); return null; }),
+                     fetch('../pages/footer.html?v=2').catch(e => { console.error('Fehler beim Abrufen von footer.html', e); return null; })
                 ]);
 
                 if (headerRes && headerRes.ok) {
@@ -1035,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // --- About Sektion (Diagramm/KPI) Logik ---
         const portfolioData = [ // Daten für About-Diagramm
-             { name: 'MOBOTIX', years: 1 }, { name: 'Meta System', years: 1 }, { name: 'STS', years: 1 }, { name: 'WPS', years: 2 }, { name: 'Qcision', years: 2 },
+             { name: 'MOBOTIX', years: 1 }, { name: 'Meta System', years: 1 }, { name: 'STS', years: 1 }, { name: 'WPS', years: 2 },
              { name: 'Trassl', years: 3 }, { name: 'VielfaltMenü', years: 3 }, { name: 'UST', years: 3 },
              { name: 'ISOLITE', years: 3 }, { name: 'PAL Wiping', years: 4 }, { name: 'DEMM', years: 4 },
              { name: 'Wegener', years: 4 }, { name: 'HermannKoch', years: 6 }, { name: 'Qualiform', years: 7 },
@@ -1083,10 +1091,10 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => createBarChart(target), 300);
             setTimeout(() => {
                 animateCounter('years-counter', '25', '+', 1500);
-                animateCounter('revenue-counter', '1.4', 'B', 1500, '€ '); // Hinweis: 'B'-Suffix wird von animateCounter behandelt
+                animateCounter('revenue-counter', '1.2', 'B', 1500, '€ ');
                 animateCounter('companies-counter', '21', '', 1500);
-                animateCounter('employees-counter', '5400', '+', 1500); // Updated to match Portfolio.html
-                animateCounter('countries-counter', '55', '', 1500); // Updated: +2 countries from Meta System
+                animateCounter('employees-counter', '5769', '+', 1500);
+                animateCounter('countries-counter', '18', '', 1500);
                 animateCounter('continents-counter', '5', '', 1500); // New: Continents
             }, 500);
 
@@ -1198,9 +1206,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (revenueCounter) {
                 if (currentLang === 'de') {
-                    revenueCounter.textContent = '€ 1,4 Mrd.';
+                    revenueCounter.textContent = '€ 1,2 Mrd.';
                 } else {
-                    revenueCounter.textContent = '€ 1.4B';
+                    revenueCounter.textContent = '€ 1.2B';
                 }
             }
         }
@@ -1335,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const portfolioCompanies = [ // Diese Liste aktuell halten
                 'AFT', 'COI', 'Demm', 'Enorise', 'Hannemann', 'Shieldtech',
-                'HermannKoch', 'Horn', 'Isolite', 'PAL', 'Pruss', 'Qcision',
+                'HermannKoch', 'Horn', 'Isolite', 'PAL', 'Pruss',
                 'Qualiform', 'Rebhan', 'SCV', 'Trassl', 'UST', 'Vielfaltmenue',
                 'wegener', 'WPS', 'MOBOTIX'
             ];
@@ -1577,8 +1585,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }); // Ende des Scripts
 </script>
-<script src="../Assets/js/language-switcher.js"></script>
-<script src="../Assets/js/scroll-to-top.js"></script>
-<script src="../Assets/js/cookie-banner.js"></script>
+<script src="../assets/js/language-switcher.js"></script>
+<script src="../assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

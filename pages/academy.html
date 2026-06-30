@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>CERTINA GROUP - Academy</title>
+<meta name="description" content="The Certina Academy — knowledge exchange, leadership development and industry expertise programs for our portfolio companies.">
+<meta property="og:title" content="Certina Academy | CERTINA GROUP">
+<meta property="og:description" content="Knowledge exchange and leadership development programs across the Certina Group portfolio.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certina-group.com/pages/academy.html">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/cookie-banner.css">
 <style>
 /* Certina Light Theme Colors */
 :root {
@@ -880,7 +889,7 @@ body.no-scroll {
             <!-- Finance and Legal Partner -->
             <div class="partner-card">
                 <div class="partner-photo">
-                    <img src="../Assets/Academy/Professors/Haecker/Haecker_Passbild.png" alt="Prof. Dr. Dr. Joachim Häcker" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
+                    <img src="../assets/academy/Professors/Haecker/Haecker_Passbild.png" alt="Prof. Dr. Dr. Joachim Häcker" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
                 </div>
                 <div class="partner-info">
                     <div class="partner-field">Finance and Legal</div>
@@ -892,7 +901,7 @@ body.no-scroll {
             <!-- Artificial Intelligence Partner -->
             <div class="partner-card">
                 <div class="partner-photo">
-                    <img src="../Assets/Academy/Professors/Choi/Choi_Passbild.png" alt="Prof. Dr. Joon Nak Choi" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
+                    <img src="../assets/academy/Professors/Choi/Choi_Passbild.png" alt="Prof. Dr. Joon Nak Choi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
                 </div>
                 <div class="partner-info">
                     <div class="partner-field">Artificial Intelligence and Data Analytics</div>
@@ -904,7 +913,7 @@ body.no-scroll {
             <!-- Communication Partner -->
             <div class="partner-card">
                 <div class="partner-photo">
-                    <img src="../Assets/Academy/Professors/Siong/Siong_Passbild.png" alt="Prof. Dr. Kian Siong T" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
+                    <img src="../assets/academy/Professors/Siong/Siong_Passbild.png" alt="Prof. Dr. Kian Siong T" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
                 </div>
                 <div class="partner-info">
                     <div class="partner-field">Communication and Negotiation</div>
@@ -916,7 +925,7 @@ body.no-scroll {
             <!-- R&D Partner -->
             <div class="partner-card">
                 <div class="partner-photo">
-                    <img src="../Assets/Academy/Professors/Honig/Honig_Passbild.png" alt="Prof. Dr. Dr. Vladimír Hönig" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
+                    <img src="../assets/academy/Professors/Honig/Honig_Passbild.png" alt="Prof. Dr. Dr. Vladimír Hönig" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; background-color: var(--ultra-light-bg);">
                 </div>
                 <div class="partner-info">
                     <div class="partner-field">Research & Development</div>
@@ -936,8 +945,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load Header and Footer
     async function loadHeaderFooter() {
         try {
-            const headerRes = await fetch('Header.html');
-            if (!headerRes.ok) throw new Error('Failed to fetch Header.html: ' + headerRes.statusText);
+            const headerRes = await fetch('../pages/header.html?v=2');
+            if (!headerRes.ok) throw new Error('Failed to fetch header.html: ' + headerRes.statusText);
             const headerHtml = await headerRes.text();
             const headerPlaceholder = document.getElementById('header-placeholder');
             headerPlaceholder.innerHTML = headerHtml;
@@ -965,8 +974,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('[Academy.js] initializeHeaderFunctionality not found after script execution');
                 }
             }, 100);
-            const footerRes = await fetch('Footer.html');
-            if (!footerRes.ok) throw new Error('Failed to fetch Footer.html: ' + footerRes.statusText);
+            const footerRes = await fetch('../pages/footer.html?v=2');
+            if (!footerRes.ok) throw new Error('Failed to fetch footer.html: ' + footerRes.statusText);
             const footerHtml = await footerRes.text();
             document.getElementById('footer-placeholder').innerHTML = footerHtml;
         } catch (e) {
@@ -1096,7 +1105,8 @@ window.addEventListener('scroll', optimizedScrollHandler);
 </script>
 
 <!-- Language Switcher JavaScript -->
-<script src="../Assets/JS/language-switcher.js"></script>
-<script src="../Assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/language-switcher.js"></script>
+<script src="../assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

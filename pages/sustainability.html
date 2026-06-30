@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>CERTINA GROUP - Sustainability</title>
+<meta name="description" content="Sustainability at CERTINA GROUP — our commitment to responsible investing, ESG principles and long-term value creation across our portfolio.">
+<meta property="og:title" content="Sustainability | CERTINA GROUP">
+<meta property="og:description" content="Our commitment to responsible investing and ESG principles across the Certina Group portfolio.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certina-group.com/pages/sustainability.html">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/cookie-banner.css">
 <style>
         /* Certina Light Theme Colors (Base) */
         :root {
@@ -609,7 +618,7 @@
                 <p>Since foundation, we mind our responsibility for employees, society, and the environment, and create sustainable value for generations to come.</p>
             </div>
             <div class="about-image">
-                <img src="../Assets/Sustainability/Sustainability_Cover.png" alt="Sustainable Business">
+                <img src="../Assets/Sustainability/Sustainability_Cover.png" alt="Sustainable Business" loading="lazy">
             </div>
         </div>
     </div>
@@ -679,7 +688,7 @@
             <!-- Example 1 - REBHAN -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/Rebhan/Rebhan_Logo.png" alt="REBHAN Logo">
+                    <img src="../Assets/Portfolio/Rebhan/Rebhan_Logo.png" alt="REBHAN Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">REBHAN</h3>
@@ -690,7 +699,7 @@
             <!-- Example 2 - HORN -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/Horn/Horn_Logo.png" alt="HORN Logo">
+                    <img src="../Assets/Portfolio/Horn/Horn_Logo.png" alt="HORN Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">HORN</h3>
@@ -701,7 +710,7 @@
             <!-- Example 3 - UST -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/UST/UST_Logo.png" alt="UST Logo">
+                    <img src="../Assets/Portfolio/UST/UST_Logo.png" alt="UST Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">UST</h3>
@@ -712,7 +721,7 @@
             <!-- Example 4 - Pruss -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/Pruss/Pruss_Logo.png" alt="Pruss Logo">
+                    <img src="../Assets/Portfolio/Pruss/Pruss_Logo.png" alt="Pruss Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">Pruss</h3>
@@ -723,7 +732,7 @@
             <!-- Example 5 - COI -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/COI/COI_Logo.png" alt="COI Logo">
+                    <img src="../Assets/Portfolio/COI/COI_Logo.png" alt="COI Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">COI</h3>
@@ -734,7 +743,7 @@
             <!-- Example 6 - AFT -->
             <div class="example-card">
                 <div class="example-header">
-                    <img src="../Assets/Portfolio/AFT/AFT_Logo.png" alt="AFT Logo">
+                    <img src="../Assets/Portfolio/AFT/AFT_Logo.png" alt="AFT Logo" loading="lazy">
                 </div>
                 <div class="example-content">
                     <h3 class="example-company">AFT</h3>
@@ -806,7 +815,7 @@
         // Load Components Functionality (Header/Footer)
         const loadComponents = async () => {
             try {
-                const headerRes = await fetch('Header.html?v=' + new Date().getTime());
+                const headerRes = await fetch('../pages/header.html?v=2');
                 if (!headerRes.ok) throw new Error(`Failed to fetch Header.html: ${headerRes.statusText}`);
                 const headerHtml = await headerRes.text();
                 const headerPlaceholder = document.getElementById('header-placeholder');
@@ -836,7 +845,7 @@
                     }
                 }, 100);
 
-                const footerRes = await fetch('Footer.html');
+                const footerRes = await fetch('../pages/footer.html?v=2');
                 if (!footerRes.ok) throw new Error(`Failed to fetch Footer.html: ${footerRes.statusText}`);
                 const footerHtml = await footerRes.text();
                 document.getElementById('footer-placeholder').innerHTML = footerHtml;
@@ -873,7 +882,8 @@
 </script>
 
 <!-- Re-add the external language switcher script -->
-<script src="../Assets/JS/language-switcher.js"></script>
-<script src="../Assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/language-switcher.js"></script>
+<script src="../assets/js/scroll-to-top.js"></script>
+<script src="../assets/js/cookie-banner.js"></script>
 </body>
 </html>

@@ -1,0 +1,2 @@
+html.translating body { opacity: 0; }
+html:not(.translating) body { transition: opacity 0.15s ease; }
