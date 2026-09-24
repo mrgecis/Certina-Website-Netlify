@@ -1501,7 +1501,7 @@
         let currentOpenJobId = null;
 
         // Register event listeners IMMEDIATELY (before DOMContentLoaded)
-        window.addEventListener('languageChanged', function(e) {
+        document.addEventListener('languageChanged', function(e) {
             console.log('[Career.js] Language change event received:', e.detail.language);
             updateLanguage(e.detail.language);
         });
@@ -1590,10 +1590,9 @@
         // let allJobs = []; // REMOVED - already defined above
         // let currentOpenJobId = null; // REMOVED - already defined above
 
-        async function loadJobPostings(lang = null) {
+        async function loadJobPostings() {
             try {
-                const useLang = lang || currentLanguage;
-                console.log('[Career.js loadJobPostings] Loading jobs with language:', useLang);
+                console.log('[Career.js loadJobPostings] Loading jobs with language:', currentLanguage);
                 
                 const jobsContainer = document.getElementById('jobs-container');
                 const noJobsMessage = document.getElementById('no-jobs-message');
@@ -1606,7 +1605,7 @@
                     jobsContainer.innerHTML = ''; // Clear previous job cards
                     
                     jobs.forEach(job => {
-                        const jobCard = createJobCard(job, useLang);
+                        const jobCard = createJobCard(job, currentLanguage);
                         jobsContainer.appendChild(jobCard);
                     });
                 } else {
@@ -1848,20 +1847,13 @@
             localStorage.setItem('selectedLanguage', lang);
             console.log('[Career.js] LocalStorage updated. Current language:', localStorage.getItem('selectedLanguage'));
 
-            // Force translation update for static content
-            if (window.translatePage) {
-                window.translatePage(lang); 
-            }
+            // Static translations already emitted this event. Calling translatePage
+            // here would dispatch it again and recurse.
+            const jobsContainer = document.getElementById('jobs-container');
+            jobsContainer.replaceChildren(...allJobs.map(job => createJobCard(job, lang)));
 
-            // Reload job postings immediately with the new language (no timeout needed!)
-            console.log('[Career.js] Reloading jobs with language:', lang);
-            loadJobPostings(lang); 
-
-            // Update modal if open
-            if (document.getElementById('job-modal').style.display === 'flex' && currentOpenJobId) {
-                setTimeout(() => {
-                    openJobModal(currentOpenJobId); 
-                }, 100);
+            if (currentOpenJobId) {
+                openJobModal(currentOpenJobId);
             }
         }
 
@@ -1871,7 +1863,7 @@
     </script>
 
 <!-- Language Switcher JavaScript -->
-<script src="../assets/js/language-switcher.js?v=20260924"></script>
+<script src="../assets/js/language-switcher.js?v=20260924-2"></script>
 <script src="../assets/js/scroll-to-top.js"></script>
 <script src="../assets/js/cookie-banner.js"></script>
 </body>

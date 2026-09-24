@@ -877,8 +877,6 @@ function selectLanguage(lang) {
     });
     document.dispatchEvent(languageChangeEvent);
     
-    updateContent();
-    closeLanguageMenu();
     
     console.log('Language changed to:', lang);
 }
