@@ -1465,7 +1465,8 @@
         <section class="career-contact">
             <h3 data-translate="career_contact_heading">Interesse an einer Karriere bei uns?</h3>
             <p data-translate="career_contact_text">Für allgemeine Anfragen zu Karrieremöglichkeiten kontaktieren Sie uns unter:</p>
-            <a href="mailto:tobias.eiblmeier@certina-group.com" class="contact-email">tobias.eiblmeier@certina-group.com</a>
+            <p>Marc Welke</p>
+            <a href="mailto:marc.welke@certina-group.com" class="contact-email">marc.welke@certina-group.com</a>
         </section>
     </main>
 
@@ -1483,24 +1484,7 @@
                     <span id="modal-job-type">Type</span>
                 </div>
             </div>
-            <div class="job-modal-body">
-                <div class="job-section">
-                    <h3 data-translate="career_job_description">Stellenbeschreibung</h3>
-                    <p id="modal-job-full-description">Description</p>
-                </div>
-                <div class="job-section">
-                    <h3 data-translate="career_job_responsibilities">Das erwartet Dich</h3>
-                    <ul id="modal-job-responsibilities"></ul>
-                </div>
-                <div class="job-section">
-                    <h3 data-translate="career_job_requirements">Das zeichnet Dich aus</h3>
-                    <ul id="modal-job-requirements"></ul>
-                </div>
-                <div class="job-section">
-                    <h3 data-translate="career_job_benefits">Das bieten wir</h3>
-                    <ul id="modal-job-benefits"></ul>
-                </div>
-            </div>
+            <div class="job-modal-body"></div>
             <div class="job-modal-footer">
                 <a id="modal-apply-btn" href="#" class="apply-btn" data-translate="career_apply_now">Jetzt bewerben</a>
             </div>
@@ -1778,30 +1762,35 @@
                 const modalCompany = document.getElementById('modal-job-company');
                 const modalLocation = document.getElementById('modal-job-location');
                 const modalType = document.getElementById('modal-job-type');
-                const modalDescription = document.getElementById('modal-job-full-description');
-                const modalResponsibilities = document.getElementById('modal-job-responsibilities');
-                const modalRequirements = document.getElementById('modal-job-requirements');
-                const modalBenefits = document.getElementById('modal-job-benefits');
+                const modalBody = modal.querySelector('.job-modal-body');
                 const modalApplyLink = document.getElementById('modal-apply-btn');
 
-                // Populate modal content
                 modalTitle.textContent = getLocalizedText(job.title);
                 modalCompany.textContent = getLocalizedText(job.company);
-                modalLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${getLocalizedText(job.location)}`;
-                modalType.innerHTML = `<i class="fas fa-clock"></i> ${getLocalizedText(job.type)}`;
-                
-                // Full description - use description if fullDescription is not available
-                const fullDescription = job.fullDescription ? getLocalizedText(job.fullDescription) : getLocalizedText(job.description);
-                modalDescription.textContent = fullDescription;
+                modalLocation.textContent = getLocalizedText(job.location);
+                modalType.textContent = getLocalizedText(job.type);
+                modalBody.replaceChildren();
 
-                // Populate lists using the helper function
-                populateList(modalResponsibilities, job.responsibilities ? getLocalizedText(job.responsibilities) : []);
-                populateList(modalRequirements, job.requirements ? getLocalizedText(job.requirements) : []);
-                populateList(modalBenefits, job.benefits ? getLocalizedText(job.benefits) : []);
-
-                // Apply link
-                modalApplyLink.href = job.applicationLink || 'mailto:tobias.eiblmeier@certina-group.com';
-                // Text for apply_now button is handled by data-translate attribute and main translation function
+                (job.sections || []).forEach(section => {
+                    const container = document.createElement('div');
+                    container.className = 'job-section';
+                    const heading = document.createElement('h3');
+                    heading.textContent = getLocalizedText(section.heading);
+                    container.appendChild(heading);
+                    getLocalizedText(section.paragraphs).forEach(text => {
+                        const paragraph = document.createElement('p');
+                        paragraph.textContent = text;
+                        container.appendChild(paragraph);
+                    });
+                    const items = getLocalizedText(section.items);
+                    if (items.length) {
+                        const list = document.createElement('ul');
+                        populateList(list, items);
+                        container.appendChild(list);
+                    }
+                    modalBody.appendChild(container);
+                });
+                modalApplyLink.href = job.applicationLink || 'mailto:' + (job.applyEmail || 'marc.welke@certina-group.com');
 
                 // Show modal
                 modal.style.display = 'flex'; // Changed from 'block' to 'flex' to center content by default

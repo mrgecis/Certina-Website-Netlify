@@ -21,7 +21,7 @@ To add a new job posting, edit the `jobs.json` file and add a new job object to 
   "description": "Job description text",
   "location": "City, Country",
   "type": "Vollzeit/Teilzeit/Praktikum",
-  "applicationLink": "mailto:careers@certina-group.com?subject=Application Job Title",
+  "applicationLink": "mailto:marc.welke@certina-group.com?subject=Application Job Title",
   "requirements": [
     "Requirement 1",
     "Requirement 2",
@@ -47,9 +47,10 @@ To add a new job posting, edit the `jobs.json` file and add a new job object to 
 - `active`: Boolean - set to true to display the job, false to hide it
 
 ### Optional Fields
-- `applicationLink`: Custom application link (defaults to careers@certina-group.com)
+- `applicationLink`: Custom application link (defaults to marc.welke@certina-group.com)
 - `requirements`: Array of job requirements
 - `benefits`: Array of job benefits
+- `sections`: Ordered bilingual sections, each with `heading` (`de`/`en` strings), `paragraphs` (`de`/`en` arrays), and `items` (`de`/`en` arrays); used for the full job detail modal
 - `datePosted`: Date when the job was posted
 
 ## Displaying Jobs
@@ -64,4 +65,4 @@ Job content should be provided in both German and English. Consider creating sep
 
 ## Email Integration
 
-Job applications are currently set up to send emails to `careers@certina-group.com`. Update the email address in the Career.html file if needed.
+Job applications are currently set up to send emails to `marc.welke@certina-group.com`. Update the email address in the Career.html file if needed.

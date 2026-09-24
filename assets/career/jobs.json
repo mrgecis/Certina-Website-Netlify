@@ -1,77 +1,173 @@
 {
   "jobs": [
     {
-      "id": "junior-legal-counsel-2025",
+      "id": "ma-intern-investment-team-2026",
       "active": true,
       "title": {
-        "de": "Junior Legal Counsel / Volljurist (m/w/d)",
-        "en": "Junior Legal Counsel (m/f/d)"
+        "de": "M&A Intern – Praktikum im Investment-Team (m/w/d)",
+        "en": "M&A Intern – Investment Team (m/f/d)"
       },
       "company": {
         "de": "CERTINA Group",
         "en": "CERTINA Group"
       },
       "location": {
-        "de": "München/Hybrid",
-        "en": "Munich/Hybrid"
+        "de": "München / Hybrid",
+        "en": "Munich / Hybrid"
       },
       "type": {
-        "de": "Vollzeit",
-        "en": "Full-time"
+        "de": "Vollzeitpraktikum (3–6 Monate)",
+        "en": "Full-time internship (3–6 months)"
       },
       "description": {
-        "de": "Als Junior Legal Counsel arbeitest Du nah am operativen Geschäft in enger Zusammenarbeit mit Management-Teams, unserem Investment-Team und externen Beratern und übernimmst früh Verantwortung in rechtlich wie unternehmerisch anspruchsvollen Projekten.",
-        "en": "As Junior Legal Counsel, you will work closely with the operational business in collaboration with management teams, our investment team, and external advisors, taking on early responsibility in legally and entrepreneurially challenging projects."
+        "en": "As an Intern in our Investment Team you work right at the heart of our transactions, in close cooperation with our deal teams, the management of our portfolio companies and external advisors, and take on responsibility early in commercially demanding projects, in particular:",
+        "de": "Als Praktikant in unserem Investment-Team arbeitest Du im Zentrum unserer Transaktionen, in enger Zusammenarbeit mit unseren Deal-Teams, dem Management unserer Portfoliounternehmen und externen Beratern. Dabei übernimmst Du früh Verantwortung in wirtschaftlich anspruchsvollen Projekten, insbesondere:"
       },
-      "responsibilities": {
-        "de": [
-          "M&A-Transaktionen (national & international)",
-          "Reorganisationen, Restrukturierungen und Transformationsprojekte",
-          "Rechtliche Betreuung unserer Portfoliounternehmen"
-        ],
-        "en": [
-          "M&A transactions (national & international)",
-          "Reorganizations, restructurings and transformation projects",
-          "Legal support for our portfolio companies"
-        ]
-      },
-      "requirements": {
-        "de": [
-          "Zweites Staatsexamen abgeschlossen oder kurz davor",
-          "Sehr gutes juristisches Fundament (Gesellschaftsrecht / M&A von Vorteil)",
-          "Sehr gute Englischkenntnisse",
-          "Strukturierte, selbstständige Arbeitsweise",
-          "Eigeninitiative und unternehmerisches Denken"
-        ],
-        "en": [
-          "Second state examination completed or close to completion",
-          "Excellent legal foundation (Corporate Law / M&A advantageous)",
-          "Excellent English skills",
-          "Structured, independent working style",
-          "Initiative and entrepreneurial thinking"
-        ]
-      },
-      "benefits": {
-        "de": [
-          "Internationales Umfeld mit hohem und kontinuierlichem Dealflow",
-          "Direkte Zusammenarbeit mit internationalen Teams und Management",
-          "Family Equity ohne Exit-Druck",
-          "Schnelle Entscheidungen, kurze Wege",
-          "Entwicklung durch Praxis, Mentoring und CERTINA Academy"
-        ],
-        "en": [
-          "International environment with high and continuous deal flow",
-          "Direct collaboration with international teams and management",
-          "Family Equity without exit pressure",
-          "Fast decisions, short paths",
-          "Development through practice, mentoring and CERTINA Academy"
-        ]
-      },
-      "applyEmail": "tobias.eiblmeier@certina-group.com",
-      "applyInstructions": {
-        "de": "Wenn Du ein Umfeld suchst, das fordert und fördert, freuen wir uns auf Deine Bewerbung mit allen relevanten Unterlagen, Deinem frühestmöglichen Eintrittstermin und Deiner Gehaltsvorstellung.",
-        "en": "If you are looking for an environment that challenges and promotes, we look forward to receiving your application with all relevant documents, your earliest possible start date and your salary expectations."
-      }
+      "sections": [
+        {
+          "heading": {
+            "en": "CERTINA Group - Who we are",
+            "de": "CERTINA Group – Wer wir sind"
+          },
+          "paragraphs": {
+            "en": [
+              "The CERTINA Group is an internationally active family equity investor with an entrepreneurial mindset. With more than 25 years of experience, over 20 portfolio companies at more than 15 locations worldwide and group revenues of EUR 1.4bn, we actively shape companies in special situations, carve-outs and transformation phases. We invest according to the principle “Buy, Transform & Hold” - with operational proximity, fast decisions and clear responsibility."
+            ],
+            "de": [
+              "Die CERTINA Group ist ein international tätiger Family-Equity-Investor mit unternehmerischem Denken. Mit mehr als 25 Jahren Erfahrung, über 20 Portfoliounternehmen an mehr als 15 Standorten weltweit und einem Gruppenumsatz von 1,4 Mrd. EUR gestalten wir Unternehmen in Sondersituationen, Carve-outs und Transformationsphasen aktiv mit. Wir investieren nach dem Prinzip „Buy, Transform & Hold“ – mit operativer Nähe, schnellen Entscheidungen und klarer Verantwortung."
+            ]
+          },
+          "items": {
+            "en": [],
+            "de": []
+          }
+        },
+        {
+          "heading": {
+            "en": "Your role",
+            "de": "Deine Rolle"
+          },
+          "paragraphs": {
+            "en": [
+              "As an Intern in our Investment Team you work right at the heart of our transactions, in close cooperation with our deal teams, the management of our portfolio companies and external advisors, and take on responsibility early in commercially demanding projects, in particular:"
+            ],
+            "de": [
+              "Als Praktikant in unserem Investment-Team arbeitest Du im Zentrum unserer Transaktionen, in enger Zusammenarbeit mit unseren Deal-Teams, dem Management unserer Portfoliounternehmen und externen Beratern. Dabei übernimmst Du früh Verantwortung in wirtschaftlich anspruchsvollen Projekten, insbesondere:"
+            ]
+          },
+          "items": {
+            "en": [
+              "M&A transactions along the entire deal process (national & international)",
+              "Financial modelling, company and market analyses as well as due diligence",
+              "Deal origination, target screening and preparation of investment documents"
+            ],
+            "de": [
+              "M&A-Transaktionen entlang des gesamten Deal-Prozesses (national und international)",
+              "Financial Modelling, Unternehmens- und Marktanalysen sowie Due Diligence",
+              "Deal Origination, Target Screening und Erstellung von Investment-Unterlagen"
+            ]
+          }
+        },
+        {
+          "heading": {
+            "en": "What defines this role",
+            "de": "Was diese Rolle auszeichnet"
+          },
+          "paragraphs": {
+            "en": [
+              "The role offers broad insight into investment and entrepreneurial questions and is aimed at candidates who want to take on responsibility early through:"
+            ],
+            "de": [
+              "Die Rolle bietet breite Einblicke in Investment- und unternehmerische Fragestellungen und richtet sich an Kandidaten, die früh Verantwortung übernehmen möchten:"
+            ]
+          },
+          "items": {
+            "en": [
+              "Full team membership with your own workstreams instead of pure support tasks",
+              "High content breadth and close connection to the operating business",
+              "Project-based work with clear learning and development steps"
+            ],
+            "de": [
+              "Vollwertige Teammitgliedschaft mit eigenen Arbeitspaketen statt reiner Unterstützungsaufgaben",
+              "Hohe inhaltliche Bandbreite und enge Verbindung zum operativen Geschäft",
+              "Projektbezogenes Arbeiten mit klaren Lern- und Entwicklungsschritten"
+            ]
+          }
+        },
+        {
+          "heading": {
+            "en": "Your profile",
+            "de": "Dein Profil"
+          },
+          "paragraphs": {
+            "en": [],
+            "de": []
+          },
+          "items": {
+            "en": [
+              "Ongoing or completed undergraduate or graduate degree, ideally in business, economics, finance or engineering",
+              "Strong analytical skills and confident handling of Excel and PowerPoint",
+              "First practical experience in private equity, investment banking, transaction services or consulting is an advantage",
+              "Structured and independent way of working",
+              "Initiative, entrepreneurial thinking and fluency in German and English"
+            ],
+            "de": [
+              "Laufendes oder abgeschlossenes Bachelor- oder Masterstudium, idealerweise in Betriebswirtschaft, Volkswirtschaft, Finance oder Ingenieurwissenschaften",
+              "Starke analytische Fähigkeiten und sicherer Umgang mit Excel und PowerPoint",
+              "Erste praktische Erfahrung in Private Equity, Investment Banking, Transaction Services oder Beratung ist von Vorteil",
+              "Strukturierte und selbstständige Arbeitsweise",
+              "Eigeninitiative, unternehmerisches Denken sowie fließende Deutsch- und Englischkenntnisse"
+            ]
+          }
+        },
+        {
+          "heading": {
+            "en": "Why CERTINA",
+            "de": "Warum CERTINA"
+          },
+          "paragraphs": {
+            "en": [],
+            "de": []
+          },
+          "items": {
+            "en": [
+              "International environment with high and continuous dealflow",
+              "Direct collaboration with international teams and management",
+              "Family equity without exit pressure",
+              "Fast decisions, short lines of communication",
+              "Development through hands-on practice, mentoring and the CERTINA Academy"
+            ],
+            "de": [
+              "Internationales Umfeld mit hohem und kontinuierlichem Dealflow",
+              "Direkte Zusammenarbeit mit internationalen Teams und Management",
+              "Family Equity ohne Exit-Druck",
+              "Schnelle Entscheidungen, kurze Kommunikationswege",
+              "Entwicklung durch praktische Erfahrung, Mentoring und die CERTINA Academy"
+            ]
+          }
+        },
+        {
+          "heading": {
+            "en": "Interested?",
+            "de": "Interessiert?"
+          },
+          "paragraphs": {
+            "en": [
+              "If you are looking for an environment that both challenges and supports you, we look forward to receiving your application including all relevant documents, your earliest possible starting date and the intended duration of your internship by email to: marc.welke@certina-group.com"
+            ],
+            "de": [
+              "Wenn Du ein Umfeld suchst, das Dich fordert und fördert, freuen wir uns auf Deine Bewerbung mit allen relevanten Unterlagen, Deinem frühestmöglichen Starttermin und der gewünschten Dauer Deines Praktikums per E-Mail an: marc.welke@certina-group.com"
+            ]
+          },
+          "items": {
+            "en": [],
+            "de": []
+          }
+        }
+      ],
+      "applyEmail": "marc.welke@certina-group.com",
+      "applicationLink": "mailto:marc.welke@certina-group.com?subject=Application%20M%26A%20Intern",
+      "datePosted": "2026-09-24"
     }
   ]
 }
